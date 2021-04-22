@@ -4,6 +4,7 @@ import {
     DialogActions,
     DialogContent,
     DialogContentText,
+    DialogProps,
     DialogTitle,
     ModalProps,
     TextField
@@ -14,7 +15,7 @@ interface BattleMenuState {
 }
 
 interface BattleMenuPros {
-    open: ModalProps['open'];
+    isOpen: DialogProps["open"];
     handleClose: () => void
 }
 
@@ -36,7 +37,7 @@ class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
                 eturn (
                 <div>
 
-                    <Dialog open={open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                    <Dialog open={this.props.isOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
