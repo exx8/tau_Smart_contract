@@ -6,7 +6,6 @@ import {
     DialogContentText,
     DialogProps,
     DialogTitle,
-    ModalProps,
     TextField
 } from '@material-ui/core';
 import React from 'react';
