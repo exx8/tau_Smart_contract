@@ -10,7 +10,8 @@ import {
     TextField
 } from '@material-ui/core';
 import React from 'react';
-
+import SendIcon from '@material-ui/icons/Send';
+import CloseIcon from '@material-ui/icons/Close';
 interface BattleMenuState {
 }
 
@@ -19,14 +20,14 @@ interface BattleMenuPros {
     handleClose: () => void
 }
 
-class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
+export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     state: BattleMenuState = {
         // optional second annotation for better type inference
 
     };
 
 
-    handleClose() {
+    handleClose=()=> {
         this.props.handleClose();
 
     }
@@ -34,15 +35,13 @@ class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     render() {
         return (
             <div>
-                eturn (
                 <div>
 
                     <Dialog open={this.props.isOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+                        <DialogTitle id="form-dialog-title"> Create a Binary Option</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                                To subscribe to this website, please enter your email address here. We will send updates
-                                occasionally.
+                             Type Partner's address
                             </DialogContentText>
                             <TextField
                                 autoFocus
@@ -55,10 +54,12 @@ class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
+                                <CloseIcon/>
                                 Cancel
                             </Button>
                             <Button onClick={this.handleClose} color="primary">
-                                Subscribe
+                                <SendIcon/>
+                                Send
                             </Button>
                         </DialogActions>
                     </Dialog>
@@ -68,4 +69,3 @@ class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
 }
 
 
-export default BattleMenu;
