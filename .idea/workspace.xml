@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94c0e979-1df0-4bb4-b1d0-2a607b39623c" name="Default Changelist" comment="-New code for price feeds, works in remix but was commented since I fail to import from github on the cmd.&#10;-Web3 code for interaction with the smart contract.">
-      <change afterPath="$PROJECT_DIR$/binary-options/binary-options-web-gui/package.json" afterDir="false" />
+    <list default="true" id="94c0e979-1df0-4bb4-b1d0-2a607b39623c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/binary-options/binary-options-web-gui/src/setupTests.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +42,11 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -44,6 +65,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617976417482</updated>
+      <workItem from="1619079838146" duration="380000" />
     </task>
     <task id="LOCAL‎00001" summary="First test.">
       <created>1617977762600</created>
@@ -57,8 +79,25 @@
       <option name="presentableId" value="LOCAL‎00002" />
       <updated>1618583069989</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="initing the web gui&#10;adding drizzle">
+      <created>1619048504808</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619048504808</updated>
+    </task>
+    <task id="LOCAL-00004" summary="initing the web gui&#10;adding drizzle">
+      <created>1619048583430</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1619048583430</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -76,6 +115,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First test." />
     <MESSAGE value="-New code for price feeds, works in remix but was commented since I fail to import from github on the cmd.&#10;-Web3 code for interaction with the smart contract." />
-    <option name="LAST_COMMIT_MESSAGE" value="-New code for price feeds, works in remix but was commented since I fail to import from github on the cmd.&#10;-Web3 code for interaction with the smart contract." />
+    <MESSAGE value="initing the web gui&#10;adding drizzle" />
+    <option name="LAST_COMMIT_MESSAGE" value="initing the web gui&#10;adding drizzle" />
   </component>
 </project>
