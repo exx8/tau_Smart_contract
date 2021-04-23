@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "web-gui",
+  "name": "Binary Option web gui",
   "icons": [
     {
       "src": "favicon.ico",

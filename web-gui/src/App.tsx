@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { BattleMenu } from './BattleMenu';
 
 function App() {
-    const [dialogOpen, setDialogOpen] = React.useState(true);
+    const [dialogOpen, setDialogOpen] = React.useState(false);
   return (
     <div className="App">
       <header className="App-header">

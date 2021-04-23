@@ -6,6 +6,10 @@ import {
     DialogContentText,
     DialogProps,
     DialogTitle,
+    FormHelperText,
+    InputLabel,
+    MenuItem,
+    Select,
     TextField
 } from '@material-ui/core';
 import React from 'react';
@@ -18,6 +22,8 @@ interface BattleMenuPros {
     isOpen: DialogProps["open"];
     handleClose: () => void
 }
+export var stock:string= ("stock");
+export var coin:string= ("coin");
 
 export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     state: BattleMenuState = {
@@ -50,6 +56,20 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                 type="email"
                                 fullWidth
                             />
+                                <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-helper-label"
+                                    id="demo-simple-select-helper"
+                                   // value={age}
+                                    //onChange={handleChange}
+                                >
+
+                                    <MenuItem value={coin}>coin</MenuItem>
+                                    <MenuItem value={stock}>stock</MenuItem>
+                                </Select>
+                                <FormHelperText>type of asset</FormHelperText>
+                            <TextField id="standard-basic"  inputProps={{min:0}} label="amount" />
+
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
