@@ -17,13 +17,12 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getThePrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"constructor\":{\"notice\":\"Network: Kovan Aggregator: ETH/USD Address: 0x9326BFA02ADD2366b30bacB125260Af641031331\"},\"getThePrice()\":{\"notice\":\"Returns the latest price\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/mnt/c/USERS/Lenovo/IdeaProjects/tau_smart_contract/contracts/Aggre.sol\":\"Aggre\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/mnt/c/USERS/Lenovo/IdeaProjects/tau_smart_contract/contracts/Aggre.sol\":{\"keccak256\":\"0x5ae6b9c2940b3f10e4b42ab3a72f2ef04e9628b1f9af391176dfaa522d540709\",\"urls\":[\"bzz-raw://fea725d32a1cfcd32fe25423b394e5624261d9b8e29d275d47f02ed0180de7bf\",\"dweb:/ipfs/QmTWtBW7vwpFmez91miuJAWRDTcfKaxxs62asNbWGBytmv\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b5060b68061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80638c3c9a5514602d575b600080fd5b60336047565b604051603e9190605d565b60405180910390f35b60006002905090565b6057816076565b82525050565b6000602082019050607060008301846050565b92915050565b600081905091905056fea264697066735822122009c65d3765188578afd7e08ddfb1875259e192a1779e8d9cf90251ac42ffbc6864736f6c63430008030033",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80638c3c9a5514602d575b600080fd5b60336047565b604051603e9190605d565b60405180910390f35b60006002905090565b6057816076565b82525050565b6000602082019050607060008301846050565b92915050565b600081905091905056fea264697066735822122009c65d3765188578afd7e08ddfb1875259e192a1779e8d9cf90251ac42ffbc6864736f6c63430008030033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getThePrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"constructor\":{\"notice\":\"Network: Kovan Aggregator: ETH/USD Address: 0x9326BFA02ADD2366b30bacB125260Af641031331\"},\"getThePrice()\":{\"notice\":\"Returns the latest price\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/eran/WebstormProjects/tau_Smart_contract/contracts/Aggre.sol\":\"Aggre\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/eran/WebstormProjects/tau_Smart_contract/contracts/Aggre.sol\":{\"keccak256\":\"0x31458ad3b160772bc19f1fa93f4449a0781cb7676e2bf0746b1c9a5ca54e4075\",\"urls\":[\"bzz-raw://f8ca8ffe11365d057c63b69ecbac4c8a7e7ef8928968027cd6b65ed3cb41f869\",\"dweb:/ipfs/QmUAuuBEDuKZVBVNjpYspsgFudiFCQYu2UFgidAtmuCgj9\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060b68061001f6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c80638c3c9a5514602d575b600080fd5b60336047565b604051603e9190605d565b60405180910390f35b60006002905090565b6057816076565b82525050565b6000602082019050607060008301846050565b92915050565b600081905091905056fea26469706673582212202553c43c127a9bea38c9f915c3c3c213d7bfd016a32ce2a687c53e70b44d2c5464736f6c63430008030033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c80638c3c9a5514602d575b600080fd5b60336047565b604051603e9190605d565b60405180910390f35b60006002905090565b6057816076565b82525050565b6000602082019050607060008301846050565b92915050565b600081905091905056fea26469706673582212202553c43c127a9bea38c9f915c3c3c213d7bfd016a32ce2a687c53e70b44d2c5464736f6c63430008030033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [
@@ -254,12 +253,12 @@
       "name": "#utility.yul"
     }
   ],
-  "sourceMap": "154:417:0:-:0;;;316:49;;;;;;;;;;154:417;;;;;;",
-  "deployedSourceMap": "154:417:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;430:86;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;474:3;507:1;500:8;;430:86;:::o;7:115:3:-;92:23;109:5;92:23;:::i;:::-;87:3;80:36;70:52;;:::o;128:218::-;;257:2;246:9;242:18;234:26;;270:69;336:1;325:9;321:17;312:6;270:69;:::i;:::-;224:122;;;;:::o;352:76::-;;417:5;406:16;;396:32;;;:::o",
-  "source": "pragma solidity ^0.8.3;\r\n\r\n//import \"github.com/smartcontractkit/chainlink/blob/master/evm-contracts/src/v0.6/interfaces/AggregatorV3Interface.sol\";\r\n\r\n\r\ncontract Aggre{\r\n\r\n\r\n    \r\n\r\n    /**\r\n     * Network: Kovan\r\n     * Aggregator: ETH/USD\r\n     * Address: 0x9326BFA02ADD2366b30bacB125260Af641031331\r\n     */\r\n    constructor() public {\r\n        \r\n        \r\n    }\r\n\r\n    /**\r\n     * Returns the latest price\r\n     */\r\n    \r\n\t\r\n\tfunction getThePrice() public view returns (int) {\r\n        \r\n        return 2;\r\n    }\r\n    \r\n    // a creator create a new battle\r\n    \r\n\r\n}",
-  "sourcePath": "/mnt/c/USERS/Lenovo/IdeaProjects/tau_smart_contract/contracts/Aggre.sol",
+  "sourceMap": "137:389:0:-:0;;;289:46;;;;;;;;;;137:389;;;;;;",
+  "deployedSourceMap": "137:389:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;393:83;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;437:3;468:1;461:8;;393:83;:::o;7:115:3:-;92:23;109:5;92:23;:::i;:::-;87:3;80:36;70:52;;:::o;128:218::-;;257:2;246:9;242:18;234:26;;270:69;336:1;325:9;321:17;312:6;270:69;:::i;:::-;224:122;;;;:::o;352:76::-;;417:5;406:16;;396:32;;;:::o",
+  "source": "pragma solidity ^0.8.3;\n\n//import \"github.com/smartcontractkit/chainlink/evm-contracts/src/v0.6/interfaces/AggregatorV3Interface.sol\";\n\n\ncontract Aggre{\n\n\n    \n\n    /**\n     * Network: Kovan\n     * Aggregator: ETH/USD\n     * Address: 0x9326BFA02ADD2366b30bacB125260Af641031331\n     */\n    constructor() public {\n        \n        \n    }\n\n    /**\n     * Returns the latest price\n     */\n    \n\t\n\tfunction getThePrice() public view returns (int) {\n        \n        return 2;\n    }\n    \n    // a creator create a new battle\n    \n\n}",
+  "sourcePath": "/home/eran/WebstormProjects/tau_Smart_contract/contracts/Aggre.sol",
   "ast": {
-    "absolutePath": "/mnt/c/USERS/Lenovo/IdeaProjects/tau_smart_contract/contracts/Aggre.sol",
+    "absolutePath": "/home/eran/WebstormProjects/tau_Smart_contract/contracts/Aggre.sol",
     "exportedSymbols": {
       "Aggre": [
         16
@@ -290,20 +289,20 @@
           16
         ],
         "name": "Aggre",
-        "nameLocation": "163:5:0",
+        "nameLocation": "146:5:0",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
               "id": 5,
               "nodeType": "Block",
-              "src": "337:28:0",
+              "src": "310:25:0",
               "statements": []
             },
             "documentation": {
               "id": 2,
               "nodeType": "StructuredDocumentation",
-              "src": "187:123:0",
+              "src": "165:119:0",
               "text": " Network: Kovan\n Aggregator: ETH/USD\n Address: 0x9326BFA02ADD2366b30bacB125260Af641031331"
             },
             "id": 6,
@@ -317,16 +316,16 @@
               "id": 3,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "327:2:0"
+              "src": "300:2:0"
             },
             "returnParameters": {
               "id": 4,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "337:0:0"
+              "src": "310:0:0"
             },
             "scope": 16,
-            "src": "316:49:0",
+            "src": "289:46:0",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
@@ -335,7 +334,7 @@
             "body": {
               "id": 14,
               "nodeType": "Block",
-              "src": "479:37:0",
+              "src": "442:34:0",
               "statements": [
                 {
                   "expression": {
@@ -347,7 +346,7 @@
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "507:1:0",
+                    "src": "468:1:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_rational_2_by_1",
                       "typeString": "int_const 2"
@@ -357,14 +356,14 @@
                   "functionReturnParameters": 11,
                   "id": 13,
                   "nodeType": "Return",
-                  "src": "500:8:0"
+                  "src": "461:8:0"
                 }
               ]
             },
             "documentation": {
               "id": 7,
               "nodeType": "StructuredDocumentation",
-              "src": "373:45:0",
+              "src": "341:43:0",
               "text": " Returns the latest price"
             },
             "functionSelector": "8c3c9a55",
@@ -373,13 +372,13 @@
             "kind": "function",
             "modifiers": [],
             "name": "getThePrice",
-            "nameLocation": "439:11:0",
+            "nameLocation": "402:11:0",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 8,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "450:2:0"
+              "src": "413:2:0"
             },
             "returnParameters": {
               "id": 11,
@@ -393,7 +392,7 @@
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 15,
-                  "src": "474:3:0",
+                  "src": "437:3:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -404,7 +403,7 @@
                     "id": 9,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "474:3:0",
+                    "src": "437:3:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -413,23 +412,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "473:5:0"
+              "src": "436:5:0"
             },
             "scope": 16,
-            "src": "430:86:0",
+            "src": "393:83:0",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           }
         ],
         "scope": 17,
-        "src": "154:417:0"
+        "src": "137:389:0"
       }
     ],
-    "src": "0:571:0"
+    "src": "0:526:0"
   },
   "legacyAST": {
-    "absolutePath": "/mnt/c/USERS/Lenovo/IdeaProjects/tau_smart_contract/contracts/Aggre.sol",
+    "absolutePath": "/home/eran/WebstormProjects/tau_Smart_contract/contracts/Aggre.sol",
     "exportedSymbols": {
       "Aggre": [
         16
@@ -460,20 +459,20 @@
           16
         ],
         "name": "Aggre",
-        "nameLocation": "163:5:0",
+        "nameLocation": "146:5:0",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
               "id": 5,
               "nodeType": "Block",
-              "src": "337:28:0",
+              "src": "310:25:0",
               "statements": []
             },
             "documentation": {
               "id": 2,
               "nodeType": "StructuredDocumentation",
-              "src": "187:123:0",
+              "src": "165:119:0",
               "text": " Network: Kovan\n Aggregator: ETH/USD\n Address: 0x9326BFA02ADD2366b30bacB125260Af641031331"
             },
             "id": 6,
@@ -487,16 +486,16 @@
               "id": 3,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "327:2:0"
+              "src": "300:2:0"
             },
             "returnParameters": {
               "id": 4,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "337:0:0"
+              "src": "310:0:0"
             },
             "scope": 16,
-            "src": "316:49:0",
+            "src": "289:46:0",
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
@@ -505,7 +504,7 @@
             "body": {
               "id": 14,
               "nodeType": "Block",
-              "src": "479:37:0",
+              "src": "442:34:0",
               "statements": [
                 {
                   "expression": {
@@ -517,7 +516,7 @@
                     "kind": "number",
                     "lValueRequested": false,
                     "nodeType": "Literal",
-                    "src": "507:1:0",
+                    "src": "468:1:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_rational_2_by_1",
                       "typeString": "int_const 2"
@@ -527,14 +526,14 @@
                   "functionReturnParameters": 11,
                   "id": 13,
                   "nodeType": "Return",
-                  "src": "500:8:0"
+                  "src": "461:8:0"
                 }
               ]
             },
             "documentation": {
               "id": 7,
               "nodeType": "StructuredDocumentation",
-              "src": "373:45:0",
+              "src": "341:43:0",
               "text": " Returns the latest price"
             },
             "functionSelector": "8c3c9a55",
@@ -543,13 +542,13 @@
             "kind": "function",
             "modifiers": [],
             "name": "getThePrice",
-            "nameLocation": "439:11:0",
+            "nameLocation": "402:11:0",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 8,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "450:2:0"
+              "src": "413:2:0"
             },
             "returnParameters": {
               "id": 11,
@@ -563,7 +562,7 @@
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 15,
-                  "src": "474:3:0",
+                  "src": "437:3:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -574,7 +573,7 @@
                     "id": 9,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "474:3:0",
+                    "src": "437:3:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -583,20 +582,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "473:5:0"
+              "src": "436:5:0"
             },
             "scope": 16,
-            "src": "430:86:0",
+            "src": "393:83:0",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           }
         ],
         "scope": 17,
-        "src": "154:417:0"
+        "src": "137:389:0"
       }
     ],
-    "src": "0:571:0"
+    "src": "0:526:0"
   },
   "compiler": {
     "name": "solc",
@@ -611,8 +610,7 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-04-19T15:52:31.702Z",
-  "networkType": "ethereum",
+  "updatedAt": "2021-04-26T18:27:33.371Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},

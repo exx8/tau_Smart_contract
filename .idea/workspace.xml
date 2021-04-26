@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94c0e979-1df0-4bb4-b1d0-2a607b39623c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/contracts/AggregatorV3Interface.sol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contracts/Aggre.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Aggre.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-gui/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-gui/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/public/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-gui/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-gui/src/BattleMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/src/BattleMenu.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +62,7 @@
       <updated>1617976417482</updated>
       <workItem from="1619107733209" duration="2652000" />
       <workItem from="1619113014071" duration="1664000" />
-      <workItem from="1619179192653" duration="2048000" />
-      <workItem from="1619460616720" duration="676000" />
+      <workItem from="1619179192653" duration="1656000" />
     </task>
     <task id="LOCAL‎00001" summary="First test.">
       <created>1617977762600</created>
@@ -103,14 +104,7 @@
       <option name="project" value="LOCAL" />
       <updated>1619114564180</updated>
     </task>
-    <task id="LOCAL-00007" summary="add more fields">
-      <created>1619181013620</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1619181013620</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -135,7 +129,6 @@
     <MESSAGE value="error fix." />
     <MESSAGE value="menu first steps" />
     <MESSAGE value="remove warnnings." />
-    <MESSAGE value="add more fields" />
-    <option name="LAST_COMMIT_MESSAGE" value="add more fields" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove warnnings." />
   </component>
 </project>
