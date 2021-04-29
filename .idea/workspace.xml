@@ -2,9 +2,359 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="94c0e979-1df0-4bb4-b1d0-2a607b39623c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/contracts/AggregatorV3Interface.sol" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/build/contracts/AggregatorV3Interface.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abi/lib.esm/coders/address.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abi/lib.esm/coders/array.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abi/lib.esm/coders/tuple.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abi/lib/abi-coder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abi/lib/coders/abstract-coder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abi/lib/coders/array.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abi/lib/coders/null.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abi/lib/coders/tuple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abstract-provider/lib.esm/index.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abstract-provider/lib/index.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/abstract-signer/lib.esm/_version.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/base64/lib.esm/base64.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/base64/lib/_version.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/base64/lib/browser-base64.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/base64/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/bignumber/lib.esm/fixednumber.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/bignumber/lib/bignumber.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/bignumber/lib/fixednumber.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/bytes/lib.esm/index.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/bytes/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/constants/lib.esm/addresses.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/constants/lib.esm/index.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/hash/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/hash/lib/namehash.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/keccak256/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/keccak256/lib/index.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/networks/lib.esm/_version.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/networks/lib/index.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/rlp/lib/_version.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/rlp/lib/index.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/rlp/src.ts/_version.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/signing-key/lib.esm/elliptic.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/signing-key/lib/_version.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/signing-key/lib/browser-elliptic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/signing-key/lib/index.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/strings/lib/idna.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/transactions/lib.esm/index.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/transactions/lib/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/transactions/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/web/lib.esm/geturl.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/web/lib.esm/types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@ethersproject/web/lib/geturl.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@types/bn.js/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@types/node/http2.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@types/node/string_decoder.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/@types/pbkdf2/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/accepts/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/_limitLength.jst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/dependencies.jst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/format.jst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ajv/lib/dot/properties.jst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ajv/lib/refs/data.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ajv/scripts/info" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/asn1.js/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/async-limiter/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/asynckit/lib/iterate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/available-typed-arrays/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/base64-js/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/bluebird/js/release/reduce.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/browserify-cipher/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/browserify-cipher/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/browserify-cipher/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/browserify-sign/node_modules/bn.js/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/buffer-to-arraybuffer/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/buffer/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/call-bind/.eslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/call-bind/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/chownr/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/chownr/chownr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/cids/docs/assets/anchor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/cids/docs/assets/bass.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/cids/node_modules/multicodec/dist/index.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/cids/node_modules/multicodec/src/varint-table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/content-hash/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/core-util-is/float.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/cors/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/cors/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/crypto-browserify/example/bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/crypto-browserify/test/create-hmac.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/debug/component.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/define-properties/.eslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/define-properties/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/des.js/test/cbc-test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/dom-walk/example/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/encodeurl/HISTORY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2015/GetIterator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2015/IsConcatSpreadable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2015/thisTimeValue.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2016/HasProperty.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2016/RequireObjectCoercible.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2016/SameValueNonNumber.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2016/ToObject.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2016/msFromTime.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2017/GetSubstitution.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2017/IsExtensible.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2017/ObjectCreate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2017/SameValue.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2017/SetFunctionName.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2017/SplitMatch.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2017/TimeClip.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2018/DaysInYear.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2018/NumberToString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2018/SameValueZero.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2018/UnicodeEscape.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2018/thisTimeValue.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2019/AbstractRelationalComparison.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2019/TimeFromYear.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2020/BigInt/leftShift.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2020/BigInt/sameValueZero.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2020/Number/remainder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2020/NumberBitwiseOp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2020/OrdinaryGetOwnProperty.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2020/TimeString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/2020/Type.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/5/TimeWithinDay.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/5/ToString.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/es5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/helpers/OwnPropertyKeys.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/helpers/sign.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-abstract/test/es6.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-to-primitive/es2015.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-to-primitive/test/es5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es-to-primitive/test/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/array/#/find-index/implement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/array/#/find-index/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/iterable/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/math/atanh/is-implemented.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/math/log2/implement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/number/is-finite/implement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/object/ensure-finite-number.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/object/every.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/object/to-array.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/optional-chaining.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/reg-exp/#/match/implement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/reg-exp/#/search/shim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/reg-exp/escape.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/.eslintrc.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/array/#/copy-within/shim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/array/#/fill/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/array/#/group.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/array/#/last.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/array/#/map/shim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/array/from/is-implemented.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/date/is-time-value.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/math/atanh/shim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/math/cbrt/is-implemented.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/math/clz32/shim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/math/expm1/implement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/math/expm1/is-implemented.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/math/floor-10.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/math/hypot/shim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/number/epsilon/implement.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/number/is-safe-integer/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/object/assign/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/object/clear.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/object/ensure-finite-number.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/object/ensure-plain-object.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/object/is-copy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/object/key-of.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/object/primitive-set.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/object/set-prototype-of/is-implemented.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/object/unserialize.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/reg-exp/#/is-sticky.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/reg-exp/#/match/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/reg-exp/#/search/is-implemented.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/string/#/ends-with/shim.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es5-ext/test/string/#/plain-replace.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es6-iterator/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es6-iterator/valid-iterable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es6-symbol/.testignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es6-symbol/is-native-implemented.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/es6-symbol/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/eth-ens-namehash/circle.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/eth-ens-namehash/node_modules/js-sha3/.covignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/eth-ens-namehash/node_modules/js-sha3/tests/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/eth-lib/lib/hash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/eth-lib/lib/rlp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/eth-lib/src/array.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereum-cryptography/aes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereum-cryptography/bip39/wordlists/italian.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereum-cryptography/bip39/wordlists/spanish.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereum-cryptography/blake2b.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereum-cryptography/pure/shims/hdkey-secp256k1v3.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereum-cryptography/scrypt.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereum-cryptography/shims/hdkey-secp256k1v3.d.ts.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereum-cryptography/shims/hdkey-secp256k1v3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereum-cryptography/src/bip39/wordlists/traditional-chinese.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereumjs-common/dist/genesisStates/kovan.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereumjs-tx/dist/types.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereumjs-util/dist/secp256k1v3-adapter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ethereumjs-util/dist/signature.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/evp_bytestokey/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/express/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ext/node_modules/type/docs/error.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ext/node_modules/type/function/ensure.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ext/string/random.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ext/test/function/identity.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ext/test/global-this/implementation.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/fast-deep-equal/es6/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/fast-json-stable-stringify/benchmark/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/form-data/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/forwarded/HISTORY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/fs-extra/docs/fs-read-write.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/fs-extra/docs/move.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/fs-extra/lib/copy/copy.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/fs-extra/lib/output/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/fs-extra/lib/util/assign.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/function-bind/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/function-bind/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/get-stream/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/graceful-fs/legacy-streams.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/graceful-fs/polyfills.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/har-schema/lib/response.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/has-bigints/.eslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/has-bigints/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/has-symbols/.github/FUNDING.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/has-symbols/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/has-to-string-tag-x/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/hash.js/.eslintrc.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/hash.js/lib/hash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/hash.js/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/hash.js/test/hmac-test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/http-errors/HISTORY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/http-signature/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/http-signature/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/idna-uts46-hx/.jsbeautifyrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ipaddr.js/lib/ipaddr.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-arguments/.github/workflows/node-iojs.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-arguments/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-bigint/.eslintignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-callable/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-date-object/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-negative-zero/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-regex/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-regex/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-typed-array/.nycrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-typed-array/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-typed-array/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/is-typedarray/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/js-sha3/build/sha3.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/json-buffer/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/json-stringify-safe/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonfile/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsprim/CONTRIBUTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/keccak/src/libkeccak-64/KeccakSpongeWidth1600.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/keccak/src/libkeccak-64/brg_endian.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/media-typer/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/merge-descriptors/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/miller-rabin/test/api-test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/mime-db/db.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/min-document/dom-comment.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/min-document/test/test-document.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/min-document/test/test-dom-element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/minimist/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/multibase/dist/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/multibase/src/base64.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/multicodec/src/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/multihashes/dist/index.min.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/node-addon-api/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/node-addon-api/doc/Doxyfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/node-addon-api/doc/reference.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/node-addon-api/doc/version_management.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/node-addon-api/src/node_internals.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/node-addon-api/tools/check-napi.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/node-gyp-build/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/number-to-bn/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/number-to-bn/src/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/object-inspect/.nycrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/object-inspect/test/bigint.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/object.assign/.github/workflows/require-allow-edits.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/parse-headers/example.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/path-to-regexp/Readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/performance-now/test/scripts/difference.coffee" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/process/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/pump/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/randombytes/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/raw-body/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/raw-body/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/readable-stream/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/readable-stream/lib/internal/streams/from.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/request/lib/querystring.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/rlp/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/safe-buffer/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/scrypt-js/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/secp256k1/src/secp256k1/build-aux/m4/ax_jni_include_dir.m4" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/secp256k1/src/secp256k1/src/field_5x52_impl.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/setprototypeof/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/sshpk/lib/errors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/sshpk/lib/formats/pkcs8.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/string.prototype.trimstart/polyfill.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/swarm-js/examples/uploader_dapp/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/swarm-js/scripts/archives/archives.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/swarm-js/src/api-browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/tough-cookie/lib/memstore.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/type/error/ensure.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/type/promise/is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/type/reg-exp/is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/type/test/lib/resolve-exception.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/type/test/object/ensure.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/type/test/plain-function/is.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/type/test/time-value/coerce.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/typedarray-to-buffer/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ultron/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/unbox-primitive/.eslintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/unbox-primitive/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/unbox-primitive/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/uri-js/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/uri-js/dist/es5/uri.all.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/uri-js/dist/esnext/regexps-uri.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/utf-8-validate/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/utf-8-validate/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/util/support/isBufferBrowser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/uuid/lib/sha1-browser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-core-requestmanager/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-core-subscriptions/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-core-subscriptions/src/subscription.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-abi/types/tslint.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-accounts/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-accounts/node_modules/eth-lib/src/account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-accounts/node_modules/uuid/README_js.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-accounts/node_modules/uuid/v1.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-contract/lib/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-contract/types/tslint.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-ens/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-ens/src/lib/contentHash.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-eth-iban/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-net/types/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-providers-http/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-providers-ws/types/tslint.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-utils/node_modules/eth-lib/src/account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-utils/types/tests/string-to-hex-test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-utils/types/tests/to-ascii-test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-utils/types/tests/to-bn-test.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/web3-utils/types/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/which-boxed-primitive/.nycrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/which-boxed-primitive/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xhr/.vscode/settings.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xhr2-cookies/dist/xml-http-request-event-target.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/yaeti/.jscsrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/aggretest.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/binaryOption.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/Aggre.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Aggre.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/BinaryOption.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/BinaryOption.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contracts/Aggre.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/Aggre.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/BinaryOption.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/BinaryOption.sol" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index_1.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web3Scripts/index_1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index_2.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web3Scripts/index_2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/2_binary_option.js" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/2_binary_option.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,20 +382,25 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Web3Scripts" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LENOVO\IdeaProjects\tau_Smart_contract\Web3Scripts" />
       <recent name="C:\Users\LENOVO\IdeaProjects\tau_Smart_contract" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LENOVO\IdeaProjects\tau_Smart_contract\Web3Scripts" />
       <recent name="C:\Users\LENOVO\IdeaProjects\tau_Smart_contract" />
       <recent name="C:\Users\LENOVO\IdeaProjects\tau_Smart_contract\migrations" />
     </key>
