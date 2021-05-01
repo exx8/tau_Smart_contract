@@ -25,18 +25,20 @@ const addBattle= async() => {
 	await init();
 
     try{
-	result=await contract.methods.addBattle("EthVsUsd",15,false).send({
+	await contract.methods.addBattle("EthVsUsd",15,false).send({
 		from: addresses[0],
-		value:'0', // I made it non positive to test the catch block
+		value:'0', // I made it non positive to test the catch block.
 		gas: 180000,
         gasPrice: '30000000'
 	});
+	console.log('yes');
 	}
 	catch(e){
 	const data=e.data;
 	const txHash = Object.keys(data)[0];
     const reason = data[txHash].reason;
-	console.log(reason);
+	console.log(reason); // the reason will be as written in the require: "You have to bet on positive value!\n"
+	console.log('nnnn')
 	}
 
 }
@@ -100,5 +102,22 @@ const cancelBattle= async() => {
 
 }
 
+const getPrice= async() => {
+	await init();
+
+    try{
+	result=await contract.methods.getPrice().call(); // I tried also with the send method as in the above functions but it didnt work
+	console.log(result);
+	}
+	catch(e){
+    const data=e.data;
+        const txHash = Object.keys(data)[0];
+        const reason = data[txHash].reason;
+        console.log(reason);
+        //you can also print the data const if you want
+    }
+
+}
+
 // will go to the catch block since no battle is exist
-withdraw();
+getPrice();
