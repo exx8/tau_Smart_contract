@@ -23,12 +23,13 @@ const init= async() => {
     	//.send({from: address});
 
 
-    	/*await contract.methods.settempVal(3).send({
+    	await contract.methods.settempVal(3).send({
     		from: address
-    	});*/
-    	//const result=await contract.methods.gettempVal().call();
-
+    	});
     	console.log('not even here?');
+    	const result=await contract.methods.gettempVal().call();
+        console.log(result);
+
     	}
     	catch(e){
     	const data=e.data;

@@ -26,8 +26,8 @@ const addBattle= async() => {
 
     try{
 	await contract.methods.addBattle("EthVsUsd",15,false).send({
-		from: addresses[0],
-		value:'0', // I made it non positive to test the catch block.
+		from: addresses[2],
+		value:'500000', // I made it non positive to test the catch block.
 		gas: 180000,
         gasPrice: '30000000'
 	});
@@ -38,7 +38,6 @@ const addBattle= async() => {
 	const txHash = Object.keys(data)[0];
     const reason = data[txHash].reason;
 	console.log(reason); // the reason will be as written in the require: "You have to bet on positive value!\n"
-	console.log('nnnn')
 	}
 
 }
@@ -46,9 +45,9 @@ const acceptBattle= async() => {
 	await init();
 
     try{
-	await contract.methods.acceptBattle(0).send({
-	from: addresses[1],
-	value:'100000',
+	await contract.methods.acceptBattle(2).send({
+	from: addresses[3],
+	value:'500000',
 	gas: 180000,
     gasPrice: '30000000'
 	});
@@ -65,13 +64,17 @@ const acceptBattle= async() => {
 const withdraw= async() => {
 	await init();
     try{
-	result=await contract.methods.getcurrVal(0).call(); //example to the problem I told you about- I have to call this method since I can't get the return value from withdraw()
-	await contract.methods.withdraw(0).send({
+	//result=await contract.methods.getcurrVal(0).call(); //example to the problem I told you about- I have to call this method since I can't get the return value from withdraw()
+	const receipt=await contract.methods.withdraw(2).send({
 		from: addresses[0],
 		gas: 180000,
         gasPrice: '30000000'
 	});
-	console.log("You earned: " +result.toString());
+	const res=await web3.eth.getBlockNumber();
+	result=await contract.getPastEvents('MyEvent',{filter:{id: 1},fromBlock: res-2, toBlock: res});
+            console.log(result[0].returnValues.id);
+    //console.log(receipt.events.MyEvent.returnValues.amount);
+
 	}
     catch(e){
     const data=e.data;
@@ -119,5 +122,28 @@ const getPrice= async() => {
 
 }
 
-// will go to the catch block since no battle is exist
-getPrice();
+const getEvent= async() => {
+	await init();
+
+    try{
+	const res=await web3.eth.getBlockNumber();
+	// look at the last two blocks, filter over the id
+    result=await contract.getPastEvents('MyEvent',{filter:{id: 1},fromBlock: res-5, toBlock: res});
+    console.log(result[0].returnValues.id);
+
+	}
+	catch(e){
+    const data=e.data;
+        const txHash = Object.keys(data)[0];
+        const reason = data[txHash].reason;
+        console.log(reason);
+        //you can also print the data const if you want
+    }
+
+}
+
+
+addBattle();
+//acceptBattle();
+//withdraw();
+//getEvent();

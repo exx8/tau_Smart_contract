@@ -13,6 +13,11 @@ contract BinaryOption{
     mapping(string=>address) public feedAddress;
     Aggre public age;
 
+    event MyEvent(
+    uint256 indexed id,
+    uint256 indexed amount
+    );
+
     struct Battle {
         address creator;
         address opponent;
@@ -37,7 +42,7 @@ contract BinaryOption{
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value>0, "You have to bet on positive value!\n");
         battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,block.timestamp+betDate,direction,age.getThePrice(feedAddress[betType]));
-        tempVal=8;
+        battleId++;
     }
 
     function setIndex() public payable {
@@ -56,6 +61,10 @@ contract BinaryOption{
     function getId() public view returns (uint256){
         return battleId;
     }
+
+    /*function getEvent() public {
+        emit MyEvent(battleId,battleId);
+    }*/
 
     function settempVal(uint num) public {
         tempVal=num;
@@ -144,6 +153,8 @@ contract BinaryOption{
             //temp.transfer(2*battleInfo[battle_id].amountBet);
             payable(bate.opponent).transfer(2*bate.amountBet);
         }
+        // sign the event
+        emit MyEvent(battle_id,bate.amountBet);
         delete battleInfo[battle_id]; // battle is finished
     }
 
