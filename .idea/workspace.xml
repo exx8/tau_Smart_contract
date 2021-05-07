@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94c0e979-1df0-4bb4-b1d0-2a607b39623c" name="Default Changelist" comment="Examples for running over ganache and kovan, exist in index_4.js and index_2.js.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="94c0e979-1df0-4bb4-b1d0-2a607b39623c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,7 +28,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Kovan" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Web3Scripts/index_4.js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -54,7 +52,7 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="run locally" type="NodeJSConfigurationType" path-to-js-file="Web3Scripts/index_4.js" working-dir="$PROJECT_DIR$">
+    <configuration name="run locally" type="NodeJSConfigurationType" path-to-js-file="Web3Scripts/run_locally.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
   </component>
@@ -136,7 +134,14 @@
       <option name="presentableId" value="LOCAL‎00010" />
       <updated>1620396309460</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="some running settings">
+      <created>1620422699051</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1620422699051</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +170,14 @@
     <MESSAGE value="Handle errors, add 2 more battles." />
     <MESSAGE value="Handle errors in index_1.js, add 2 more battles in BinaryOption.sol." />
     <MESSAGE value="Examples for running over ganache and kovan, exist in index_4.js and index_2.js." />
-    <option name="LAST_COMMIT_MESSAGE" value="Examples for running over ganache and kovan, exist in index_4.js and index_2.js." />
+    <MESSAGE value="some running settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="some running settings" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="javascript-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
