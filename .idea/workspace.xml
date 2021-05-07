@@ -53,6 +53,11 @@
       <recent name="C:\Users\LENOVO\IdeaProjects\tau_Smart_contract\migrations" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="run locally" type="NodeJSConfigurationType" path-to-js-file="Web3Scripts/index_4.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
