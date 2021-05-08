@@ -19,7 +19,7 @@ const init= async() => {
 	);
 
 	contract=await contract.deploy({data: BinaryOption.bytecode})
-	.send({from: address, gas: 10000000, gasPrice: '30000000000000'});
+	.send({from: address, gas: 10000000, gasPrice: '300000'});
 
 	await contract.methods.settempVal(3).send({
         		from: address
