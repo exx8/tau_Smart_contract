@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="94c0e979-1df0-4bb4-b1d0-2a607b39623c" name="Default Changelist" comment="" />
+    <list default="true" id="94c0e979-1df0-4bb4-b1d0-2a607b39623c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-gui/public/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/public/manifest.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -141,7 +144,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620422699051</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="rename">
+      <created>1620423047612</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1620423047612</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +181,8 @@
     <MESSAGE value="Handle errors in index_1.js, add 2 more battles in BinaryOption.sol." />
     <MESSAGE value="Examples for running over ganache and kovan, exist in index_4.js and index_2.js." />
     <MESSAGE value="some running settings" />
-    <option name="LAST_COMMIT_MESSAGE" value="some running settings" />
+    <MESSAGE value="rename" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
