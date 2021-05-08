@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5861f7e7-3452-46c2-ba53-bc078e9aa516" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web3Scripts/run_kovan.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web3Scripts/run_kovan.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -12,7 +13,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Erans_kovan" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -90,6 +91,8 @@
       <workItem from="1619179192653" duration="2048000" />
       <workItem from="1619460616720" duration="676000" />
       <workItem from="1620478901840" duration="2450000" />
+      <workItem from="1620496489439" duration="1638000" />
+      <workItem from="1620499604978" duration="308000" />
     </task>
     <task id="LOCAL‎00001" summary="First test.">
       <created>1617977762600</created>
@@ -234,25 +237,21 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$USER_HOME$/node_modules/@trufflesuite/web3-provider-engine/subproviders/rpc.js</url>
           <line>56</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Web3Scripts/run_kovan.js</url>
           <line>31</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/Web3Scripts/run_kovan.js</url>
           <line>11</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$USER_HOME$/node_modules/@truffle/hdwallet-provider/dist/constructor/getOptions.js</url>
           <line>82</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
