@@ -2,65 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5861f7e7-3452-46c2-ba53-bc078e9aa516" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/blockchain-utils/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@truffle/blockchain-utils/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/codec/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@truffle/codec/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract-schema/node_modules/debug/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract-schema/node_modules/debug/src/browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract-schema/node_modules/debug/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract-schema/node_modules/ms/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract-schema/node_modules/ms/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract-schema/scripts/generate-declarations" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@truffle/contract-schema/scripts/generate-declarations" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract/dist/truffle-contract.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@truffle/contract/dist/truffle-contract.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract/dist/truffle-contract.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@truffle/contract/dist/truffle-contract.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract/dist/truffle-contract.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@truffle/contract/dist/truffle-contract.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/contract/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@truffle/contract/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@truffle/error/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@truffle/error/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/http2.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/http2.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@types/node/string_decoder.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@types/node/string_decoder.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/browserify-sign/node_modules/bn.js/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/cheerio/lib/api/css.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/cheerio/lib/api/css.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/cheerio/lib/api/traversing.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/cheerio/lib/api/traversing.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/cheerio/lib/options.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/cheerio/lib/options.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/cheerio/lib/parse.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/cheerio/lib/parse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/cheerio/lib/static.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/cheerio/lib/static.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/debug/component.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/eth-ens-namehash/node_modules/js-sha3/.covignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/eth-ens-namehash/node_modules/js-sha3/tests/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethereum-ens/node_modules/js-sha3/.covignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethereum-ens/node_modules/js-sha3/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethereum-ens/node_modules/js-sha3/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethereum-ens/node_modules/js-sha3/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethereum-ens/node_modules/js-sha3/tests/node-test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/elliptic/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/elliptic/lib/elliptic/curves.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/elliptic/lib/elliptic/ec/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/elliptic/lib/elliptic/precomputed/secp256k1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/elliptic/lib/elliptic/utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/js-sha3/.covignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/js-sha3/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/js-sha3/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/js-sha3/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/js-sha3/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/js-sha3/build/sha3.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/js-sha3/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/js-sha3/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/setimmediate/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/uuid/benchmark/bench.gnu" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/uuid/benchmark/benchmark-native.c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/uuid/misc/compare.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/uuid/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/ethers/node_modules/uuid/test/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/hash.js/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/hash.js/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/he/bin/he" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/he/bin/he" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/js-sha3/build/sha3.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/js-sha3/build/sha3.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/lru-cache/node_modules/yallist/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/lru-cache/node_modules/yallist/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/lru-cache/node_modules/yallist/iterator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/object-inspect/test/bigint.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/object-inspect/test/bigint.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/bin/semver.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/bin/semver.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/semver/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/semver/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/utf-8-validate/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/utf-8-validate/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/uuid/lib/sha1-browser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web3Scripts/run_kovan.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web3Scripts/run_kovan.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +17,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Web3Scripts/index_1.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/node_modules/web3-core-method/lib/index.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$USER_HOME$/node_modules/@trufflesuite/web3-provider-engine/subproviders/rpc.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/package.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/package-lock.json" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/migrations/2_binary_option.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.idea/workspace.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Web3Scripts/run_locally.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Web3Scripts/run_kovan.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/contracts/Aggre.sol" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="1qw2dHFyAIN5N7b2e1Qd4wpvP7T" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -88,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Web3Scripts/index_4.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Web3Scripts/run_kovan.js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -111,15 +65,22 @@
       <recent name="C:\Users\LENOVO\IdeaProjects\tau_Smart_contract\migrations" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Node.js.run on kovan">
     <configuration name="run locally" type="NodeJSConfigurationType" path-to-js-file="Web3Scripts/run_locally.js" working-dir="$PROJECT_DIR$">
       <method v="2" />
     </configuration>
+    <configuration name="run on kovan" type="NodeJSConfigurationType" path-to-js-file="Web3Scripts/run_kovan.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Node.js.run locally" />
+      <item itemvalue="Node.js.run on kovan" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="94c0e979-1df0-4bb4-b1d0-2a607b39623c" name="Default Changelist" comment="" />
+      <changelist id="5861f7e7-3452-46c2-ba53-bc078e9aa516" name="Default Changelist" comment="" />
       <created>1617976417482</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -128,6 +89,7 @@
       <workItem from="1619113014071" duration="1664000" />
       <workItem from="1619179192653" duration="2048000" />
       <workItem from="1619460616720" duration="676000" />
+      <workItem from="1620478901840" duration="2450000" />
     </task>
     <task id="LOCAL‎00001" summary="First test.">
       <created>1617977762600</created>
@@ -222,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620477930546</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="move to kovan">
+      <created>1620481102562</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1620481102562</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,16 +225,35 @@
     <MESSAGE value="some running settings" />
     <MESSAGE value="rename" />
     <MESSAGE value="Merge branch 'master' of https://github.com/exx8/tau_Smart_contract&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/exx8/tau_Smart_contract&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="move to kovan" />
+    <option name="LAST_COMMIT_MESSAGE" value="move to kovan" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/node_modules/web3-core-method/lib/index.js</url>
-          <line>29</line>
+          <url>file://$USER_HOME$/node_modules/@trufflesuite/web3-provider-engine/subproviders/rpc.js</url>
+          <line>56</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Web3Scripts/run_kovan.js</url>
+          <line>31</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/Web3Scripts/run_kovan.js</url>
+          <line>11</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$USER_HOME$/node_modules/@truffle/hdwallet-provider/dist/constructor/getOptions.js</url>
+          <line>82</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
