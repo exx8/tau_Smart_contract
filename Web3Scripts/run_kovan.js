@@ -17,16 +17,16 @@ const init= async() => {
 	BinaryOption.abi,
 	//deployedNetwork.address
 	);
-
+	const nonce=await web3.eth.getTransactionCount(address);
 	contract=await contract.deploy({data: BinaryOption.bytecode})
-	.send({from: address, gas: 12487782, gasPrice: '20000000000',nonce:4});
+	.send({from: address, gas: 12487782, gasPrice: '20000000000',nonce});
 
 	await contract.methods.settempVal(3).send({
         		from: address
         	});
     console.log("broadcast success");
     const result=await contract.methods.gettempVal().call();
-    console.log(result);
+    console.log("gettempVal value:"+result);
 	}
 	catch(e){
 	console.log('caught');
