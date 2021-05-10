@@ -21,11 +21,11 @@ const init= async() => {
 	contract=await contract.deploy({data: BinaryOption.bytecode})
 	.send({from: address, gas: 12487782, gasPrice: '20000000000',nonce});
 
-	await contract.methods.settempVal(3).send({
+	await contract.methods.setPrice().send({
         		from: address
         	});
     console.log("broadcast success");
-    const result=await contract.methods.gettempVal().call();
+    const result=await contract.methods.getPrice().call();
     console.log("gettempVal value:"+result);
 	}
 	catch(e){
