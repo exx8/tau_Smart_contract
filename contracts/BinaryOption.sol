@@ -61,9 +61,9 @@ contract BinaryOption{
     }
 
 
-    /*function getId() public view returns (uint256){
+    function getId() public view returns (uint256){
         return battleId;
-    }*/
+    }
 
     /*function getEvent() public {
         emit MyEvent(battleId,battleId);

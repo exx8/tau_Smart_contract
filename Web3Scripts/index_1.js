@@ -13,12 +13,13 @@ const init= async() => {
 
     web3=new Web3('http://localhost:9545');
 	id= await web3.eth.net.getId();
+
 	deployedNetwork=BinaryOption.networks[id];
+
 	contract= new web3.eth.Contract(
 	BinaryOption.abi,deployedNetwork.address
 	);
 	addresses= await web3.eth.getAccounts();
-
 }
 
 const addBattle= async() => {
@@ -26,8 +27,8 @@ const addBattle= async() => {
 
     try{
 	await contract.methods.addBattle("EthVsUsd",15,false).send({
-		from: addresses[2],
-		value:'500000', // I made it non positive to test the catch block.
+		from: addresses[0],
+		value:'10000', // I made it non positive to test the catch block.
 		gas: 180000,
         gasPrice: '30000000'
 	});
@@ -37,7 +38,7 @@ const addBattle= async() => {
 	const data=e.data;
 	const txHash = Object.keys(data)[0];
     const reason = data[txHash].reason;
-	console.log(reason); // the reason will be as written in the require: "You have to bet on positive value!\n"
+	console.log(data); // the reason will be as written in the require: "You have to bet on positive value!\n"
 	}
 
 }
