@@ -15,6 +15,7 @@ import {
 import React from 'react';
 import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
+import {futureDate, getDateString} from "./DateUtils";
 interface BattleMenuState {
 }
 
@@ -73,7 +74,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                 id="due-time"
                                 label="due time"
                                 type="datetime-local"
-                                defaultValue="2017-05-24T10:30"
+                                defaultValue={getDateString(futureDate(7))}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
