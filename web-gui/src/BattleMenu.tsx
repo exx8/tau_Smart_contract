@@ -68,8 +68,16 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                     <MenuItem value={stock}>stock</MenuItem>
                                 </Select>
                                 <FormHelperText>type of asset</FormHelperText>
-                            <TextField id="standard-basic"  inputProps={{min:0}} label="amount" />
-
+                <div> <TextField id="standard-basic"  inputProps={{min:0}} label="amount" />  </div>
+                <TextField
+                                id="due-time"
+                                label="due time"
+                                type="datetime-local"
+                                defaultValue="2017-05-24T10:30"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
@@ -80,6 +88,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                 <SendIcon/>
                                 Send
                             </Button>
+
                         </DialogActions>
                     </Dialog>
                 </div></div>
