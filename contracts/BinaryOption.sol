@@ -9,7 +9,7 @@ contract BinaryOption{
     mapping(uint256 => Battle) public battleInfo; // map of the existing battles
     address public owner; // the creator of the contract (we)
     uint  public tempVal;
-
+    int feed;
     mapping(string=>address) public feedAddress;
     Aggre public age;
 
@@ -53,8 +53,11 @@ contract BinaryOption{
         return battleInfo[battle_id].betDate;
     }
 
+    function setPrice() public {
+        feed= age.getThePrice(0x9326BFA02ADD2366b30bacB125260Af641031331);
+    }
     function getPrice() public view returns (int){
-        return age.getThePrice(0x9326BFA02ADD2366b30bacB125260Af641031331);
+        return feed;
     }
 
 
