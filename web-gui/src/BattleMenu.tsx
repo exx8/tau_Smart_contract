@@ -74,7 +74,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                 id="due-time"
                                 label="due time"
                                 type="datetime-local"
-                                defaultValue={getDateString(futureDate(7))}
+                                defaultValue={BattleMenu.getDefaultDueTime()}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -94,6 +94,12 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                     </Dialog>
                 </div></div>
         );
+    }
+
+    protected static readonly  defaultDueTimeInTheFutureInDays = 7;
+
+    protected static getDefaultDueTime() {
+        return getDateString(futureDate(this.defaultDueTimeInTheFutureInDays));
     }
 }
 
