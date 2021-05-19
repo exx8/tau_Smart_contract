@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5861f7e7-3452-46c2-ba53-bc078e9aa516" name="Default Changelist" comment="" />
+    <list default="true" id="5861f7e7-3452-46c2-ba53-bc078e9aa516" name="Default Changelist" comment="correct parameters">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Web3Scripts/run_kovan.js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../web3.js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -49,7 +51,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="ts.external.directory.path" value="$PROJECT_DIR$/web-gui/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -90,6 +92,8 @@
       <workItem from="1620478901840" duration="2450000" />
       <workItem from="1620496489439" duration="1638000" />
       <workItem from="1620499604978" duration="633000" />
+      <workItem from="1620551152179" duration="1124000" />
+      <workItem from="1620851623039" duration="31000" />
     </task>
     <task id="LOCAL‎00001" summary="First test.">
       <created>1617977762600</created>
@@ -257,14 +261,9 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/Web3Scripts/run_kovan.js</url>
-          <line>11</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$USER_HOME$/node_modules/@truffle/hdwallet-provider/dist/constructor/getOptions.js</url>
-          <line>82</line>
-          <option name="timeStamp" value="7" />
+          <url>file://$PROJECT_DIR$/node_modules/web3-eth-contract/lib/index.js</url>
+          <line>840</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
