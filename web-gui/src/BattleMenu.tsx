@@ -17,7 +17,6 @@ import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
-import {drizzleReducers} from "@drizzle/store";
 import Web3 from 'web3';
 
 
@@ -77,7 +76,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
                             <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"/></div>
-                            <div style={{paddingTop:"10px",paddingBottom:"10px"}}>
+                            <div style={{paddingTop: "10px", paddingBottom: "10px"}}>
                                 Trend
 
                                 <TrendToggle/>
@@ -109,11 +108,15 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
         );
     }
 
-    private sendHandle=async ()=> {
+    private sendHandle= async () => {
         const web3 = new Web3(window.ethereum);
-        await window.ethereum.enable();
+        let eth = await window.ethereum.enable();
+        const contractOfBinaryOption = require("./BinaryOption.json");
+        const NameContract = new web3.eth.Contract(contractOfBinaryOption.abi);
+        console.log(NameContract);
 
-         this.handleClose();
+        this.handleClose();
+
     }
 
     protected static readonly defaultDueTimeInTheFutureInDays = 7;
