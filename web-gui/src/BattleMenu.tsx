@@ -17,6 +17,8 @@ import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
+import {drizzleReducers} from "@drizzle/store";
+import Web3 from 'web3';
 
 
 interface BattleMenuState {
@@ -30,6 +32,7 @@ interface BattleMenuPros {
 export var stock: string = ("stock");
 export var coin: string = ("coin");
 
+declare let window: any;
 
 export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     state: BattleMenuState = {
@@ -94,7 +97,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                 <CloseIcon/>
                                 Cancel
                             </Button>
-                            <Button onClick={this.handleClose} color="primary">
+                            <Button onClick={this.sendHandle} color="primary">
                                 <SendIcon/>
                                 Send
                             </Button>
@@ -104,6 +107,13 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                 </div>
             </div>
         );
+    }
+
+    private sendHandle=async ()=> {
+        const web3 = new Web3(window.ethereum);
+        await window.ethereum.enable();
+
+         this.handleClose();
     }
 
     protected static readonly defaultDueTimeInTheFutureInDays = 7;
