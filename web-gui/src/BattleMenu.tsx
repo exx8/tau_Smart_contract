@@ -16,6 +16,7 @@ import React from 'react';
 import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
+
 interface BattleMenuState {
 }
 
@@ -23,8 +24,9 @@ interface BattleMenuPros {
     isOpen: DialogProps["open"];
     handleClose: () => void
 }
-export var stock:string= ("stock");
-export var coin:string= ("coin");
+
+export var stock: string = ("stock");
+export var coin: string = ("coin");
 
 export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     state: BattleMenuState = {
@@ -33,7 +35,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
     };
 
 
-    handleClose=()=> {
+    handleClose = () => {
         this.props.handleClose();
 
     }
@@ -47,7 +49,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                         <DialogTitle id="form-dialog-title"> Create a Binary Option</DialogTitle>
                         <DialogContent>
                             <DialogContentText>
-                             Type Partner's address
+                                Type Partner's address
                             </DialogContentText>
                             <TextField
                                 autoFocus
@@ -57,20 +59,20 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                 type="email"
                                 fullWidth
                             />
-                                <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-helper-label"
-                                    id="demo-simple-select-helper"
-                                   // value={age}
-                                    //onChange={handleChange}
-                                >
+                            <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-helper-label"
+                                id="demo-simple-select-helper"
+                                // value={age}
+                                //onChange={handleChange}
+                            >
 
-                                    <MenuItem value={coin}>coin</MenuItem>
-                                    <MenuItem value={stock}>stock</MenuItem>
-                                </Select>
-                                <FormHelperText>type of asset</FormHelperText>
-                <div> <TextField id="standard-basic"  inputProps={{min:0}} label="amount" />  </div>
-                <TextField
+                                <MenuItem value={coin}>coin</MenuItem>
+                                <MenuItem value={stock}>stock</MenuItem>
+                            </Select>
+                            <FormHelperText>type of asset</FormHelperText>
+                            <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"/></div>
+                            <TextField
                                 id="due-time"
                                 label="due time"
                                 type="datetime-local"
@@ -92,11 +94,12 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
                         </DialogActions>
                     </Dialog>
-                </div></div>
+                </div>
+            </div>
         );
     }
 
-    protected static readonly  defaultDueTimeInTheFutureInDays = 7;
+    protected static readonly defaultDueTimeInTheFutureInDays = 7;
 
     protected static getDefaultDueTime() {
         return getDateString(futureDate(this.defaultDueTimeInTheFutureInDays));
