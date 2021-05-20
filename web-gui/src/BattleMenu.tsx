@@ -114,7 +114,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
         const contractOfBinaryOption = require("./BinaryOption.json");
         const BinaryOptionContract = new web3.eth.Contract(contractOfBinaryOption.abi);
         let addBattle = BinaryOptionContract.methods.addBattle;
-        addBattle("stock", new Date(), "up").send();
+        addBattle("stock", new Date().getTime(), "up"=="up").send();
 
         this.handleClose();
 
