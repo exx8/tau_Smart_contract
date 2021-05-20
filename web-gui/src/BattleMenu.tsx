@@ -16,9 +16,8 @@ import React from 'react';
 import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-import {TrendingDown, TrendingUp} from "@material-ui/icons";
+import {TrendToggle} from "./TrendToggle";
+
 
 interface BattleMenuState {
 }
@@ -31,14 +30,6 @@ interface BattleMenuPros {
 export var stock: string = ("stock");
 export var coin: string = ("coin");
 
-function TrendToggle() {
-    const [Trend, setTrend] = React.useState("");
-
-    const handleTrend = (event: any, newTrend: React.SetStateAction<string>) => {
-        setTrend(newTrend);
-    };
-    return {Trend, setTrend,handleTrend};
-}
 
 export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     state: BattleMenuState = {
@@ -53,7 +44,6 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
     }
 
     render() {
-        const {Trend,handleTrend} = TrendToggle();
         return (
             <div>
                 <div>
@@ -84,25 +74,10 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
                             <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"/></div>
-                            <div>
+                            <div style={{paddingTop:"10px",paddingBottom:"10px"}}>
                                 Trend
-                                <ToggleButtonGroup
-                                    exclusive
-                                    aria-label="Trend"
-                                    value={Trend}
-                                    onChange={handleTrend}
-                                >
-                                    <ToggleButton value="up" aria-label="trending up">
-                                        <TrendingUp/>
 
-                                    </ToggleButton>
-                                    <ToggleButton value="down" aria-label="trending down">
-                                        <TrendingDown/>
-
-                                    </ToggleButton>
-
-                                </ToggleButtonGroup>
-
+                                <TrendToggle/>
                             </div>
                             <TextField
                                 id="due-time"
