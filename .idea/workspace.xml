@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5861f7e7-3452-46c2-ba53-bc078e9aa516" name="Default Changelist" comment="" />
+    <list default="true" id="5861f7e7-3452-46c2-ba53-bc078e9aa516" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-gui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-gui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web-gui/src/BattleMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/src/BattleMenu.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,6 +112,7 @@
       <workItem from="1620551152179" duration="1124000" />
       <workItem from="1620851623039" duration="31000" />
       <workItem from="1621452217810" duration="3704000" />
+      <workItem from="1621496386219" duration="1325000" />
     </task>
     <task id="LOCAL‎00001" summary="First test.">
       <created>1617977762600</created>
@@ -257,7 +263,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621457113015</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="indent.">
+      <created>1621496424711</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1621496424711</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,7 +311,8 @@
     <MESSAGE value="update gitignore" />
     <MESSAGE value="set for default time in the future." />
     <MESSAGE value="beautify it." />
-    <option name="LAST_COMMIT_MESSAGE" value="beautify it." />
+    <MESSAGE value="indent." />
+    <option name="LAST_COMMIT_MESSAGE" value="indent." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
