@@ -34,10 +34,10 @@ export var coin: string = ("coin");
 function TrendToggle() {
     const [Trend, setTrend] = React.useState("");
 
-    const handleAlignment = (event: any, newTrend: React.SetStateAction<string>) => {
+    const handleTrend = (event: any, newTrend: React.SetStateAction<string>) => {
         setTrend(newTrend);
     };
-    return {Trend, setTrend};
+    return {Trend, setTrend,handleTrend};
 }
 
 export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
@@ -53,7 +53,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
     }
 
     render() {
-        const {Trend, setTrend} = TrendToggle();
+        const {Trend,handleTrend} = TrendToggle();
         return (
             <div>
                 <div>
@@ -90,7 +90,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                     exclusive
                                     aria-label="Trend"
                                     value={Trend}
-                                    onChange={setTrend}
+                                    onChange={handleTrend}
                                 >
                                     <ToggleButton value="up" aria-label="trending up">
                                         <TrendingUp/>

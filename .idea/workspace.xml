@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5861f7e7-3452-46c2-ba53-bc078e9aa516" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-gui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web-gui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web-gui/src/BattleMenu.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/web-gui/src/BattleMenu.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,6 +110,7 @@
       <workItem from="1620851623039" duration="31000" />
       <workItem from="1621452217810" duration="3704000" />
       <workItem from="1621496386219" duration="1325000" />
+      <workItem from="1621498077780" duration="315000" />
     </task>
     <task id="LOCAL‎00001" summary="First test.">
       <created>1617977762600</created>
