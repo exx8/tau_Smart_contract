@@ -10,12 +10,14 @@ import {
     InputLabel,
     MenuItem,
     Select,
-    TextField
+    TextField,
 } from '@material-ui/core';
 import React from 'react';
 import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
+import {TrendToggle} from "./TrendToggle";
+
 
 interface BattleMenuState {
 }
@@ -27,6 +29,7 @@ interface BattleMenuPros {
 
 export var stock: string = ("stock");
 export var coin: string = ("coin");
+
 
 export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     state: BattleMenuState = {
@@ -63,8 +66,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                // value={age}
-                                //onChange={handleChange}
+
                             >
 
                                 <MenuItem value={coin}>coin</MenuItem>
@@ -72,6 +74,11 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
                             <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"/></div>
+                            <div style={{paddingTop:"10px",paddingBottom:"10px"}}>
+                                Trend
+
+                                <TrendToggle/>
+                            </div>
                             <TextField
                                 id="due-time"
                                 label="due time"
