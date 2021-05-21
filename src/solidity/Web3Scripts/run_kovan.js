@@ -1,18 +1,17 @@
+/* eslint-disable no-unused-vars */
+
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
 const HDWalletProvider=require('@truffle/hdwallet-provider');
 const address='0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
 const privateKey="0xccc943d4061cda10d3c617ff06234810fd195598851774f0c6359e086d31660f";
-
 let result=0;
 let web3=null;
 let provider=null;
-let id=0;
-let deployedNetwork=null;
 let contract=null;
 let addresses=null;
-
 const init= async function() {
+
 
 	provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://kovan.infura.io/v3/423c508011d14316b04a4ebbf33b0634",chainId:42});
 	web3=new Web3(provider);
@@ -28,14 +27,13 @@ const init= async function() {
 	}
 	catch(e){
     	console.log('caught');
-    	const data=e.data;
 
         	console.log(e);
     	}
 
 }
 
-const addBattle= async function(battle_type,expire_time,winner,val)  {
+  export async function addBattle(battle_type,expire_time,winner,val)  {
 	await init();
 
     try{
@@ -52,7 +50,7 @@ const addBattle= async function(battle_type,expire_time,winner,val)  {
 	}
 }
 
-const acceptBattle= async function(id,val)  {
+export async function acceptBattle(id,val)  {
 	await init();
 
     try{
@@ -152,13 +150,12 @@ const getId= async function()  {
 	}
 	catch(e){
 	console.log('caught');
-	const data=e.data;
         console.log(e);
 	}
 }
 //getId();
 //getPrice();
-addBattle("EthVsUsd",15,false,'50000');
+//addBattle("EthVsUsd",15,false,'50000');
 //acceptBattle(0,'500000');
 //addBattle("EthVsUsd",10,false,'50000');
 //acceptBattle(1,'500000');

@@ -17,6 +17,7 @@ import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
+import { addBattle} from "./solidity/Web3Scripts/run_kovan";
 
 
 interface BattleMenuState {
@@ -30,6 +31,7 @@ interface BattleMenuPros {
 export var stock: string = ("stock");
 export var coin: string = ("coin");
 
+declare let window: any;
 
 export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     state: BattleMenuState = {
@@ -74,7 +76,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
                             <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"/></div>
-                            <div style={{paddingTop:"10px",paddingBottom:"10px"}}>
+                            <div style={{paddingTop: "10px", paddingBottom: "10px"}}>
                                 Trend
 
                                 <TrendToggle/>
@@ -94,7 +96,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                 <CloseIcon/>
                                 Cancel
                             </Button>
-                            <Button onClick={this.handleClose} color="primary">
+                            <Button onClick={this.sendHandle} color="primary">
                                 <SendIcon/>
                                 Send
                             </Button>
@@ -104,6 +106,17 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                 </div>
             </div>
         );
+    }
+
+    private sendHandle = async () => {
+
+         await window.ethereum.enable();
+
+
+        this.handleClose();
+       await addBattle("EthVsUsd",15,false,"5000");
+
+
     }
 
     protected static readonly defaultDueTimeInTheFutureInDays = 7;
