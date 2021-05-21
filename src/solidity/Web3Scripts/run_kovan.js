@@ -155,7 +155,7 @@ const getId= async function()  {
 }
 //getId();
 //getPrice();
-addBattle("EthVsUsd",15,false,'50000');
+//addBattle("EthVsUsd",15,false,'50000');
 //acceptBattle(0,'500000');
 //addBattle("EthVsUsd",10,false,'50000');
 //acceptBattle(1,'500000');
