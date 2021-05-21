@@ -33,12 +33,12 @@ const init= async function() {
 
 }
 
-  export async function addBattle(battle_type,expire_time,winner,val)  {
+  export async function addBattle(battle_type, expire_time, winner, val, from = address)  {
 	await init();
 
     try{
 	await contract.methods.addBattle(battle_type,expire_time,winner).send({
-		from: address,
+		from: from,
 		value:val
 	});
 	console.log('yes');

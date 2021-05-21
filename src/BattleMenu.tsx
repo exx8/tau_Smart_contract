@@ -110,11 +110,11 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
     private sendHandle = async () => {
 
-         await window.ethereum.enable();
+         let address=await window.ethereum.enable();
 
 
         this.handleClose();
-       await addBattle("EthVsUsd",15,false,"5000");
+       await addBattle("EthVsUsd", 15, false, "5000", address);
 
 
     }
