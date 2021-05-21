@@ -111,7 +111,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
     private sendHandle = async () => {
         const web3 = new Web3(window.ethereum);
         let eth = await window.ethereum.enable();
-        const contractOfBinaryOption = require("./BinaryOption.json");
+        const contractOfBinaryOption = require("./solidity/build/contracts/BinaryOption.json");
         const BinaryOptionContract = new web3.eth.Contract(contractOfBinaryOption.abi);
         let addBattle = BinaryOptionContract.methods.addBattle;
         addBattle("stock", new Date().getTime(), "up"=="up").send();
