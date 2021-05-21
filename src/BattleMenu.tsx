@@ -68,7 +68,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-
+                                defaultValue={coin}
                             >
 
                                 <MenuItem value={coin}>coin</MenuItem>
