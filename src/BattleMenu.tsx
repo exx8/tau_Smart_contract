@@ -112,12 +112,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
          await window.ethereum.enable();
 
-        //const contractOfBinaryOption = require("./solidity/build/contracts/BinaryOption.json");
 
-       /* const BinaryOptionContract = new web3.eth.Contract(contractOfBinaryOption.abi);
-        let addBattle = BinaryOptionContract.methods.addBattle;
-        addBattle("stock", new Date().getTime(), "up"=="up").send();
-*/
         this.handleClose();
        await addBattle("EthVsUsd",15,false,"5000");
 
