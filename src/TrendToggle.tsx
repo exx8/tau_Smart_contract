@@ -9,16 +9,19 @@ interface TrendToggleState {
 }
 
 
+interface props {
+    onChange:any
+}
 
-
-export class TrendToggle extends React.Component<{}, TrendToggleState> {
-constructor(props:{}) {
+export class TrendToggle extends React.Component<props, TrendToggleState> {
+constructor(props:props) {
 
         super(props);
         this.state={value:"up"}
 
 }
      handleTrend= ( event: any, newTrend: TrendToggleState["value"]) => {
+        this.props.onChange(newTrend);
 
         this.setState({value: newTrend});
     };

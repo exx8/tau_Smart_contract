@@ -17,10 +17,16 @@ import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
-import { addBattle} from "./solidity/Web3Scripts/run_kovan";
+import {addBattle} from "./solidity/Web3Scripts/run_kovan";
 
 
 interface BattleMenuState {
+    email: string | null;
+    type: string | null;
+    amount: number | null;
+    trend:boolean;
+
+
 }
 
 interface BattleMenuPros {
@@ -33,15 +39,56 @@ export var coin: string = ("coin");
 
 declare let window: any;
 
+
 export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     state: BattleMenuState = {
-        // optional second annotation for better type inference
-
+        email: null,
+        type: "coin",
+        amount:1,
+        trend:true
     };
 
 
     handleClose = () => {
         this.props.handleClose();
+
+    }
+
+    handleEmailChange = (e: any) => {
+        this.setState(
+            {
+                email: e.target.value
+            }
+        );
+
+
+    }
+    handleTypeChange = (e: any) => {
+        this.setState(
+            {
+                type: e.target.value
+            }
+        );
+
+
+    }
+
+    handleAmountChange = (e: any) => {
+        this.setState(
+            {
+                amount: e.target.value
+            }
+        );
+
+
+    }
+
+    handleTrendChange = (str: string) => {
+        this.setState(
+            {
+                trend: "up"===str
+            }
+        );
 
     }
 
@@ -59,27 +106,30 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                             <TextField
                                 autoFocus
                                 margin="dense"
-                                id="name"
+                                id="email"
                                 label="Email Address"
                                 type="email"
                                 fullWidth
+                                onChange={this.handleEmailChange}
                             />
                             <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
                                 defaultValue={coin}
+                                onChange={this.handleTypeChange}
                             >
 
                                 <MenuItem value={coin}>coin</MenuItem>
                                 <MenuItem value={stock}>stock</MenuItem>
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
-                            <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"/></div>
+                            <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"
+                            onChange={this.handleAmountChange}/></div>
                             <div style={{paddingTop: "10px", paddingBottom: "10px"}}>
                                 Trend
 
-                                <TrendToggle/>
+                                <TrendToggle onChange={this.handleTrendChange}/>
                             </div>
                             <TextField
                                 id="due-time"
@@ -110,11 +160,11 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
     private sendHandle = async () => {
 
-         let address=await window.ethereum.enable();
+        let address = await window.ethereum.enable();
 
 
         this.handleClose();
-       await addBattle("EthVsUsd", 15, false, "5000", address);
+        await addBattle("EthVsUsd", 15, false, "5000", address);
 
 
     }
