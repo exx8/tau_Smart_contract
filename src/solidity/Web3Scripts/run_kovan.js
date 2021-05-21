@@ -7,8 +7,6 @@ const privateKey="0xccc943d4061cda10d3c617ff06234810fd195598851774f0c6359e086d31
 let result=0;
 let web3=null;
 let provider=null;
-let id=0;
-let deployedNetwork=null;
 let contract=null;
 let addresses=null;
 
@@ -28,14 +26,13 @@ const init= async function() {
 	}
 	catch(e){
     	console.log('caught');
-    	const data=e.data;
 
         	console.log(e);
     	}
 
 }
 
-const addBattle= async function(battle_type,expire_time,winner,val)  {
+  export async function addBattle(battle_type,expire_time,winner,val)  {
 	await init();
 
     try{
@@ -52,7 +49,7 @@ const addBattle= async function(battle_type,expire_time,winner,val)  {
 	}
 }
 
-const acceptBattle= async function(id,val)  {
+export async function acceptBattle(id,val)  {
 	await init();
 
     try{
@@ -152,7 +149,6 @@ const getId= async function()  {
 	}
 	catch(e){
 	console.log('caught');
-	const data=e.data;
         console.log(e);
 	}
 }

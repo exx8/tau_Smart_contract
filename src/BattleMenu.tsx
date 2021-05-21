@@ -17,7 +17,7 @@ import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
-import Web3 from 'web3';
+import { addBattle} from "./solidity/Web3Scripts/run_kovan";
 
 
 interface BattleMenuState {
@@ -109,14 +109,18 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
     }
 
     private sendHandle = async () => {
-        const web3 = new Web3(window.ethereum);
-        let eth = await window.ethereum.enable();
-        const contractOfBinaryOption = require("./solidity/build/contracts/BinaryOption.json");
-        const BinaryOptionContract = new web3.eth.Contract(contractOfBinaryOption.abi);
+
+         await window.ethereum.enable();
+
+        //const contractOfBinaryOption = require("./solidity/build/contracts/BinaryOption.json");
+
+       /* const BinaryOptionContract = new web3.eth.Contract(contractOfBinaryOption.abi);
         let addBattle = BinaryOptionContract.methods.addBattle;
         addBattle("stock", new Date().getTime(), "up"=="up").send();
-
+*/
         this.handleClose();
+       await addBattle("EthVsUsd",15,false,"5000");
+
 
     }
 
