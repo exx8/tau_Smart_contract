@@ -18,6 +18,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
 import {addBattle} from "./solidity/Web3Scripts/run_kovan";
+import moment from "moment";
 
 
 interface BattleMenuState {
@@ -25,6 +26,7 @@ interface BattleMenuState {
     type: string | null;
     amount: number | null;
     trend:boolean;
+    date:number;
 
 
 }
@@ -35,7 +37,7 @@ interface BattleMenuPros {
 }
 
 export var stock: string = ("stock");
-export var coin: string = ("coin");
+export var coin: string = ("EthVsUsd");
 
 declare let window: any;
 
@@ -43,9 +45,10 @@ declare let window: any;
 export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
     state: BattleMenuState = {
         email: null,
-        type: "coin",
+        type: coin,
         amount:1,
-        trend:true
+        trend:true,
+        date:moment(BattleMenu.getDefaultDueTime()).unix()
     };
 
 
@@ -87,6 +90,15 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
         this.setState(
             {
                 trend: "up"===str
+            }
+        );
+
+    }
+
+    handleDateChange = (e:any) => {
+        this.setState(
+            {
+                date:moment(e.target.value).unix()
             }
         );
 
@@ -139,6 +151,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
+                                onChange={this.handleDateChange}
                             />
                         </DialogContent>
                         <DialogActions>
@@ -164,7 +177,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
 
         this.handleClose();
-        await addBattle("EthVsUsd", 15, false, "5000", address);
+        await addBattle(this.state.type, this.state.date*1000-new Date().getTime(), this.state.trend, this.state.amount, address[0]);
 
 
     }
