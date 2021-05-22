@@ -176,8 +176,10 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
         let address = await window.ethereum.enable();
 
 
+
         this.handleClose();
-        await addBattle(this.state.type, this.state.date*1000-new Date().getTime(), this.state.trend, this.state.amount, address[0]);
+        await addBattle(this.state.type, this.state.date*1000-new Date().getTime(), this.state.trend, this.state.amount,
+        window.ethereum, address[0]);
 
 
     }

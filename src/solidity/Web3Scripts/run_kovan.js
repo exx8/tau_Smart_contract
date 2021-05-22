@@ -10,21 +10,25 @@ let web3=null;
 let provider=null;
 let contract=null;
 let addresses=null;
-const init= async function(from = address) {
+const init= async function(provide,from=address) {
 
 
-	provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://kovan.infura.io/v3/423c508011d14316b04a4ebbf33b0634",chainId:42});
-	web3=new Web3(provider);
+	//provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://kovan.infura.io/v3/423c508011d14316b04a4ebbf33b0634",chainId:42});
+	web3=new Web3(provide);
 	try{
 	contract= new web3.eth.Contract(
 	BinaryOption.abi,
 	//deployedNetwork.address
 	);
+	console.log('before deploy');
+	//estimated_gas=web3.eth.estimateGas({data:BinaryOption.bytecode}).then(console.log);
 	let nonce=await web3.eth.getTransactionCount(from);
 
     	contract=await contract.deploy({data: BinaryOption.bytecode})
-    	.send({from: from, gas: 12486843, gasPrice: '20000000000',nonce});
+    	.send({from: from, gas: 2400000, gasPrice: '20000000000',nonce});
+    console.log('after deploy');
 	}
+
 	catch(e){
     	console.log('caught');
 
@@ -33,15 +37,15 @@ const init= async function(from = address) {
 
 }
 
-  export async function addBattle(battle_type, expire_time, winner, val, from = address)  {
-	await init(from);
+  export async function addBattle(battle_type, expire_time, winner, val,provide, from = address)  {
+	await init(provide,from);
 
     try{
 	await contract.methods.addBattle(battle_type,expire_time,winner).send({
 		from: from,
 		value:val
 	});
-	console.log('yes');
+	console.log('addBattle passed!');
 	}
 	catch(e){
 	console.log('caught');
@@ -50,15 +54,15 @@ const init= async function(from = address) {
 	}
 }
 
-export async function acceptBattle(id,val,from = address)  {
-	await init(from);
+export async function acceptBattle(id,val,provide,from = address)  {
+	await init(provide,from);
 
     try{
 	await contract.methods.acceptBattle(id).send({
-	from: from,
+	from: address,
 	value:val
 	});
-	console.log('yes');
+	console.log('acceptBattle passed!');
 	}
 	catch(e){
     const data=e.data;
@@ -68,8 +72,8 @@ export async function acceptBattle(id,val,from = address)  {
 
 }
 
-const withdraw= async function(id,from = address) {
-	await init(from);
+const withdraw= async function(id,provide,from = address) {
+	await init(provide,from);
     try{
 	const receipt=await contract.methods.withdraw(id).send({
 		from: from
@@ -87,8 +91,8 @@ const withdraw= async function(id,from = address) {
 
 }
 
-const cancelBattle= async function(id,val,from = address) {
-	await init(from);
+const cancelBattle= async function(id,val,provide,from = address) {
+	await init(provide,from);
 
     try{
 	await contract.methods.cancelBattle(id).send({
@@ -105,8 +109,8 @@ const cancelBattle= async function(id,val,from = address) {
 
 }
 
-const getEvent= async function(from = address) {
-	await init(from);
+const getEvent= async function(provide,from = address) {
+	await init(provide,from);
 
     try{
 	const res=await web3.eth.getBlockNumber();
@@ -124,11 +128,11 @@ const getEvent= async function(from = address) {
 
 }
 
-const getPrice= async function(from = address)  {
-	await init(from);
+const getPrice= async function(provide,from = address)  {
+	await init(provide,from);
     try{
     await contract.methods.setPrice().send({
-            		from: address
+            		from: from
             	});
         const result=await contract.methods.getPrice().call();
         console.log("price value:"+result);
@@ -141,7 +145,7 @@ const getPrice= async function(from = address)  {
     	}
 }
 
-const getId= async function(from = address)  {
+const getId= async function(provide,from = address)  {
 	await init(from);
 
     try{

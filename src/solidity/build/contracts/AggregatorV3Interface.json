@@ -113,7 +113,7 @@
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"description\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint80\",\"name\":\"_roundId\",\"type\":\"uint80\"}],\"name\":\"getRoundData\",\"outputs\":[{\"internalType\":\"uint80\",\"name\":\"roundId\",\"type\":\"uint80\"},{\"internalType\":\"int256\",\"name\":\"answer\",\"type\":\"int256\"},{\"internalType\":\"uint256\",\"name\":\"startedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"updatedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint80\",\"name\":\"answeredInRound\",\"type\":\"uint80\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"uint80\",\"name\":\"roundId\",\"type\":\"uint80\"},{\"internalType\":\"int256\",\"name\":\"answer\",\"type\":\"int256\"},{\"internalType\":\"uint256\",\"name\":\"startedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"updatedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint80\",\"name\":\"answeredInRound\",\"type\":\"uint80\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/mnt/c/users/admin/ideaprojects/tau_smart_contract/contracts/AggregatorV3Interface.sol\":\"AggregatorV3Interface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/mnt/c/users/admin/ideaprojects/tau_smart_contract/contracts/AggregatorV3Interface.sol\":{\"keccak256\":\"0x6668f08ecf300420a7f102c249ce3ac64b05572cd4034476053ea8625aed76d9\",\"urls\":[\"bzz-raw://b815cac78e1c2544ee8ad4bbaf52d9536d48fa5ab8646c8f028d034a428b98ce\",\"dweb:/ipfs/QmZ3WBbYdRKHuWnJnUQaJzYNwGu7g9Mzy6fXJcisQPSUDE\"]}},\"version\":1}",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"decimals\",\"outputs\":[{\"internalType\":\"uint8\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"description\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint80\",\"name\":\"_roundId\",\"type\":\"uint80\"}],\"name\":\"getRoundData\",\"outputs\":[{\"internalType\":\"uint80\",\"name\":\"roundId\",\"type\":\"uint80\"},{\"internalType\":\"int256\",\"name\":\"answer\",\"type\":\"int256\"},{\"internalType\":\"uint256\",\"name\":\"startedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"updatedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint80\",\"name\":\"answeredInRound\",\"type\":\"uint80\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"uint80\",\"name\":\"roundId\",\"type\":\"uint80\"},{\"internalType\":\"int256\",\"name\":\"answer\",\"type\":\"int256\"},{\"internalType\":\"uint256\",\"name\":\"startedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"updatedAt\",\"type\":\"uint256\"},{\"internalType\":\"uint80\",\"name\":\"answeredInRound\",\"type\":\"uint80\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/Admin/IdeaProjects/A/src/solidity/contracts/AggregatorV3Interface.sol\":\"AggregatorV3Interface\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Admin/IdeaProjects/A/src/solidity/contracts/AggregatorV3Interface.sol\":{\"keccak256\":\"0x6668f08ecf300420a7f102c249ce3ac64b05572cd4034476053ea8625aed76d9\",\"urls\":[\"bzz-raw://b815cac78e1c2544ee8ad4bbaf52d9536d48fa5ab8646c8f028d034a428b98ce\",\"dweb:/ipfs/QmZ3WBbYdRKHuWnJnUQaJzYNwGu7g9Mzy6fXJcisQPSUDE\"]}},\"version\":1}",
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "immutableReferences": {},
@@ -122,9 +122,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity >=0.6.0;\r\n\r\ninterface AggregatorV3Interface {\r\n\r\n    function decimals() external view returns (uint8);\r\n    function description() external view returns (string memory);\r\n    function version() external view returns (uint256);\r\n\r\n    // getRoundData and latestRoundData should both raise \"No data present\"\r\n    // if they do not have data to report, instead of returning unset values\r\n    // which could be misinterpreted as actual reported values.\r\n    function getRoundData(uint80 _roundId)\r\n    external\r\n    view\r\n    returns (\r\n        uint80 roundId,\r\n        int256 answer,\r\n        uint256 startedAt,\r\n        uint256 updatedAt,\r\n        uint80 answeredInRound\r\n    );\r\n    function latestRoundData()\r\n    external\r\n    view\r\n    returns (\r\n        uint80 roundId,\r\n        int256 answer,\r\n        uint256 startedAt,\r\n        uint256 updatedAt,\r\n        uint80 answeredInRound\r\n    );\r\n\r\n}",
-  "sourcePath": "/mnt/c/users/admin/ideaprojects/tau_smart_contract/contracts/AggregatorV3Interface.sol",
+  "sourcePath": "C:/Users/Admin/IdeaProjects/A/src/solidity/contracts/AggregatorV3Interface.sol",
   "ast": {
-    "absolutePath": "/mnt/c/users/admin/ideaprojects/tau_smart_contract/contracts/AggregatorV3Interface.sol",
+    "absolutePath": "/C/Users/Admin/IdeaProjects/A/src/solidity/contracts/AggregatorV3Interface.sol",
     "exportedSymbols": {
       "AggregatorV3Interface": [
         75
@@ -685,7 +685,7 @@
     "src": "0:914:1"
   },
   "legacyAST": {
-    "absolutePath": "/mnt/c/users/admin/ideaprojects/tau_smart_contract/contracts/AggregatorV3Interface.sol",
+    "absolutePath": "/C/Users/Admin/IdeaProjects/A/src/solidity/contracts/AggregatorV3Interface.sol",
     "exportedSymbols": {
       "AggregatorV3Interface": [
         75
@@ -1250,8 +1250,8 @@
     "version": "0.8.3+commit.8d00100c.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.1",
-  "updatedAt": "2021-05-13T18:47:09.824Z",
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-05-22T10:15:04.016Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
