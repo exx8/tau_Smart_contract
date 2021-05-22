@@ -20,7 +20,7 @@ const init= async function(from = address) {
 	BinaryOption.abi,
 	//deployedNetwork.address
 	);
-	let nonce=await web3.eth.getTransactionCount(address);
+	let nonce=await web3.eth.getTransactionCount(from);
 
     	contract=await contract.deploy({data: BinaryOption.bytecode})
     	.send({from: from, gas: 12486843, gasPrice: '20000000000',nonce});
