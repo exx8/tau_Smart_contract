@@ -25,7 +25,7 @@ const init= async function(provide,from=address) {
 	let nonce=await web3.eth.getTransactionCount(from);
 
     	contract=await contract.deploy({data: BinaryOption.bytecode})
-    	.send({from: from, gas: 2400000, gasPrice: '20000000000',nonce});
+    	.send({from: from, gas: 1235000, gasPrice: '20000000000',nonce});
     console.log('after deploy');
 	}
 
