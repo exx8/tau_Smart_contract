@@ -172,14 +172,31 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
     }
 
     private sendHandle = async () => {
+        //window.addEventListener("load",async()=>{}); // where to wrap? not in this function, but where page is opended
+        if (window.ethereum){
+                try{
+                let address = await window.ethereum.enable();
 
-        let address = await window.ethereum.enable();
+                await addBattle(this.state.type, this.state.date*1000-new Date().getTime(), this.state.trend, this.state.amount,
+                        window.ethereum, address[0]);
+                }
+                catch(e){
+                console.log('Payment using Metamask  was denied');
+
+                }
+                }
+                else if(window.web3){
+                console.log("Need to see how to extract address in this case, provider is just window.web3. than, call addBattle");
+                console.log(window.web3)
 
 
+                }
+                else{
+                console.log('please install a wallet. recommended: Metamask');
 
-        this.handleClose();
-        await addBattle(this.state.type, this.state.date*1000-new Date().getTime(), this.state.trend, this.state.amount,
-        window.ethereum, address[0]);
+                }
+                this.handleClose();
+
 
 
     }
