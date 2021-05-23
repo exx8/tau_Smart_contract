@@ -181,7 +181,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                         window.ethereum, address[0]);
                 }
                 catch(e){
-                console.log('Payment using Metamask denied');
+                console.log('Payment using Metamask  was denied');
 
                 }
                 }
