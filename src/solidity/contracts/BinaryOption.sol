@@ -15,7 +15,8 @@ contract BinaryOption{
 
     event MyEvent(
     uint256 indexed id,
-    uint256 indexed amount
+    uint256 indexed amount,
+    int win
     );
 
     struct Battle {
@@ -30,17 +31,17 @@ contract BinaryOption{
 
     constructor() public {
         age=new Aggre();
-        owner = msg.sender;
+        //owner = msg.sender;
 
-        // those addresses (of Kovan test network) can be found at: https://docs.chain.link/docs/ethereum-addresses/
-        feedAddress["EthVsUsd"]=0x9326BFA02ADD2366b30bacB125260Af641031331;
-        feedAddress["BtcVsUsd"]=0x6135b13325bfC4B00278B4abC5e20bbce2D6580e;
-        feedAddress["EurVsUsd"]=0x0c15Ab9A0DB086e062194c273CC79f41597Bbf13;
+        // those addresses (of rinkbey test network) can be found at: https://docs.chain.link/docs/ethereum-addresses/
+        feedAddress["EthVsUsd"]=0x8A753747A1Fa494EC906cE90E9f37563A8AF630e;
+        //feedAddress["BtcVsUsd"]=0x6135b13325bfC4B00278B4abC5e20bbce2D6580e;
+        //feedAddress["EurVsUsd"]=0x0c15Ab9A0DB086e062194c273CC79f41597Bbf13;
     }
 
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
-        require(msg.value>0, "You have to bet on positive value!\n");
+        require(msg.value>0, "You have to bet on positive value!");
         battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,block.timestamp+betDate,direction,age.getThePrice(feedAddress[betType]));
         battleId++;
     }
@@ -49,8 +50,8 @@ contract BinaryOption{
         tempVal= msg.value;
     }
 
-    function getIndex(uint256 battle_id) public view returns (uint){
-        return battleInfo[battle_id].betDate;
+    function getAmount(uint256 battle_id) public view returns (uint){
+        return battleInfo[battle_id].amountBet;
     }
 
     function setPrice() public {
@@ -80,24 +81,25 @@ contract BinaryOption{
 
 
     // an opponent is signed to battle number: battleid
-    /*function acceptBattle(uint256 battle_id) public payable{
+    function acceptBattle(uint256 battle_id) public payable{
+
         Battle storage bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.\n");
-        require(bate.creator!=msg.sender, "Impossible to fight against yourself.\n");
-        require(bate.creator==bate.opponent, "This battle is closed, opponent already exist.\n");
-        require(msg.value==bate.amountBet, "Betting value isn't as specified for this battle.\n");
+        //require(bate.creator!=msg.sender, "Impossible to fight against yourself.");
+        require(bate.creator==bate.opponent, "This battle is closed, opponent already exist.");
+        require(msg.value==bate.amountBet, "Betting value isn't as specified for this battle.");
         bate.opponent=msg.sender;
-        tempVal=9;
 
-    }*/
+
+    }
 
     // a creator cancel his battle
     /*function cancelBattle(uint256 battle_id) public payable{
         Battle memory bate=battleInfo[battle_id];
-        require(bate.creator==msg.sender, "Only the creator may cancel his own battle.\n");
-        require(bate.amountBet>0, "Battle number isn't exist.\n"); // needed?
+        require(bate.amountBet>0, "Battle number isn't exist.");
+        require(bate.creator==msg.sender, "Only the creator may cancel his own battle.");
 
-        require(bate.creator==bate.opponent, "There is already opponent, this battle can't be canceled.\n");
+        require(bate.creator==bate.opponent, "There is already opponent, this battle can't be canceled.");
         //temp=address(battleInfo[battle_id].creator);
         //temp.transfer(2*battleInfo[battle_id].amountBet);
         payable(bate.creator).transfer(bate.amountBet); // return the amount invested
@@ -106,60 +108,66 @@ contract BinaryOption{
 
 
     /*function getcurrVal(uint256 battle_id) public view returns (uint256){
-        require(msg.sender==battleInfo[battle_id].creator||msg.sender==battleInfo[battle_id].opponent, "You are not part of this battle.\n");
+        require(msg.sender==battleInfo[battle_id].creator||msg.sender==battleInfo[battle_id].opponent, "You are not part of this battle.");
         return battleInfo[battle_id].amountBet;
     }*/
 
     // the winner may draw his money
-    /*function withdraw(uint256 battle_id) public {
-        tempVal=7;
+    function withdraw(uint256 battle_id) public {
+        int winner; // 0=lose 1=win 2=draw
         int oldPrice;
         int newPrice;
         Battle memory bate=battleInfo[battle_id];
-        //require((bate.creator==msg.sender||bate.opponent==msg.sender), "You are not part of this battle.\n"); // can be deleted if comes with getcurrval
-        require(bate.amountBet>0, "Battle number isn't exist.\n"); // needed?
-        require(block.timestamp>=bate.betDate, "Too early to check who is the winner.\n");
+        require((bate.creator==msg.sender||bate.opponent==msg.sender), "You are not part of this battle."); // can be deleted if comes with getcurrval
+        //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start."); // in case the creator try to withdraw before having opponent. He may cancel battle if he wants.
+        require(block.timestamp>=bate.betDate, "Too early to check who is the winner.");
         oldPrice=bate.currVal;
         newPrice=age.getThePrice(feedAddress[bate.betType]);
         // deliver the money to the winner
         if(oldPrice<newPrice){
-            tempVal=5;
+
             if(bate.isUp){
                 //temp=address(battleInfo[battle_id].creator);
                 //temp.transfer(2*battleInfo[battle_id].amountBet);
-                payable(bate.creator).transfer(2*bate.amountBet); // multiply by 2 since we deliever the money of both the creator and his opponent
+                winner=1;
+                payable(bate.creator).transfer(2*bate.amountBet); // multiply by 2 since we deliver the money of both the creator and his opponent
             }
             else{
                 //temp=address(battleInfo[battle_id].opponent);
                 //temp.transfer(2*battleInfo[battle_id].amountBet);
+                winner=0;
                 payable(bate.opponent).transfer(2*bate.amountBet);
             }
 
         }
         else if(oldPrice>newPrice){
-            tempVal=4;
+
             if(bate.isUp){
                 //temp=address(battleInfo[battle_id].opponent);
                 //temp.transfer(2*battleInfo[battle_id].amountBet);
+                winner=0;
                 payable(bate.opponent).transfer(2*bate.amountBet);
             }
             else{
                 //temp=address(battleInfo[battle_id].creator);
                 //temp.transfer(2*battleInfo[battle_id].amountBet);
+                winner=1;
                 payable(bate.creator).transfer(2*bate.amountBet);
             }
         }
         // if nothing has changed, the creator lose his money
         else {
-            tempVal=3;
+
             //temp=address(battleInfo[battle_id].opponent);
             //temp.transfer(2*battleInfo[battle_id].amountBet);
-            payable(bate.opponent).transfer(2*bate.amountBet);
+            winner=2;
+            payable(bate.opponent).transfer(bate.amountBet);
+            payable(bate.creator).transfer(bate.amountBet);
         }
         // sign the event
-        emit MyEvent(battle_id,bate.amountBet);
+        emit MyEvent(battle_id,bate.amountBet*2,winner);
         delete battleInfo[battle_id]; // battle is finished
-    }*/
+    }
 
     //just for testing
     /*function removeBattle(uint256 battle_id) public {

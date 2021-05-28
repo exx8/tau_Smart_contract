@@ -35,6 +35,7 @@ const addBattle= async() => {
 	console.log('yes');
 	}
 	catch(e){
+	console.log('caught in add');
 	const data=e.data;
 	const txHash = Object.keys(data)[0];
     const reason = data[txHash].reason;

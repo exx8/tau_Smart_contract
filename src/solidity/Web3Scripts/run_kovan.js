@@ -13,8 +13,9 @@ let addresses=null;
 const init= async function(provide,from=address) {
 
 
-	//provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://kovan.infura.io/v3/423c508011d14316b04a4ebbf33b0634",chainId:42});
+	//provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/c6212b31c70941ca847fa2a9237a3d1a",chainId:4});
 	web3=new Web3(provide);
+	web3.eth.handleRevert =true;
 	try{
 	contract= new web3.eth.Contract(
 	BinaryOption.abi,
@@ -22,22 +23,24 @@ const init= async function(provide,from=address) {
 	);
 	console.log('before deploy');
 	//estimated_gas=web3.eth.estimateGas({data:BinaryOption.bytecode}).then(console.log);
+	//console.log(estimated_gas);
 	let nonce=await web3.eth.getTransactionCount(from);
 
     	contract=await contract.deploy({data: BinaryOption.bytecode})
-    	.send({from: from, gas: 1235000, gasPrice: '20000000000',nonce});
+    	.send({from: from, gas: 2010686, gasPrice: '20000000000',nonce});
     console.log('after deploy');
 	}
 
 	catch(e){
-    	console.log('caught');
+    	console.log('caught in init');
+        	const indx=e.message.indexOf("0");
 
-        	console.log(e);
+            console.log(e.message.substring(20,indx-1));
     	}
 
 }
 
-  export async function addBattle(battle_type, expire_time, winner, val,provide, from = address)  {
+export async function addBattle(battle_type, expire_time, winner, val,provide, from = address)  {
 	await init(provide,from);
 
     try{
@@ -48,9 +51,10 @@ const init= async function(provide,from=address) {
 	console.log('addBattle passed!');
 	}
 	catch(e){
-	console.log('caught');
-	const data=e.data;
-        console.log(e);
+	console.log('caught addBattle');
+	const indx=e.message.indexOf("0");
+
+    console.log(e.message.substring(20,indx-1));
 	}
 }
 
@@ -65,46 +69,58 @@ export async function acceptBattle(id,val,provide,from = address)  {
 	console.log('acceptBattle passed!');
 	}
 	catch(e){
-    const data=e.data;
+	console.log('caught acceptBattle');
+    const indx=e.message.indexOf("0");
+    console.log(e.message.substring(20,indx-1));
 
-    console.log(e);
     }
 
 }
 
-const withdraw= async function(id,provide,from = address) {
+export async function withdraw(identifier,provide,from = address) {
 	await init(provide,from);
     try{
-	const receipt=await contract.methods.withdraw(id).send({
+	const receipt=await contract.methods.withdraw(identifier).send({
 		from: from
 	});
+	console.log('withdraw passed!');
 	const res=await web3.eth.getBlockNumber();
-	result=await contract.getPastEvents('MyEvent',{filter:{id: 1},fromBlock: res-2, toBlock: res});
-            console.log(result[0].returnValues.id);
+	result=await contract.getPastEvents('MyEvent',{filter:{id: identifier},fromBlock: res-2, toBlock: res});
+	const winner=result[0].returnValues.winner;
+	if (winner==0)
+	    console.log('You lost ' +result[0].returnValues.amount+' in battle: '+identifier);
+	else{
+	if(winner==1)
+	    console.log('You won ' +result[0].returnValues.amount+' in battle: '+identifier);
+	else
+	    console.log('There was draw in battle: '+identifier);
+	}
+
+
 	}
     catch(e){
-    const data=e.data;
-    const txHash = Object.keys(data)[0];
-    const reason = data[txHash].reason;
-    console.log(reason); // the text in the require method, can be used for the frontend
+    console.log('caught withdraw');
+    	const indx=e.message.indexOf("0");
+        console.log(e.message.substring(20,indx-1));
+        //console.log(e.message);
     }
 
 }
 
-const cancelBattle= async function(id,val,provide,from = address) {
+const cancelBattle= async function(id,provide,from = address) {
 	await init(provide,from);
 
     try{
 	await contract.methods.cancelBattle(id).send({
-		from: from,
-		value:val
+		from: from
+
 	});
+	console.log('cancel passed!');
 	}
 	catch(e){
-    const data=e.data;
-    const txHash = Object.keys(data)[0];
-    const reason = data[txHash].reason;
-    console.log(reason);
+    console.log('caught cancel');
+    const indx=e.message.indexOf("0");
+    console.log(e.message.substring(20,indx-1));
     }
 
 }
@@ -138,7 +154,7 @@ const getPrice= async function(provide,from = address)  {
         console.log("price value:"+result);
     	}
     	catch(e){
-    	console.log('caught');
+    	console.log('caught getPrice');
     	const data=e.data;
 
         	console.log(e);
@@ -146,22 +162,17 @@ const getPrice= async function(provide,from = address)  {
 }
 
 const getId= async function(provide,from = address)  {
-	await init(from);
+	await init(provide,from);
 
     try{
 	const result=await contract.methods.getId().call();
 	console.log(result);
 	}
 	catch(e){
-	console.log('caught');
+	console.log('caught getId');
         console.log(e);
 	}
 }
-//getId();
-//getPrice();
-//addBattle("EthVsUsd",15,false,'50000');
-//acceptBattle(0,'500000');
-//addBattle("EthVsUsd",10,false,'50000');
-//acceptBattle(1,'500000');
-//withdraw(0);
-//getEvent();
+
+
+
