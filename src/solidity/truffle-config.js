@@ -18,11 +18,11 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 // const infuraKey = "fj4jll3k.....";
 //
 // const fs = require('fs');
-// const mnemonic = fs.readFileSync(".secret").toString().trim();
+const mnemonic = 'deny despair must sniff satisfy grant include piece head slush monkey name';
 
 module.exports = {
   /**
@@ -66,6 +66,11 @@ module.exports = {
     // timeoutBlocks: 200,  // # of blocks before a deployment times out  (minimum/default: 50)
     // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     // },
+    rinkeby:{
+    provider: () => new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/v3/c6212b31c70941ca847fa2a9237a3d1a'),
+    network_id: 4,
+    skipDryRun: true
+    }
     // Useful for private networks
     // private: {
     // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),

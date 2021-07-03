@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
@@ -10,58 +9,57 @@ let web3=null;
 let provider=null;
 let contract=null;
 let addresses=null;
-const init= async function(provide,from=address) {
 
+const init=async function init(provide,from=address) {
 
 	//provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/c6212b31c70941ca847fa2a9237a3d1a",chainId:4});
 	web3=new Web3(provide);
-	web3.eth.handleRevert =true;
+	//web3.eth.handleRevert =true;
 	try{
 	contract= new web3.eth.Contract(
 	BinaryOption.abi,
+	'0x73378f981d39b9284EfC85158dd2C36d72ccE8E4' // The address of the deployed smart contract. Can be seen in /build/BinaryOption.json
 	//deployedNetwork.address
 	);
 	console.log('before deploy');
 	//estimated_gas=web3.eth.estimateGas({data:BinaryOption.bytecode}).then(console.log);
 	//console.log(estimated_gas);
-	let nonce=await web3.eth.getTransactionCount(from);
 
-    	contract=await contract.deploy({data: BinaryOption.bytecode})
-    	.send({from: from, gas: 2010686, gasPrice: '20000000000',nonce});
-    console.log('after deploy');
 	}
 
 	catch(e){
     	console.log('caught in init');
-        	const indx=e.message.indexOf("0");
+        const index=e.message.indexOf("0");
 
-            console.log(e.message.substring(20,indx-1));
+        console.log(e.message.substring(20,index-1));
     	}
 
 }
 
-export async function addBattle(battle_type, expire_time, winner, val,provide, from = address)  {
+const addBattle= async function (battle_type, expire_time, winner, val,provide, from = address)  {
 	await init(provide,from);
 
     try{
+    let nonce=await web3.eth.getTransactionCount(from); // still need to deal with the nonce issue, since now we do not deploy here
 	await contract.methods.addBattle(battle_type,expire_time,winner).send({
 		from: from,
 		value:val
 	});
 	console.log('addBattle passed!');
+	const r=await contract.methods.getAmount(0).call();
+	console.log('This battle is on '+ r+' weis');
 	}
 	catch(e){
 	console.log('caught addBattle');
-	const indx=e.message.indexOf("0");
-
-    console.log(e.message.substring(20,indx-1));
+	const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
 	}
 }
 
-export async function acceptBattle(id,val,provide,from = address)  {
+const acceptBattle= async function (id,val,provide,from = address)  {
 	await init(provide,from);
-
     try{
+    let nonce=await web3.eth.getTransactionCount(from);
 	await contract.methods.acceptBattle(id).send({
 	from: address,
 	value:val
@@ -70,16 +68,15 @@ export async function acceptBattle(id,val,provide,from = address)  {
 	}
 	catch(e){
 	console.log('caught acceptBattle');
-    const indx=e.message.indexOf("0");
-    console.log(e.message.substring(20,indx-1));
-
+    const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
     }
-
 }
 
-export async function withdraw(identifier,provide,from = address) {
+const withdraw= async function (identifier,provide,from = address) {
 	await init(provide,from);
     try{
+    let nonce=await web3.eth.getTransactionCount(from);
 	const receipt=await contract.methods.withdraw(identifier).send({
 		from: from
 	});
@@ -95,14 +92,12 @@ export async function withdraw(identifier,provide,from = address) {
 	else
 	    console.log('There was draw in battle: '+identifier);
 	}
-
-
 	}
     catch(e){
     console.log('caught withdraw');
-    	const indx=e.message.indexOf("0");
-        console.log(e.message.substring(20,indx-1));
-        //console.log(e.message);
+    const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
+    //console.log(e.message);
     }
 
 }
@@ -113,14 +108,13 @@ const cancelBattle= async function(id,provide,from = address) {
     try{
 	await contract.methods.cancelBattle(id).send({
 		from: from
-
 	});
 	console.log('cancel passed!');
 	}
 	catch(e){
     console.log('caught cancel');
-    const indx=e.message.indexOf("0");
-    console.log(e.message.substring(20,indx-1));
+    const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
     }
 
 }
@@ -132,14 +126,12 @@ const getEvent= async function(provide,from = address) {
 	const res=await web3.eth.getBlockNumber();
     result=await contract.getPastEvents('MyEvent',{filter:{id: 1},fromBlock: res-5, toBlock: res});
     console.log(result[0].returnValues.id);
-
 	}
 	catch(e){
     const data=e.data;
-        const txHash = Object.keys(data)[0];
-        const reason = data[txHash].reason;
-        console.log(reason);
-
+    const txHash = Object.keys(data)[0];
+    const reason = data[txHash].reason;
+    console.log(reason);
     }
 
 }
@@ -161,18 +153,21 @@ const getPrice= async function(provide,from = address)  {
     	}
 }
 
-const getId= async function(provide,from = address)  {
+/* get the value the winner will take from battle index */
+const getAmount= async function(index,provide,from = address)  {
 	await init(provide,from);
 
     try{
-	const result=await contract.methods.getId().call();
+    let nonce=await web3.eth.getTransactionCount(from);
+	const result=await contract.methods.getAmount(index).call();
 	console.log(result);
 	}
 	catch(e){
 	console.log('caught getId');
-        console.log(e);
+    console.log(e);
 	}
 }
 
+module.exports={init,addBattle,acceptBattle,withdraw,getAmount};
 
 

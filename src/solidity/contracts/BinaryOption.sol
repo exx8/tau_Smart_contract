@@ -45,14 +45,15 @@ contract BinaryOption{
         battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,block.timestamp+betDate,direction,age.getThePrice(feedAddress[betType]));
         battleId++;
     }
+    function getAmount(uint256 battle_id) public view returns (uint){
+            return battleInfo[battle_id].amountBet;
+        }
 
     /*function setIndex() public payable {
         tempVal= msg.value;
-    }
+    }*/
 
-    function getAmount(uint256 battle_id) public view returns (uint){
-        return battleInfo[battle_id].amountBet;
-    }
+    /*
 
     function setPrice() public {
         feed= age.getThePrice(0x9326BFA02ADD2366b30bacB125260Af641031331);

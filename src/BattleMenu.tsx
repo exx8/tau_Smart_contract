@@ -17,7 +17,7 @@ import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
-import {addBattle} from "./solidity/Web3Scripts/run_kovan";
+import {addBattle} from "./solidity/Web3Scripts/frontend";
 import moment from "moment";
 
 
