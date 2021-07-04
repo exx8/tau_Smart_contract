@@ -20,7 +20,7 @@ const init=async function init(from=address) {
 	'0x73378f981d39b9284EfC85158dd2C36d72ccE8E4'
 	//deployedNetwork.address
 	);
-	console.log('before deploy');
+
 	//estimated_gas=web3.eth.estimateGas({data:BinaryOption.bytecode}).then(console.log);
 	//console.log(estimated_gas);
     //let nonce=await web3.eth.getTransactionCount(from);
@@ -32,9 +32,9 @@ const init=async function init(from=address) {
 
 	catch(e){
     	console.log('caught in init');
-        	const indx=e.message.indexOf("0");
+        	const index=e.message.indexOf("0");
 
-            console.log(e.message.substring(20,indx-1));
+            console.log(e.message.substring(20,index-1));
     	}
 
 }
@@ -78,19 +78,18 @@ const acceptBattle= async function (id,val,from = address)  {
 	}
 	catch(e){
 	console.log('caught acceptBattle');
-    const indx=e.message.indexOf("0");
-    console.log(e.message.substring(20,indx-1));
+    const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
 
     }
 
 }
 
-const withdraw= async function (identifier,provide,from = address) {
-	await init(provide,from);
+const withdraw= async function (identifier,from = address) {
+	await init(from);
     try{
     let nonce=await web3.eth.getTransactionCount(from);
-    let deployed_contract=await contract.send({from: from, gas: 2010686, gasPrice: '20000000000',nonce});
-	const receipt=await deployed_contract.methods.withdraw(identifier).send({
+	const receipt=await contract.methods.withdraw(identifier).send({
 		from: from
 	});
 	console.log('withdraw passed!');
@@ -110,15 +109,15 @@ const withdraw= async function (identifier,provide,from = address) {
 	}
     catch(e){
     console.log('caught withdraw');
-    	const indx=e.message.indexOf("0");
-        console.log(e.message.substring(20,indx-1));
+    	const index=e.message.indexOf("0");
+        console.log(e.message.substring(20,index-1));
         //console.log(e.message);
     }
 
 }
 
-const cancelBattle= async function(id,provide,from = address) {
-	await init(provide,from);
+const cancelBattle= async function(id,from = address) {
+	await init(from);
 
     try{
 	await contract.methods.cancelBattle(id).send({
@@ -168,6 +167,20 @@ const getPrice= async function(from = address)  {
     const data=e.data;
     console.log(e);
     }
+}
+
+const getId= async function(from = address){
+await init(from);
+try{
+    let nonce=await web3.eth.getTransactionCount(from);
+	const result=await contract.methods.getId().call();
+	console.log(result);
+	}
+	catch(e){
+	console.log('caught getId');
+        const index=e.message.indexOf("0");
+        console.log(e.message.substring(20,index-1));
+	}
 }
 
 const getAmount= async function(index,from = address)  {

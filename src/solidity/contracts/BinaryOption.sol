@@ -165,7 +165,7 @@ contract BinaryOption{
         }
         // sign the event
         emit MyEvent(battle_id,bate.amountBet*2,winner);
-        delete battleInfo[battle_id]; // battle is finished
+        //delete battleInfo[battle_id]; // battle is finished
     }
 
     //just for testing

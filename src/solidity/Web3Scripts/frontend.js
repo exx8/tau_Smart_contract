@@ -118,6 +118,19 @@ const cancelBattle= async function(id,provide,from = address) {
     }
 
 }
+const getId= async function(provide,from = address){
+await init(provide,from);
+try{
+    let nonce=await web3.eth.getTransactionCount(from);
+	const result=await contract.methods.getId().call();
+	console.log(result);
+	}
+	catch(e){
+	console.log('caught getId');
+        const index=e.message.indexOf("0");
+        console.log(e.message.substring(20,index-1));
+	}
+}
 
 const getEvent= async function(provide,from = address) {
 	await init(provide,from);
@@ -163,11 +176,9 @@ const getAmount= async function(index,provide,from = address)  {
 	console.log(result);
 	}
 	catch(e){
-	console.log('caught getId');
+	console.log('caught getAmount');
     console.log(e);
 	}
 }
 
-module.exports={init,addBattle,acceptBattle,withdraw,getAmount};
-
-
+module.exports={init,addBattle,acceptBattle,withdraw,getAmount,getId};
