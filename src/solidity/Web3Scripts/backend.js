@@ -43,9 +43,7 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 	await init(from);
 
     try{
-    console.log('aaaaaa');
     let nonce=await web3.eth.getTransactionCount(from);
-    console.log('aaaaaa');
     //let deployed_contract=await contract.deploy({data: BinaryOption.bytecode})
                                   //.send({from: from, gas: 2010686, gasPrice: '20000000000',nonce}); // lines 49-50 are exist only cuz of nonce
 
@@ -131,14 +129,14 @@ const cancelBattle= async function(id,provide,from = address) {
 	}
 	catch(e){
     console.log('caught cancel');
-    const indx=e.message.indexOf("0");
-    console.log(e.message.substring(20,indx-1));
+    const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
     }
 
 }
 
-const getEvent= async function(provide,from = address) {
-	await init(provide,from);
+const getEvent= async function(from = address) {
+	await init(from);
 
     try{
 	const res=await web3.eth.getBlockNumber();
@@ -156,8 +154,8 @@ const getEvent= async function(provide,from = address) {
 
 }
 
-const getPrice= async function(provide,from = address)  {
-	await init(provide,from);
+const getPrice= async function(from = address)  {
+	await init(from);
     try{
     await contract.methods.setPrice().send({
     from: from
@@ -172,14 +170,14 @@ const getPrice= async function(provide,from = address)  {
     }
 }
 
-const getAmount= async function(indx,from = address)  {
+const getAmount= async function(index,from = address)  {
 	await init(from);
 
     try{
     let nonce=await web3.eth.getTransactionCount(from);
     //let deployed_contract=await contract.send({from: from, gas: 2010686, gasPrice: '20000000000',nonce});
     //console.log(deployed_contract);
-	const result=await contract.methods.getAmount(indx).call();
+	const result=await contract.methods.getAmount(index).call();
 	console.log(result);
 	}
 	catch(e){

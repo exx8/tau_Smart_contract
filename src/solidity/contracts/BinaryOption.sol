@@ -62,10 +62,10 @@ contract BinaryOption{
         return feed;
     }
 
-
+    */
     function getId() public view returns (uint256){
         return battleId;
-    }*/
+    }
 
     /*function getEvent() public {
         emit MyEvent(battleId,battleId);
@@ -90,12 +90,10 @@ contract BinaryOption{
         require(bate.creator==bate.opponent, "This battle is closed, opponent already exist.");
         require(msg.value==bate.amountBet, "Betting value isn't as specified for this battle.");
         bate.opponent=msg.sender;
-
-
     }
 
     // a creator cancel his battle
-    /*function cancelBattle(uint256 battle_id) public payable{
+    function cancelBattle(uint256 battle_id) public payable{
         Battle memory bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.");
         require(bate.creator==msg.sender, "Only the creator may cancel his own battle.");
@@ -105,7 +103,7 @@ contract BinaryOption{
         //temp.transfer(2*battleInfo[battle_id].amountBet);
         payable(bate.creator).transfer(bate.amountBet); // return the amount invested
         delete battleInfo[battle_id]; // battle is canceled
-    }*/
+    }
 
 
     /*function getcurrVal(uint256 battle_id) public view returns (uint256){
@@ -119,8 +117,8 @@ contract BinaryOption{
         int oldPrice;
         int newPrice;
         Battle memory bate=battleInfo[battle_id];
-        require((bate.creator==msg.sender||bate.opponent==msg.sender), "You are not part of this battle."); // can be deleted if comes with getcurrval
         //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start."); // in case the creator try to withdraw before having opponent. He may cancel battle if he wants.
+        require((bate.creator==msg.sender||bate.opponent==msg.sender), "You are not part of this battle."); // can be deleted if comes with getcurrval
         require(block.timestamp>=bate.betDate, "Too early to check who is the winner.");
         oldPrice=bate.currVal;
         newPrice=age.getThePrice(feedAddress[bate.betType]);
@@ -173,7 +171,7 @@ contract BinaryOption{
     //just for testing
     /*function removeBattle(uint256 battle_id) public {
         require(battleInfo[battle_id].amountBet>0, "Battle number isn't exist.\n");
-        delete battleInfo[battle_id]; // battle is canceled
+        //delete battleInfo[battle_id]; // battle is canceled
     }*/
 
 
