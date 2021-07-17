@@ -18,7 +18,7 @@ const init=async function init(provide,from=address) {
 	try{
 	contract= new web3.eth.Contract(
 	BinaryOption.abi,
-	'0x73378f981d39b9284EfC85158dd2C36d72ccE8E4' // The address of the deployed smart contract. Can be seen in /build/BinaryOption.json
+	'0x8C7d86514a71e4Fb9Cfe7f9CBFD465be84a64bb0' // The address of the deployed smart contract. Can be seen in /build/BinaryOption.json
 	//deployedNetwork.address
 	);
 	console.log('before deploy');
@@ -83,7 +83,7 @@ const withdraw= async function (identifier,provide,from = address) {
 	console.log('withdraw passed!');
 	const res=await web3.eth.getBlockNumber();
 	result=await contract.getPastEvents('MyEvent',{filter:{id: identifier},fromBlock: res-2, toBlock: res});
-	const winner=result[0].returnValues.winner;
+	const winner=result[0].returnValues.win;
 	if (winner==0)
 	    console.log('You lost ' +result[0].returnValues.amount+' in battle: '+identifier);
 	else{

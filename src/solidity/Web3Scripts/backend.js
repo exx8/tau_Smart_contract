@@ -17,7 +17,7 @@ const init=async function init(from=address) {
 	try{
 	contract= new web3.eth.Contract(
 	BinaryOption.abi,
-	'0x73378f981d39b9284EfC85158dd2C36d72ccE8E4'
+	'0x8C7d86514a71e4Fb9Cfe7f9CBFD465be84a64bb0'
 	//deployedNetwork.address
 	);
 
@@ -52,12 +52,10 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 		value:val
 	});
 	console.log('addBattle passed!');
-	const r=await contract.methods.getAmount(0).call();
-	console.log(r);
 	}
 	catch(e){
 	console.log('caught addBattle');
-	const indx=e.message.indexOf("0");
+	const index=e.message.indexOf("0");
 
     console.log(e.message);
 	}
@@ -95,7 +93,7 @@ const withdraw= async function (identifier,from = address) {
 	console.log('withdraw passed!');
 	const res=await web3.eth.getBlockNumber();
 	result=await contract.getPastEvents('MyEvent',{filter:{id: identifier},fromBlock: res-2, toBlock: res});
-	const winner=result[0].returnValues.winner;
+	const winner=result[0].returnValues.win;
 	if (winner==0)
 	    console.log('You lost ' +result[0].returnValues.amount+' in battle: '+identifier);
 	else{
@@ -198,6 +196,5 @@ const getAmount= async function(index,from = address)  {
         console.log(e);
 	}
 }
-
-//acceptBattle(2,'50000');
-getAmount(2);
+//addBattle("EthVsUsd",90,false,'50000');
+acceptBattle(0,'50000');
