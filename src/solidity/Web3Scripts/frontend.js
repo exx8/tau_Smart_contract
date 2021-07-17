@@ -18,7 +18,7 @@ const init=async function init(provide,from=address) {
 	try{
 	contract= new web3.eth.Contract(
 	BinaryOption.abi,
-	'0x8C7d86514a71e4Fb9Cfe7f9CBFD465be84a64bb0' // The address of the deployed smart contract. Can be seen in /build/BinaryOption.json
+	BinaryOption.networks["4"].address // The address of the deployed smart contract. Can be seen in /build/BinaryOption.json
 	//deployedNetwork.address
 	);
 	console.log('before deploy');
@@ -181,4 +181,21 @@ const getAmount= async function(index,provide,from = address)  {
 	}
 }
 
-module.exports={init,addBattle,acceptBattle,withdraw,getAmount,getId};
+const getBattleInfo= async function (id ,provide, from = address)  {
+	await init(provide,from);
+
+    try{
+    //let nonce=await web3.eth.getTransactionCount(from); // still need to deal with the nonce issue, since now we do not deploy here
+	let battleList=await contract.methods.getBattleInfo(id).call();
+	console.log('getBattleInfo passed!');
+	return battleList;
+	}
+	catch(e){
+	console.log('caught getBattleInfo');
+	const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
+    return null;
+	}
+}
+
+module.exports={init,addBattle,acceptBattle,withdraw,getAmount,getId,getBattleInfo};

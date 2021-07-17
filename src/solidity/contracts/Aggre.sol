@@ -9,11 +9,10 @@ contract Aggre{
 
     function getThePrice(address a) public view returns (int) {
         (
-        uint80 roundID,
+        ,
         int price,
-        uint startedAt,
-        uint timeStamp,
-        uint80 answeredInRound
+        ,
+        ,
         ) = AggregatorV3Interface(a).latestRoundData();
         return price;
     }

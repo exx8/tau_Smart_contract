@@ -9,15 +9,19 @@ let web3=null;
 let provider=null;
 let contract=null;
 let addresses=null;
+const deployedAddress=BinaryOption;
+
 const init=async function init(from=address) {
 
 	provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/c6212b31c70941ca847fa2a9237a3d1a",chainId:4});
 	web3=new Web3(provider);
 	//web3.eth.handleRevert =true;
 	try{
+
 	contract= new web3.eth.Contract(
+
 	BinaryOption.abi,
-	'0x8C7d86514a71e4Fb9Cfe7f9CBFD465be84a64bb0'
+	BinaryOption.networks["4"].address,
 	//deployedNetwork.address
 	);
 
@@ -196,5 +200,24 @@ const getAmount= async function(index,from = address)  {
         console.log(e);
 	}
 }
+
+const getBattleInfo= async function (id , from = address)  {
+	await init(from);
+
+    try{
+    //let nonce=await web3.eth.getTransactionCount(from); // still need to deal with the nonce issue, since now we do not deploy here
+	let battle=await contract.methods.getBattleInfo(id).call();
+	console.log('getBattleInfo passed!');
+	return battle;
+	}
+	catch(e){
+	console.log('caught getBattleInfo');
+	const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
+    return null;
+	}
+}
+
 //addBattle("EthVsUsd",90,false,'50000');
-acceptBattle(0,'50000');
+//acceptBattle(0,'50000');
+//getBattleInfo(2);
