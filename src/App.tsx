@@ -2,13 +2,7 @@ import React from 'react';
 import './App.css';
 import { Button } from '@material-ui/core';
 import { BattleMenu } from './BattleMenu';
-import React from "react";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
+
 function App() {
     const [dialogOpen, setDialogOpen] = React.useState(false);
   return (

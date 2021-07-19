@@ -19,10 +19,11 @@ import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
 import {addBattle} from "./solidity/Web3Scripts/frontend";
 import moment from "moment";
+import {sendInvitation, sendMail} from "./Mail";
 
 
 interface BattleMenuState {
-    email: string | null;
+    email: string | null|undefined;
     type: string | null;
     amount: number | null;
     trend: boolean;
@@ -54,6 +55,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
     handleClose = () => {
         this.props.handleClose();
+
 
     }
 
@@ -179,6 +181,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
                 let battleData = await addBattle(this.state.type, this.state.date * 1000 - new Date().getTime(), this.state.trend, this.state.amount,
                     window.ethereum, address[0]);
+                const fixedEmail :string= this.state.email ?? "";
+            //    sendInvitation(fixedEmail,battleData.)
+
                 console.log("battle data is " + battleData);
             } catch (e) {
                 console.log('Payment using Metamask  was denied');
@@ -194,7 +199,6 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
         }
         this.handleClose();
-
 
     }
 

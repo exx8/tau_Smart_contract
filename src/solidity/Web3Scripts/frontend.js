@@ -40,12 +40,12 @@ const addBattle= async function (battle_type, expire_time, winner, val,provide, 
 	await init(provide,from);
 
     try{
-	await contract.methods.addBattle(battle_type,expire_time,winner).send({
+	let battleData=await contract.methods.addBattle(battle_type,expire_time,winner).send({
 		from: from,
 		value:val
 	});
 	console.log('addBattle passed!');
-	return 'success';
+	return battleData;
 	}
 	catch(e){
 	console.log('caught addBattle');
