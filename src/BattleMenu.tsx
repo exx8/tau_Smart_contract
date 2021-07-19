@@ -20,10 +20,11 @@ import {TrendToggle} from "./TrendToggle";
 import {addBattle} from "./solidity/Web3Scripts/frontend";
 import moment from "moment";
 import {sendInvitation, sendMail} from "./Mail";
+import {getAnchor} from "./utils";
 
 
 interface BattleMenuState {
-    email: string | null|undefined;
+    email: string | null | undefined;
     type: string | null;
     amount: number | null;
     trend: boolean;
@@ -105,7 +106,11 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
         );
 
     }
+ getBattleData()
+ {
+     let blockHash:string=getAnchor();
 
+ }
     render() {
         return (
             <div>
@@ -179,12 +184,12 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
             try {
                 let address = await window.ethereum.enable();
 
-                let battleData :{blockHash:string}= await addBattle(this.state.type, this.state.date * 1000 - new Date().getTime(), this.state.trend, this.state.amount,
+                let battleData: { blockHash: string } = await addBattle(this.state.type, this.state.date * 1000 - new Date().getTime(), this.state.trend, this.state.amount,
                     window.ethereum, address[0]);
-                const fixedEmail :string= this.state.email ?? "";
-                sendInvitation(fixedEmail,battleData.blockHash)
+                const fixedEmail: string = this.state.email ?? "";
+                sendInvitation(fixedEmail, battleData.blockHash)
 
-                console.log("battle data is " , battleData);
+                console.log("battle data is ", battleData);
             } catch (e) {
                 console.log('Payment using Metamask  was denied');
 
