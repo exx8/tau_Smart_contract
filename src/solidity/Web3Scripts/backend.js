@@ -100,18 +100,18 @@ const withdraw= async function (identifier,from = address) {
 	if (winner==0){
 	return_msg='You lost ' +result[0].returnValues.amount+' in battle: '+identifier;
 	    console.log(return_msg);
-	    return_msg;
+	    return return_msg;
 	    }
 	else{
 	if(winner==1){
 	    return_msg='You won ' +result[0].returnValues.amount+' in battle: '+identifier;
         	    console.log(return_msg);
-        	    return_msg;
+        	    return return_msg;
 	    }
 	else{
 	return_msg='There was draw in battle: '+identifier;
     	    console.log(return_msg);
-    	    return_msg;
+    	    return return_msg;
 	}
 	}
 	}
