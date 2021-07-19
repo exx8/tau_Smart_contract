@@ -177,8 +177,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                 try{
                 let address = await window.ethereum.enable();
 
-                await addBattle(this.state.type, this.state.date*1000-new Date().getTime(), this.state.trend, this.state.amount,
+                let battleData=await addBattle(this.state.type, this.state.date*1000-new Date().getTime(), this.state.trend, this.state.amount,
                         window.ethereum, address[0]);
+                console.log("battle data is "+battleData);
                 }
                 catch(e){
                 console.log('Payment using Metamask  was denied');
