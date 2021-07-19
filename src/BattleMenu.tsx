@@ -20,8 +20,8 @@ import {TrendToggle} from "./TrendToggle";
 import {addBattle} from "./solidity/Web3Scripts/frontend";
 import moment from "moment";
 import {sendInvitation, sendMail} from "./Mail";
-import {getAnchor} from "./utils";
-
+import {genericEtherRequest, getAnchor} from "./utils";
+import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 
 interface BattleMenuState {
     email: string | null | undefined;
@@ -106,12 +106,20 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
         );
 
     }
- getBattleData()
- {
-     let blockHash:string=getAnchor();
 
- }
+      getBattleData=async ()=> {
+        let blockHash: string = getAnchor();
+        if (blockHash) {
+            return await genericEtherRequest(async (addresses) => {
+                return await getBattleInfo(blockHash, window.etherum, addresses[0])
+            });
+
+        }
+    }
+
+
     render() {
+        this.getBattleData();
         return (
             <div>
                 <div>

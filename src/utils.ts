@@ -13,11 +13,11 @@ export function getAnchor() {
     }
 }
 
-export async function genericEtherRequest(customRequest: (string) => any) {
+export async function genericEtherRequest<T>(customRequest: (addresses:string) => Promise<T>) {
     if (window.ethereum) {
         try {
             let address = await window.ethereum.enable();
-            customRequest(address);
+            return await customRequest(address);
 
 
         } catch (e) {
