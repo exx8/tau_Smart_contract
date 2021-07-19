@@ -40,14 +40,14 @@ contract BinaryOption{
     }
 
     // a creator create a new battle
-    function addBattle(string memory betType,uint betDate,bool direction) public payable {
+    function addBattle(string memory betType,uint betDate,bool direction) public payable returns(uint256) {
         require(msg.value>0, "You have to bet on positive value!");
         battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,block.timestamp+betDate,direction,age.getThePrice(feedAddress[betType]));
-        battleId++;
+        return battleId++;
     }
-    function getAmount(uint256 battle_id) public view returns (uint){
+    /*function getAmount(uint256 battle_id) public view returns (uint){
             return battleInfo[battle_id].amountBet;
-        }
+        }*/
 
     function getBattleInfo(uint256 battle_id) public payable returns(Battle memory) {
         Battle storage bate=battleInfo[battle_id];
@@ -66,9 +66,9 @@ contract BinaryOption{
     }
 
     */
-    function getId() public view returns (uint256){
+    /*function getId() public view returns (uint256){
         return battleId;
-    }
+    }*/
 
     /*function getEvent() public {
         emit MyEvent(battleId,battleId);
@@ -89,7 +89,7 @@ contract BinaryOption{
 
         Battle storage bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.\n");
-        //require(bate.creator!=msg.sender, "Impossible to fight against yourself.");
+        //require(bate.creator!=msg.sender, "Impossible to fight against yourself."); // in comment until we test with two different players
         require(bate.creator==bate.opponent, "This battle is closed, opponent already exist.");
         require(msg.value==bate.amountBet, "Betting value isn't as specified for this battle.");
         bate.opponent=msg.sender;
@@ -102,8 +102,6 @@ contract BinaryOption{
         require(bate.creator==msg.sender, "Only the creator may cancel his own battle.");
 
         require(bate.creator==bate.opponent, "There is already opponent, this battle can't be canceled.");
-        //temp=address(battleInfo[battle_id].creator);
-        //temp.transfer(2*battleInfo[battle_id].amountBet);
         payable(bate.creator).transfer(bate.amountBet); // return the amount invested
         delete battleInfo[battle_id]; // battle is canceled
     }
@@ -129,14 +127,10 @@ contract BinaryOption{
         if(oldPrice<newPrice){
 
             if(bate.isUp){
-                //temp=address(battleInfo[battle_id].creator);
-                //temp.transfer(2*battleInfo[battle_id].amountBet);
                 winner=1;
                 payable(bate.creator).transfer(2*bate.amountBet); // multiply by 2 since we deliver the money of both the creator and his opponent
             }
             else{
-                //temp=address(battleInfo[battle_id].opponent);
-                //temp.transfer(2*battleInfo[battle_id].amountBet);
                 winner=0;
                 payable(bate.opponent).transfer(2*bate.amountBet);
             }
@@ -145,23 +139,16 @@ contract BinaryOption{
         else if(oldPrice>newPrice){
 
             if(bate.isUp){
-                //temp=address(battleInfo[battle_id].opponent);
-                //temp.transfer(2*battleInfo[battle_id].amountBet);
                 winner=0;
                 payable(bate.opponent).transfer(2*bate.amountBet);
             }
             else{
-                //temp=address(battleInfo[battle_id].creator);
-                //temp.transfer(2*battleInfo[battle_id].amountBet);
                 winner=1;
                 payable(bate.creator).transfer(2*bate.amountBet);
             }
         }
         // if nothing has changed, the creator lose his money
         else {
-
-            //temp=address(battleInfo[battle_id].opponent);
-            //temp.transfer(2*battleInfo[battle_id].amountBet);
             winner=2;
             payable(bate.opponent).transfer(bate.amountBet);
             payable(bate.creator).transfer(bate.amountBet);

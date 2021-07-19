@@ -37,8 +37,8 @@ const init=async function init(from=address) {
 	catch(e){
     	console.log('caught in init');
         	const index=e.message.indexOf("0");
-
             console.log(e.message.substring(20,index-1));
+            return e.message.substring(20,index-1);//a
     	}
 
 }
@@ -56,33 +56,32 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 		value:val
 	});
 	console.log('addBattle passed!');
+	return 'success';
 	}
 	catch(e){
 	console.log('caught addBattle');
 	const index=e.message.indexOf("0");
-
-    console.log(e.message);
+    console.log(e.message.substring(20,index-1));
+    return e.message.substring(20,index-1);
 	}
 }
 
 const acceptBattle= async function (id,val,from = address)  {
 	await init(from);
-
-
     try{
     let nonce=await web3.eth.getTransactionCount(from);
-    //let deployed_contract=await contract.send({from: from, gas: 2010686, gasPrice: '20000000000',nonce});
 	await contract.methods.acceptBattle(id).send({
 	from: address,
 	value:val
 	});
 	console.log('acceptBattle passed!');
+	return 'success';
 	}
 	catch(e){
 	console.log('caught acceptBattle');
     const index=e.message.indexOf("0");
     console.log(e.message.substring(20,index-1));
-
+    return e.message.substring(20,index-1);//a
     }
 
 }
@@ -90,7 +89,6 @@ const acceptBattle= async function (id,val,from = address)  {
 const withdraw= async function (identifier,from = address) {
 	await init(from);
     try{
-    let nonce=await web3.eth.getTransactionCount(from);
 	const receipt=await contract.methods.withdraw(identifier).send({
 		from: from
 	});
@@ -98,22 +96,30 @@ const withdraw= async function (identifier,from = address) {
 	const res=await web3.eth.getBlockNumber();
 	result=await contract.getPastEvents('MyEvent',{filter:{id: identifier},fromBlock: res-2, toBlock: res});
 	const winner=result[0].returnValues.win;
-	if (winner==0)
-	    console.log('You lost ' +result[0].returnValues.amount+' in battle: '+identifier);
+	let return_msg=null;
+	if (winner==0){
+	return_msg='You lost ' +result[0].returnValues.amount+' in battle: '+identifier;
+	    console.log(return_msg);
+	    return_msg;
+	    }
 	else{
-	if(winner==1)
-	    console.log('You won ' +result[0].returnValues.amount+' in battle: '+identifier);
-	else
-	    console.log('There was draw in battle: '+identifier);
+	if(winner==1){
+	    return_msg='You won ' +result[0].returnValues.amount+' in battle: '+identifier;
+        	    console.log(return_msg);
+        	    return_msg;
+	    }
+	else{
+	return_msg='There was draw in battle: '+identifier;
+    	    console.log(return_msg);
+    	    return_msg;
 	}
-
-
+	}
 	}
     catch(e){
     console.log('caught withdraw');
     	const index=e.message.indexOf("0");
         console.log(e.message.substring(20,index-1));
-        //console.log(e.message);
+        return e.message.substring(20,index-1);
     }
 
 }
@@ -127,6 +133,7 @@ const cancelBattle= async function(id,from = address) {
 
 	});
 	console.log('cancel passed!');
+	return 'success';
 	}
 	catch(e){
     console.log('caught cancel');
@@ -146,10 +153,8 @@ const getEvent= async function(from = address) {
 
 	}
 	catch(e){
-    const data=e.data;
-        const txHash = Object.keys(data)[0];
-        const reason = data[txHash].reason;
-        console.log(reason);
+    const index=e.message.indexOf("0");
+        console.log(e.message.substring(20,index-1));
 
     }
 
@@ -166,8 +171,8 @@ const getPrice= async function(from = address)  {
     }
     catch(e){
     console.log('caught getPrice');
-    const data=e.data;
-    console.log(e);
+    const index=e.message.indexOf("0");
+        console.log(e.message.substring(20,index-1));
     }
 }
 
@@ -196,7 +201,7 @@ const getAmount= async function(index,from = address)  {
 	console.log(result);
 	}
 	catch(e){
-	console.log('caught getId');
+	console.log('caught getAmount');
         console.log(e);
 	}
 }
