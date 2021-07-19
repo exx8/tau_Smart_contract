@@ -18,7 +18,7 @@ export async function genericEtherRequest(customRequest: (string) => any) {
         try {
             let address = await window.ethereum.enable();
             customRequest(address);
-            l
+
 
         } catch (e) {
             console.log('Payment using Metamask  was denied');
