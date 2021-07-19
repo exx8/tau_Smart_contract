@@ -25,8 +25,8 @@ interface BattleMenuState {
     email: string | null;
     type: string | null;
     amount: number | null;
-    trend:boolean;
-    date:number;
+    trend: boolean;
+    date: number;
 
 
 }
@@ -46,9 +46,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
     state: BattleMenuState = {
         email: null,
         type: coin,
-        amount:1,
-        trend:true,
-        date:moment(BattleMenu.getDefaultDueTime()).unix()
+        amount: 1,
+        trend: true,
+        date: moment(BattleMenu.getDefaultDueTime()).unix()
     };
 
 
@@ -89,16 +89,16 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
     handleTrendChange = (str: string) => {
         this.setState(
             {
-                trend: "up"===str
+                trend: "up" === str
             }
         );
 
     }
 
-    handleDateChange = (e:any) => {
+    handleDateChange = (e: any) => {
         this.setState(
             {
-                date:moment(e.target.value).unix()
+                date: moment(e.target.value).unix()
             }
         );
 
@@ -137,7 +137,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
                             <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"
-                            onChange={this.handleAmountChange}/></div>
+                                            onChange={this.handleAmountChange}/></div>
                             <div style={{paddingTop: "10px", paddingBottom: "10px"}}>
                                 Trend
 
@@ -173,31 +173,27 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
     private sendHandle = async () => {
         //window.addEventListener("load",async()=>{}); // where to wrap? not in this function, but where page is opended
-        if (window.ethereum){
-                try{
+        if (window.ethereum) {
+            try {
                 let address = await window.ethereum.enable();
 
-                let battleData=await addBattle(this.state.type, this.state.date*1000-new Date().getTime(), this.state.trend, this.state.amount,
-                        window.ethereum, address[0]);
-                console.log("battle data is "+battleData);
-                }
-                catch(e){
+                let battleData = await addBattle(this.state.type, this.state.date * 1000 - new Date().getTime(), this.state.trend, this.state.amount,
+                    window.ethereum, address[0]);
+                console.log("battle data is " + battleData);
+            } catch (e) {
                 console.log('Payment using Metamask  was denied');
 
-                }
-                }
-                else if(window.web3){
-                console.log("Need to see how to extract address in this case, provider is just window.web3. than, call addBattle");
-                console.log(window.web3)
+            }
+        } else if (window.web3) {
+            console.log("Need to see how to extract address in this case, provider is just window.web3. than, call addBattle");
+            console.log(window.web3)
 
 
-                }
-                else{
-                console.log('please install a wallet. recommended: Metamask');
+        } else {
+            console.log('please install a wallet. recommended: Metamask');
 
-                }
-                this.handleClose();
-
+        }
+        this.handleClose();
 
 
     }
