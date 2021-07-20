@@ -1,4 +1,3 @@
-import {EventData} from "web3-eth-contract";
 
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
@@ -36,7 +35,7 @@ const init=async function init(provide,from=address) {
 
 }
 
-export const addBattle= async function (battle_type, expire_time, winner, val,provide, from = address)  {
+export  const addBattle= async function (battle_type, expire_time, winner, val,provide, from = address)  {
 	await init(provide,from);
 
     try{
@@ -113,7 +112,7 @@ export const withdraw= async function (identifier,provide,from = address) {
 
 }
 
-const cancelBattle= async function(id,provide,from = address) {
+export const cancelBattle= async function(id,provide,from = address) {
 	await init(provide,from);
 
     try{
@@ -148,4 +147,3 @@ export const getBattleInfo= async function (id ,provide, from = address)  {
 	}
 }
 
-module.exports={addBattle,acceptBattle,withdraw,getBattleInfo};
