@@ -13,7 +13,7 @@ const deployedAddress=BinaryOption;
 
 const init=async function init(from=address) {
 
-	provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/c6212b31c70941ca847fa2a9237a3d1a",chainId:4});
+	provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/423c508011d14316b04a4ebbf33b0634",chainId:4});
 	web3=new Web3(provider);
 	//web3.eth.handleRevert =true;
 	try{
@@ -47,22 +47,23 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 	await init(from);
 
     try{
-    let nonce=await web3.eth.getTransactionCount(from);
-    //let deployed_contract=await contract.deploy({data: BinaryOption.bytecode})
-                                  //.send({from: from, gas: 2010686, gasPrice: '20000000000',nonce}); // lines 49-50 are exist only cuz of nonce
-
 	await contract.methods.addBattle(battle_type,expire_time,winner).send({
 		from: from,
 		value:val
 	});
-	console.log('addBattle passed!');
-	return 'success';
+	const res=await web3.eth.getBlockNumber();
+    result=await contract.getPastEvents('AddEvent',{filter:{ad: from},
+                fromBlock: res-2, toBlock: res});
+
+        const id=result[result.length-1].returnValues.id;
+                        console.log(id);
+        return id;
 	}
 	catch(e){
 	console.log('caught addBattle');
 	const index=e.message.indexOf("0");
     console.log(e.message.substring(20,index-1));
-    return e.message.substring(20,index-1);
+    return -1;
 	}
 }
 
@@ -94,8 +95,8 @@ const withdraw= async function (identifier,from = address) {
 	});
 	console.log('withdraw passed!');
 	const res=await web3.eth.getBlockNumber();
-	result=await contract.getPastEvents('MyEvent',{filter:{id: identifier},fromBlock: res-2, toBlock: res});
-	const winner=result[0].returnValues.win;
+	result=await contract.getPastEvents('MyEvent',{filter:{id: identifier},fromBlock: "latest"});
+	const winner=result[result.length-1].returnValues.win;
 	let return_msg=null;
 	if (winner==0){
 	return_msg='You lost ' +result[0].returnValues.amount+' in battle: '+identifier;
@@ -143,68 +144,6 @@ const cancelBattle= async function(id,from = address) {
 
 }
 
-const getEvent= async function(from = address) {
-	await init(from);
-
-    try{
-	const res=await web3.eth.getBlockNumber();
-    result=await contract.getPastEvents('MyEvent',{filter:{id: 1},fromBlock: res-5, toBlock: res});
-    console.log(result[0].returnValues.id);
-
-	}
-	catch(e){
-    const index=e.message.indexOf("0");
-        console.log(e.message.substring(20,index-1));
-
-    }
-
-}
-
-const getPrice= async function(from = address)  {
-	await init(from);
-    try{
-    await contract.methods.setPrice().send({
-    from: from
-    });
-    const result=await contract.methods.getPrice().call();
-    console.log("price value:"+result);
-    }
-    catch(e){
-    console.log('caught getPrice');
-    const index=e.message.indexOf("0");
-        console.log(e.message.substring(20,index-1));
-    }
-}
-
-const getId= async function(from = address){
-await init(from);
-try{
-    let nonce=await web3.eth.getTransactionCount(from);
-	const result=await contract.methods.getId().call();
-	console.log(result);
-	}
-	catch(e){
-	console.log('caught getId');
-        const index=e.message.indexOf("0");
-        console.log(e.message.substring(20,index-1));
-	}
-}
-
-const getAmount= async function(index,from = address)  {
-	await init(from);
-
-    try{
-    let nonce=await web3.eth.getTransactionCount(from);
-    //let deployed_contract=await contract.send({from: from, gas: 2010686, gasPrice: '20000000000',nonce});
-    //console.log(deployed_contract);
-	const result=await contract.methods.getAmount(index).call();
-	console.log(result);
-	}
-	catch(e){
-	console.log('caught getAmount');
-        console.log(e);
-	}
-}
 
 const getBattleInfo= async function (id , from = address)  {
 	await init(from);
@@ -223,6 +162,7 @@ const getBattleInfo= async function (id , from = address)  {
 	}
 }
 
-//addBattle("EthVsUsd",90,false,'50000');
+addBattle("EthVsUsd",90,false,'50000');
+
 //acceptBattle(0,'50000');
 //getBattleInfo(2);

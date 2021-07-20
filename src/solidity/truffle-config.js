@@ -67,7 +67,7 @@ module.exports = {
     // skipDryRun: true     // Skip dry run before migrations? (default: false for public nets )
     // },
     rinkeby:{
-    provider: () => new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/v3/c6212b31c70941ca847fa2a9237a3d1a'),
+    provider: () => new HDWalletProvider(mnemonic, 'https://rinkeby.infura.io/v3/423c508011d14316b04a4ebbf33b0634'),
     network_id: 4,
     skipDryRun: true
     }
