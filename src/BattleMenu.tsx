@@ -108,10 +108,10 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
     }
 
       getBattleData=async ()=> {
-        let blockHash: string = getAnchor();
-        if (blockHash) {
+        let battleID: string = getAnchor();
+        if (battleID) {
             return await genericEtherRequest(async (addresses) => {
-                return await getBattleInfo(blockHash, window.etherum, addresses[0]) as EventData;
+                return await getBattleInfo(battleID, window.ethereum, addresses[0]) as EventData;
             });
 
         }
@@ -192,12 +192,12 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
             try {
                 let address = await window.ethereum.enable();
 
-                let battleData: { blockHash: string } = await addBattle(this.state.type, this.state.date * 1000 - new Date().getTime(), this.state.trend, this.state.amount,
+                let battleID: string = await addBattle(this.state.type, this.state.date * 1000 - new Date().getTime(), this.state.trend, this.state.amount,
                     window.ethereum, address[0]);
                 const fixedEmail: string = this.state.email ?? "";
-                sendInvitation(fixedEmail, battleData.blockHash)
+                sendInvitation(fixedEmail, battleID)
 
-                console.log("battle data is ", battleData);
+                console.log("battle data is ", battleID);
             } catch (e) {
                 console.log('Payment using Metamask  was denied');
 
