@@ -85,7 +85,6 @@ export const withdraw= async function (identifier,provide,from = address) {
 	result=await contract.getPastEvents('MyEvent',{filter:{id: identifier},fromBlock: res-2, toBlock: res}); // we filter by id
 	const winner=result[result.length-1].returnValues.win;
 	let return_msg=null;
-	debugger;
 	if (winner===0){
 	    return_msg='You lost ' +result[0].returnValues.amount+' in battle: '+identifier;
     }
