@@ -61,7 +61,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -74,7 +75,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -123,7 +125,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -142,7 +145,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -155,7 +159,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -168,7 +173,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -191,7 +197,8 @@
       "name": "addBattle",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -247,7 +254,8 @@
         }
       ],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -260,7 +268,8 @@
       "name": "acceptBattle",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -273,7 +282,8 @@
       "name": "cancelBattle",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -22862,8 +22872,8 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0x6c3Bda2D31497246De133473014283D46775F99A",
-      "transactionHash": "0x8c3e97f6f6e67244ea2c479b886cc1b24307c50a983eea917a937c8949522387"
+      "address": "0x960de8139C005a2eB9D61E0D8D4009dc47DC8C70",
+      "transactionHash": "0xe442fdc629ee5067e5cddc9178473418f451d05e19d63e5f1fead892970e5074"
     },
     "5777": {
       "events": {},
@@ -22873,7 +22883,8 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-07-20T18:22:32.139Z",
+  "updatedAt": "2021-07-20T18:33:40.048Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
