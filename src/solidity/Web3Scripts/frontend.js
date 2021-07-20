@@ -1,3 +1,4 @@
+import {EventData} from "web3-eth-contract";
 
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
@@ -36,7 +37,7 @@ const init=async function init(provide,from=address) {
 
 }
 
-const addBattle= async function (battle_type, expire_time, winner, val,provide, from = address)  {
+export const addBattle= async function (battle_type, expire_time, winner, val,provide, from = address)  {
 	await init(provide,from);
 
     try{
@@ -54,7 +55,7 @@ const addBattle= async function (battle_type, expire_time, winner, val,provide, 
 	}
 }
 
-const acceptBattle= async function (id,val,provide,from = address)  {
+export const acceptBattle= async function (id,val,provide,from = address)  {
 	await init(provide,from);
     try{
     let nonce=await web3.eth.getTransactionCount(from);
@@ -72,7 +73,7 @@ const acceptBattle= async function (id,val,provide,from = address)  {
     }
 }
 
-const withdraw= async function (identifier,provide,from = address) {
+export const withdraw= async function (identifier,provide,from = address) {
 	await init(provide,from);
     try{
     let nonce=await web3.eth.getTransactionCount(from);
@@ -127,7 +128,7 @@ const cancelBattle= async function(id,provide,from = address) {
 
 }
 
-const getBattleInfo= async function (id ,provide, from = address)  {
+export const getBattleInfo= async function (id ,provide, from = address)  {
 	await init(provide,from);
 
     try{
@@ -214,4 +215,4 @@ const getAmount= async function(index,provide,from = address)  {
 
 
 
-module.exports={addBattle,acceptBattle,withdraw,getBattleInfo};
+//module.exports={addBattle,acceptBattle,withdraw,getBattleInfo};

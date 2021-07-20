@@ -17,12 +17,12 @@ import SendIcon from '@material-ui/icons/Send';
 import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
-import {addBattle} from "./solidity/Web3Scripts/frontend";
 import moment from "moment";
 import {sendInvitation, sendMail} from "./Mail";
 import {genericEtherRequest, getAnchor} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
-
+import {EventData} from "web3-eth-contract";
+import {addBattle} from "./solidity/Web3Scripts/frontend"
 interface BattleMenuState {
     email: string | null | undefined;
     type: string | null;
@@ -111,7 +111,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
         let blockHash: string = getAnchor();
         if (blockHash) {
             return await genericEtherRequest(async (addresses) => {
-                return await getBattleInfo(blockHash, window.etherum, addresses[0])
+                return await getBattleInfo(blockHash, window.etherum, addresses[0]) as EventData;
             });
 
         }
