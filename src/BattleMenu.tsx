@@ -18,7 +18,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
 import moment from "moment";
-import {sendInvitation, sendMail} from "./Mail";
+import {sendInvitation} from "./Mail";
 import {genericEtherRequest, getAnchor} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {EventData} from "web3-eth-contract";
@@ -119,7 +119,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState>
 
 
     render() {
-        this.getBattleData();
+        console.log(this.getBattleData());
         return (
             <div>
                 <div>

@@ -1,12 +1,9 @@
 
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
-const HDWalletProvider=require('@truffle/hdwallet-provider');
 const address='0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
-const privateKey="0xccc943d4061cda10d3c617ff06234810fd195598851774f0c6359e086d31660f";
 let result=0;
 let web3=null;
-let provider=null;
 let contract=null;
 
 const init=async function init(provide,from=address) {
@@ -80,7 +77,7 @@ export const acceptBattle= async function (id,val,provide,from = address)  {
 export const withdraw= async function (identifier,provide,from = address) {
 	await init(provide,from);
     try{
-	const receipt=await contract.methods.withdraw(identifier).send({
+	await contract.methods.withdraw(identifier).send({
 		from: from
 	});
 	console.log('withdraw passed!');
