@@ -162,7 +162,44 @@ const getBattleInfo= async function (id , from = address)  {
 	}
 }
 
-addBattle("EthVsUsd",90,false,'50000');
+const getRound= async function (from = address)  {
+	await init(from);
+
+    try{
+	result=await contract.methods.getRound().call();
+	console.log('getRound passed!');
+	console.log(result);
+	return result;
+	}
+	catch(e){
+	console.log('caught getBattleInfo');
+	const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
+    return null;
+	}
+}
+
+const getByDate= async function (rnd,from = address)  {
+	await init(from);
+
+    try{
+	result=await contract.methods.getByDate(rnd).call();
+	console.log('getByDate passed!');
+	console.log(result.toString());
+	return result;
+	}
+	catch(e){
+	console.log('caught getByDate');
+	const index=e.message.indexOf("0");
+    console.log(e.message);
+    return null;
+	}
+}
+
+//addBattle("EthVsUsd",90,false,'50000');
 
 //acceptBattle(0,'50000');
 //getBattleInfo(2);
+
+//getRound();
+getByDate(BigInt("36893488147419112888"));

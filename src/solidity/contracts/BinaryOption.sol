@@ -55,6 +55,14 @@ contract BinaryOption{
             return battleInfo[battle_id].amountBet;
         }*/
 
+        function getRound() public view returns (uint80){
+        return age.getTheRoundId(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e);
+        }
+
+        function getByDate(uint80 rnd) public view returns (uint){
+        return age.getHistoricalPrice(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e,rnd);
+        }
+
     function getBattleInfo(uint256 battle_id) public payable returns(Battle memory) {
         Battle storage bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.\n");

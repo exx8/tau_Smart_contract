@@ -16,7 +16,7 @@ contract Aggre{
         return roundId;
     }
 
-    function getHistoricalPrice(address a,uint80 roundId) public view returns (int) {
+    function getHistoricalPrice(address a,uint80 roundId) public view returns (uint) {
             (
                 uint80 id,
                 int price,
@@ -25,7 +25,7 @@ contract Aggre{
                 uint80 answeredInRound
             ) = AggregatorV3Interface(a).getRoundData(roundId);
             require(timeStamp > 0, "Round not complete");
-            return price;
+            return timeStamp;
         }
 
     /*function priceIncrementalSearch(address a) public view returns (int) {
