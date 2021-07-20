@@ -1,5 +1,4 @@
-import {addBattle} from "./solidity/Web3Scripts/frontend";
-import {sendInvitation} from "./Mail";
+
 
 declare let window: any;
 
