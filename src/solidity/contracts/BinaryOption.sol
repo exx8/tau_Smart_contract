@@ -4,7 +4,6 @@ import "./Aggre.sol";
 
 contract BinaryOption{
 
-
     uint256  public battleId; // unique id for each battle
     mapping(uint256 => Battle) public battleInfo; // map of the existing battles
     address public owner; // the creator of the contract (we)
@@ -17,6 +16,11 @@ contract BinaryOption{
     uint256 indexed id,
     uint256 indexed amount,
     int win
+    );
+
+    event AddEvent(
+    uint256 indexed id,
+    address address_field
     );
 
     struct Battle {
@@ -40,11 +44,13 @@ contract BinaryOption{
     }
 
     // a creator create a new battle
-    function addBattle(string memory betType,uint betDate,bool direction) public payable returns(uint256) {
+    function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value>0, "You have to bet on positive value!");
         battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,block.timestamp+betDate,direction,age.getThePrice(feedAddress[betType]));
-        return battleId++;
+        emit AddEvent(battleId,msg.sender);
+        battleId++;
     }
+
     /*function getAmount(uint256 battle_id) public view returns (uint){
             return battleInfo[battle_id].amountBet;
         }*/
@@ -85,16 +91,6 @@ contract BinaryOption{
     /*function getEvent() public {
         emit MyEvent(battleId,battleId);
     }*/
-
-    /*function settempVal(uint num) public {
-        tempVal=num;
-    }*/
-
-    // we call it before the withdraw method, in the index_1.js (the reason for this is there)
-    /*function gettempVal() public view returns (uint) {
-        return tempVal;
-    }*/
-
 
     // an opponent is signed to battle number: battleid
     /*function acceptBattle(uint256 battle_id) public payable{
