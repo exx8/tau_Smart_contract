@@ -35,7 +35,7 @@ const init=async function init(provide,from=address) {
 
 }
 
-const addBattle= async function (battle_type, expire_time, winner, val,provide, from = address)  {
+export  const addBattle= async function (battle_type, expire_time, winner, val,provide, from = address)  {
 	await init(provide,from);
 
     try{
