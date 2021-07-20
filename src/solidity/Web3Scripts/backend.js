@@ -99,21 +99,18 @@ const withdraw= async function (identifier,from = address) {
 	let return_msg=null;
 	if (winner==0){
 	return_msg='You lost ' +result[0].returnValues.amount+' in battle: '+identifier;
-	    console.log(return_msg);
-	    return return_msg;
 	    }
 	else{
 	if(winner==1){
 	    return_msg='You won ' +result[0].returnValues.amount+' in battle: '+identifier;
-        	    console.log(return_msg);
-        	    return return_msg;
 	    }
 	else{
 	return_msg='There was draw in battle: '+identifier;
-    	    console.log(return_msg);
-    	    return return_msg;
+
 	}
 	}
+	console.log(return_msg);
+    return return_msg;
 	}
     catch(e){
     console.log('caught withdraw');
@@ -160,7 +157,7 @@ const getEvent= async function(from = address) {
 
 }
 
-const getPrice= async function(from = address)  {
+/*const getPrice= async function(from = address)  {
 	await init(from);
     try{
     await contract.methods.setPrice().send({
@@ -204,7 +201,7 @@ const getAmount= async function(index,from = address)  {
 	console.log('caught getAmount');
         console.log(e);
 	}
-}
+}*/
 
 const getBattleInfo= async function (id , from = address)  {
 	await init(from);

@@ -65,6 +65,18 @@ contract BinaryOption{
         return feed;
     }
 
+    function setPrice() public {
+        roundId= age.getTheRoundId(0x9326BFA02ADD2366b30bacB125260Af641031331);
+    }
+    function getPrice() public view returns (uint80){
+        return roundId;
+    }
+
+    function getPriceHistorical(uint80 roundId) public view returns (int){
+
+        return age.getHistoricalPrice(roundId);
+    }
+
     */
     /*function getId() public view returns (uint256){
         return battleId;
@@ -85,7 +97,7 @@ contract BinaryOption{
 
 
     // an opponent is signed to battle number: battleid
-    function acceptBattle(uint256 battle_id) public payable{
+    /*function acceptBattle(uint256 battle_id) public payable{
 
         Battle storage bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.\n");
@@ -93,10 +105,10 @@ contract BinaryOption{
         require(bate.creator==bate.opponent, "This battle is closed, opponent already exist.");
         require(msg.value==bate.amountBet, "Betting value isn't as specified for this battle.");
         bate.opponent=msg.sender;
-    }
+    }*/
 
     // a creator cancel his battle
-    function cancelBattle(uint256 battle_id) public payable{
+    /*function cancelBattle(uint256 battle_id) public payable{
         Battle memory bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.");
         require(bate.creator==msg.sender, "Only the creator may cancel his own battle.");
@@ -104,7 +116,7 @@ contract BinaryOption{
         require(bate.creator==bate.opponent, "There is already opponent, this battle can't be canceled.");
         payable(bate.creator).transfer(bate.amountBet); // return the amount invested
         delete battleInfo[battle_id]; // battle is canceled
-    }
+    }*/
 
 
     /*function getcurrVal(uint256 battle_id) public view returns (uint256){
@@ -113,7 +125,7 @@ contract BinaryOption{
     }*/
 
     // the winner may draw his money
-    function withdraw(uint256 battle_id) public {
+    /*function withdraw(uint256 battle_id) public {
         int winner; // 0=lose 1=win 2=draw
         int oldPrice;
         int newPrice;
@@ -156,7 +168,7 @@ contract BinaryOption{
         // sign the event
         emit MyEvent(battle_id,bate.amountBet*2,winner);
         //delete battleInfo[battle_id]; // battle is finished
-    }
+    }*/
 
     //just for testing
     /*function removeBattle(uint256 battle_id) public {
