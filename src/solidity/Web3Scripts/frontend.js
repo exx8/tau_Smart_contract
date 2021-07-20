@@ -59,7 +59,7 @@ const addBattle= async function (battle_type, expire_time, winner, val,provide, 
     }
 }
 
-const acceptBattle= async function (id,val,provide,from = address)  {
+export const acceptBattle= async function (id,val,provide,from = address)  {
 	await init(provide,from);
     try{
 	await contract.methods.acceptBattle(id).send({
@@ -77,7 +77,7 @@ const acceptBattle= async function (id,val,provide,from = address)  {
     }
 }
 
-const withdraw= async function (identifier,provide,from = address) {
+export const withdraw= async function (identifier,provide,from = address) {
 	await init(provide,from);
     try{
 	const receipt=await contract.methods.withdraw(identifier).send({
@@ -112,7 +112,7 @@ const withdraw= async function (identifier,provide,from = address) {
 
 }
 
-const cancelBattle= async function(id,provide,from = address) {
+export const cancelBattle= async function(id,provide,from = address) {
 	await init(provide,from);
 
     try{
@@ -131,7 +131,7 @@ const cancelBattle= async function(id,provide,from = address) {
 
 }
 
-const getBattleInfo= async function (id ,provide, from = address)  {
+export const getBattleInfo= async function (id ,provide, from = address)  {
 	await init(provide,from);
 
     try{
@@ -147,4 +147,3 @@ const getBattleInfo= async function (id ,provide, from = address)  {
 	}
 }
 
-module.exports={addBattle,acceptBattle,withdraw,getBattleInfo};
