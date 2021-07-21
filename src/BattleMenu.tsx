@@ -207,11 +207,10 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     private updateFormAccordingToHash() {
         let battleDataPromise: Promise<EventData | undefined> = this.getBattleData();
         battleDataPromise.then((battleData) => {
-            let shouldShowMail = battleData===undefined;
-            console.log(shouldShowMail);
+            let shouldShowMail = battleData === undefined;
 
             this.setState({
-                   showMail: shouldShowMail
+                showMail: shouldShowMail
             })
         })
 
