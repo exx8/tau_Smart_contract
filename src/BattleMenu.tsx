@@ -120,6 +120,18 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     render() {
         console.log(this.getBattleData());
+        let emailBox = <><DialogContentText>
+            Type Partner's address
+        </DialogContentText>
+            <TextField
+                autoFocus
+                margin="dense"
+                id="email"
+                label="Email Address"
+                type="email"
+                fullWidth
+                onChange={this.handleEmailChange}
+            /></>;
         return (
             <div>
                 <div>
@@ -127,18 +139,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                     <Dialog open={this.props.isOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
                         <DialogTitle id="form-dialog-title"> Create a Binary Option</DialogTitle>
                         <DialogContent>
-                            <DialogContentText>
-                                Type Partner's address
-                            </DialogContentText>
-                            <TextField
-                                autoFocus
-                                margin="dense"
-                                id="email"
-                                label="Email Address"
-                                type="email"
-                                fullWidth
-                                onChange={this.handleEmailChange}
-                            />
+                            {emailBox}
                             <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
                             <Select
                                 labelId="demo-simple-select-helper-label"
