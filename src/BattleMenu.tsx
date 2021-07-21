@@ -29,6 +29,7 @@ interface BattleMenuState {
     amount: number | null;
     trend: boolean;
     date: number;
+    showMail:boolean;
 
 
 }
@@ -50,7 +51,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         type: coin,
         amount: 1,
         trend: true,
-        date: moment(BattleMenu.getDefaultDueTime()).unix()
+        date: moment(BattleMenu.getDefaultDueTime()).unix(),
+        showMail:false
     };
 
 
@@ -107,7 +109,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     }
 
-      getBattleData=async ()=> {
+      getBattleData=async ():Promise<EventData|undefined>=> {
         let battleID: string = getAnchor();
         if (battleID) {
             return await genericEtherRequest(async (addresses) => {
@@ -115,11 +117,16 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             });
 
         }
-    }
 
+      }
 
+constructor(props:BattleMenuPros) {
+    super(props);
+    this.updateFormAccordingToHash();
+
+}
     render() {
-        console.log(this.getBattleData());
+
         let emailBox = <><DialogContentText>
             Type Partner's address
         </DialogContentText>
@@ -185,6 +192,17 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                 </div>
             </div>
         );
+    }
+
+    private updateFormAccordingToHash() {
+        let battleDataPromise: Promise<EventData|undefined> = this.getBattleData();
+        console.log(battleDataPromise);
+        battleDataPromise.then((battleData)=>{
+            this.setState({
+             //   showMail:battleData.
+            })
+        })
+
     }
 
     private sendHandle = async () => {
