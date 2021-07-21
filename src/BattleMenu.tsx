@@ -22,6 +22,7 @@ import {sendInvitation} from "./Mail";
 import {genericEtherRequest, getAnchor} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {addBattle} from "./solidity/Web3Scripts/frontend"
+import {TrendingDown, TrendingUp} from "@material-ui/icons";
 
 interface BattleMenuState {
     email: string | null | undefined;
@@ -30,6 +31,7 @@ interface BattleMenuState {
     trend: boolean;
     date: number;
     showMail: boolean;
+    trendChangeable:boolean;
 
 
 }
@@ -52,6 +54,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         type: coin,
         amount: 1,
         trend: true,
+        trendChangeable:true,
         date: moment(BattleMenu.getDefaultDueTime()).unix(),
         showMail: false
     };
@@ -129,6 +132,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     render() {
         let emailBox = this.computeMail();
+        let trendToggle = this.computeTrend();
 
         return (
             <div>
@@ -155,7 +159,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                             <div style={{paddingTop: "10px", paddingBottom: "10px"}}>
                                 Trend
 
-                                <TrendToggle onChange={this.handleTrendChange}/>
+                                {trendToggle}
                             </div>
                             <TextField
                                 id="due-time"
@@ -183,6 +187,19 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                 </div>
             </div>
         );
+    }
+
+    private computeTrend() {
+        let trendToggle = <TrendToggle onChange={this.handleTrendChange}/>;
+        if (!this.state.trendChangeable) {
+
+            if (this.state.trend) {
+                trendToggle=<> <b>UP</b> <TrendingUp/></>
+            } else {
+                trendToggle=<> <b>DOWN</b> <TrendingDown/></>
+            }
+        }
+        return trendToggle;
     }
 
     private computeMail() {
@@ -214,7 +231,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
             this.setState({
                 amount:this.state.amount,
-                showMail: senderMode
+                showMail: senderMode,
+                trendChangeable:senderMode
             })
         })
 
