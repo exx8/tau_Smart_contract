@@ -23,13 +23,14 @@ import {genericEtherRequest, getAnchor} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {EventData} from "web3-eth-contract";
 import {addBattle} from "./solidity/Web3Scripts/frontend"
+
 interface BattleMenuState {
     email: string | null | undefined;
     type: string | null;
     amount: number | null;
     trend: boolean;
     date: number;
-    showMail:boolean;
+    showMail: boolean;
 
 
 }
@@ -52,7 +53,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         amount: 1,
         trend: true,
         date: moment(BattleMenu.getDefaultDueTime()).unix(),
-        showMail:false
+        showMail: false
     };
 
 
@@ -109,7 +110,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     }
 
-      getBattleData=async ():Promise<EventData|undefined>=> {
+    getBattleData = async (): Promise<EventData | undefined> => {
         let battleID: string = getAnchor();
         if (battleID) {
             return await genericEtherRequest(async (addresses) => {
@@ -118,13 +119,14 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
         }
 
-      }
+    }
 
-constructor(props:BattleMenuPros) {
-    super(props);
-    this.updateFormAccordingToHash();
+    constructor(props: BattleMenuPros) {
+        super(props);
+        this.updateFormAccordingToHash();
 
-}
+    }
+
     render() {
 
         let emailBox = <><DialogContentText>
@@ -195,11 +197,11 @@ constructor(props:BattleMenuPros) {
     }
 
     private updateFormAccordingToHash() {
-        let battleDataPromise: Promise<EventData|undefined> = this.getBattleData();
+        let battleDataPromise: Promise<EventData | undefined> = this.getBattleData();
         console.log(battleDataPromise);
-        battleDataPromise.then((battleData)=>{
+        battleDataPromise.then((battleData) => {
             this.setState({
-             //   showMail:battleData.
+                //   showMail:battleData.
             })
         })
 
