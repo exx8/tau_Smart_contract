@@ -21,7 +21,6 @@ import moment from "moment";
 import {sendInvitation} from "./Mail";
 import {genericEtherRequest, getAnchor} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
-import {EventData} from "web3-eth-contract";
 import {addBattle} from "./solidity/Web3Scripts/frontend"
 
 interface BattleMenuState {
@@ -111,11 +110,11 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     }
 
-    getBattleData = async (): Promise<EventData | undefined> => {
+    getBattleData = async (): Promise<addBattleResult | undefined> => {
         let battleID: string = getAnchor();
         if (battleID) {
             return await genericEtherRequest(async (addresses) => {
-                return await getBattleInfo(battleID, window.ethereum, addresses[0]) as EventData;
+                return await getBattleInfo(battleID, window.ethereum, addresses[0]) as addBattleResult;
             });
 
         }
@@ -152,7 +151,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
                             <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"
-                                            onChange={this.handleAmountChange}/></div>
+                                            onChange={this.handleAmountChange} value={this.state.amount}/></div>
                             <div style={{paddingTop: "10px", paddingBottom: "10px"}}>
                                 Trend
 
@@ -206,13 +205,15 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     }
 
     private updateFormAccordingToHash() {
-        let battleDataPromise: Promise<EventData | undefined> = this.getBattleData();
+        let battleDataPromise: Promise<addBattleResult | undefined> = this.getBattleData();
         battleDataPromise.then((battleData) => {
+            console.log(battleData)
             let senderMode = battleData === undefined;
             if(!senderMode)
                 this.props.handleOpen();
 
             this.setState({
+                amount:this.state.amount,
                 showMail: senderMode
             })
         })
@@ -255,4 +256,16 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     }
 }
 
+interface addBattleResult extends Array<any>{
+
+    amountBet: string;
+    betDate: string;
+    betType: string;
+    creator: string;
+    currVal: string;
+    isUp: boolean;
+    opponent: string;
+    length: 7;
+
+}
 
