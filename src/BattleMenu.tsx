@@ -128,19 +128,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     }
 
     render() {
+        let emailBox = this.computeMail();
 
-        let emailBox = <><DialogContentText>
-            Type Partner's address
-        </DialogContentText>
-            <TextField
-                autoFocus
-                margin="dense"
-                id="email"
-                label="Email Address"
-                type="email"
-                fullWidth
-                onChange={this.handleEmailChange}
-            /></>;
         return (
             <div>
                 <div>
@@ -196,12 +185,33 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         );
     }
 
+    private computeMail() {
+
+        if (this.state.showMail)
+            return <><DialogContentText>
+                Type Partner's address
+            </DialogContentText>
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="email"
+                    label="Email Address"
+                    type="email"
+                    fullWidth
+                    onChange={this.handleEmailChange}
+                /></>;
+        else
+            return <></>;
+    }
+
     private updateFormAccordingToHash() {
         let battleDataPromise: Promise<EventData | undefined> = this.getBattleData();
-        console.log(battleDataPromise);
         battleDataPromise.then((battleData) => {
+            let shouldShowMail = battleData===undefined;
+            console.log(shouldShowMail);
+
             this.setState({
-                //   showMail:battleData.
+                   showMail: shouldShowMail
             })
         })
 
