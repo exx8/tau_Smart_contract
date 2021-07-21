@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
 
         <Button variant="contained" color="primary" onClick={setDialogOpen.bind(null,true)}>Create an Option</Button>
-          <BattleMenu isOpen={dialogOpen} handleClose={setDialogOpen.bind(null,false)}/>
+          <BattleMenu isOpen={dialogOpen} handleClose={setDialogOpen.bind(null,false)}  handleOpen={setDialogOpen.bind(null,true)}/>
 
       </header>
     </div>

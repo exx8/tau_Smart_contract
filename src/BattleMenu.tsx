@@ -37,7 +37,8 @@ interface BattleMenuState {
 
 interface BattleMenuPros {
     isOpen: DialogProps["open"];
-    handleClose: () => void
+    handleClose: () => void;
+    handleOpen: () => void;
 }
 
 export var stock: string = ("stock");
@@ -207,10 +208,12 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     private updateFormAccordingToHash() {
         let battleDataPromise: Promise<EventData | undefined> = this.getBattleData();
         battleDataPromise.then((battleData) => {
-            let shouldShowMail = battleData === undefined;
+            let senderMode = battleData === undefined;
+            if(!senderMode)
+                this.props.handleOpen();
 
             this.setState({
-                showMail: shouldShowMail
+                showMail: senderMode
             })
         })
 
