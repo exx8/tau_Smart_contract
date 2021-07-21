@@ -44,7 +44,7 @@ export var coin: string = ("EthVsUsd");
 declare let window: any;
 
 
-export class BattleMenu extends React.Component<BattleMenuPros, BattleMenuState> {
+export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMenuState>> {
     state: BattleMenuState = {
         email: null,
         type: coin,
