@@ -32,6 +32,7 @@ interface BattleMenuState {
     date: number;
     showMail: boolean;
     trendChangeable:boolean;
+    amountChangeable:boolean;
 
 
 }
@@ -56,7 +57,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         trend: true,
         trendChangeable:true,
         date: moment(BattleMenu.getDefaultDueTime()).unix(),
-        showMail: false
+        showMail: false,
+        amountChangeable:true
     };
 
 
