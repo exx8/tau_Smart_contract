@@ -31,8 +31,8 @@ interface BattleMenuState {
     trend: boolean;
     date: number;
     showMail: boolean;
-    trendChangeable:boolean;
-    amountChangeable:boolean;
+    trendChangeable: boolean;
+    amountChangeable: boolean;
 
 
 }
@@ -55,10 +55,10 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         type: coin,
         amount: 1,
         trend: true,
-        trendChangeable:true,
+        trendChangeable: true,
         date: moment(BattleMenu.getDefaultDueTime()).unix(),
         showMail: false,
-        amountChangeable:true
+        amountChangeable: true
     };
 
 
@@ -157,7 +157,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
                             <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"
-                                            onChange={this.handleAmountChange} value={this.state.amount} disabled={!this.state.amountChangeable}/></div>
+                                            onChange={this.handleAmountChange} value={this.state.amount}
+                                            disabled={!this.state.amountChangeable}/></div>
                             <div style={{paddingTop: "10px", paddingBottom: "10px"}}>
                                 Trend
 
@@ -196,9 +197,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         if (!this.state.trendChangeable) {
 
             if (this.state.trend) {
-                trendToggle=<> <b>UP</b> <TrendingUp/></>
+                trendToggle = <> <b>UP</b> <TrendingUp/></>
             } else {
-                trendToggle=<> <b>DOWN</b> <TrendingDown/></>
+                trendToggle = <> <b>DOWN</b> <TrendingDown/></>
             }
         }
         return trendToggle;
@@ -228,15 +229,17 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         battleDataPromise.then((battleData) => {
             console.log(battleData)
             let senderMode = battleData === undefined;
-            if(!senderMode)
+            if (!senderMode && battleData) {
                 this.props.handleOpen();
 
-            this.setState({
-                amount:this.state.amount,
-                showMail: senderMode,
-                trendChangeable:senderMode,
-                amountChangeable:false
-            })
+                this.setState({
+                    amount: Number(battleData.amountBet),
+                    showMail: senderMode,
+                    trendChangeable: senderMode,
+                    amountChangeable: false,
+                    type: battleData.betType
+                })
+            }
         })
 
     }
@@ -277,7 +280,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     }
 }
 
-interface addBattleResult extends Array<any>{
+interface addBattleResult extends Array<any> {
 
     amountBet: string;
     betDate: string;
