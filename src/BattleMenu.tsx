@@ -33,6 +33,8 @@ interface BattleMenuState {
     showMail: boolean;
     trendChangeable: boolean;
     amountChangeable: boolean;
+    typeChangeable: boolean;
+
 
 
 }
@@ -58,7 +60,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         trendChangeable: true,
         date: moment(BattleMenu.getDefaultDueTime()).unix(),
         showMail: false,
-        amountChangeable: true
+        amountChangeable: true,
+        typeChangeable:true
     };
 
 
@@ -148,8 +151,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                defaultValue={coin}
+                                defaultValue={this.state.type}
                                 onChange={this.handleTypeChange}
+                                disabled={!this.state.typeChangeable}
                             >
 
                                 <MenuItem value={coin}>coin</MenuItem>
@@ -237,7 +241,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                     showMail: senderMode,
                     trendChangeable: senderMode,
                     amountChangeable: false,
-                    type: battleData.betType
+                    type: battleData.betType,
+                    typeChangeable:false
                 })
             }
         })
