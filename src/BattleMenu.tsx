@@ -157,7 +157,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
                             <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"
-                                            onChange={this.handleAmountChange} value={this.state.amount}/></div>
+                                            onChange={this.handleAmountChange} value={this.state.amount} disabled={!this.state.amountChangeable}/></div>
                             <div style={{paddingTop: "10px", paddingBottom: "10px"}}>
                                 Trend
 
@@ -234,7 +234,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             this.setState({
                 amount:this.state.amount,
                 showMail: senderMode,
-                trendChangeable:senderMode
+                trendChangeable:senderMode,
+                amountChangeable:false
             })
         })
 
