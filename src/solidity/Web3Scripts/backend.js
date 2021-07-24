@@ -2,8 +2,8 @@
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
 const HDWalletProvider=require('@truffle/hdwallet-provider');
-const address='0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
-const privateKey="0xccc943d4061cda10d3c617ff06234810fd195598851774f0c6359e086d31660f";
+const address='0x6870b822D30cdAdb788b35321939A73f3Ec7b801';
+const privateKey="0x798c3768cf935dec172b56ac64ae27fcb27b2853e786c84388e8b3fce4425d65";
 let result=0;
 let web3=null;
 let provider=null;
@@ -62,7 +62,7 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 	catch(e){
 	console.log('caught addBattle');
 	const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
+    console.log(e.message);
     return -1;
 	}
 }
@@ -196,10 +196,10 @@ const getByDate= async function (rnd,from = address)  {
 	}
 }
 
-//addBattle("EthVsUsd",90,false,'50000');
+addBattle("EthVsUsd",90,false,'50000');
 
 //acceptBattle(0,'50000');
 //getBattleInfo(2);
 
 //getRound();
-getByDate(BigInt("36893488147419112888"));
+//getByDate(BigInt("36893488147419112888"));

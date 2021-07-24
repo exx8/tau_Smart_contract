@@ -55,43 +55,36 @@ contract BinaryOption{
             return battleInfo[battle_id].amountBet;
         }*/
 
-        function getRound() public view returns (uint80){
+        /*function getRound() public view returns (uint80){
         return age.getTheRoundId(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e);
         }
 
         function getByDate(uint80 rnd) public view returns (uint){
         return age.getHistoricalPrice(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e,rnd);
-        }
+        }*/
 
-    function getBattleInfo(uint256 battle_id) public payable returns(Battle memory) {
+    /*function getBattleInfo(uint256 battle_id) public payable returns(Battle memory) {
         Battle storage bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.\n");
         require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start.");
         return battleInfo[battle_id];
-    }
+    }*/
 
-    /*
 
-    function setPrice() public {
+
+    /*function setPrice() public {
         feed= age.getThePrice(0x9326BFA02ADD2366b30bacB125260Af641031331);
     }
     function getPrice() public view returns (int){
         return feed;
     }
 
-    function setPrice() public {
-        roundId= age.getTheRoundId(0x9326BFA02ADD2366b30bacB125260Af641031331);
-    }
-    function getPrice() public view returns (uint80){
-        return roundId;
-    }
-
     function getPriceHistorical(uint80 roundId) public view returns (int){
 
         return age.getHistoricalPrice(roundId);
-    }
+    }*/
 
-    */
+
     /*function getId() public view returns (uint256){
         return battleId;
     }*/
@@ -129,7 +122,7 @@ contract BinaryOption{
     }*/
 
     // the winner may draw his money
-    /*function withdraw(uint256 battle_id) public {
+    function withdraw(uint256 battle_id) public {
         int winner; // 0=lose 1=win 2=draw
         int oldPrice;
         int newPrice;
@@ -138,7 +131,9 @@ contract BinaryOption{
         require((bate.creator==msg.sender||bate.opponent==msg.sender), "You are not part of this battle."); // can be deleted if comes with getcurrval
         require(block.timestamp>=bate.betDate, "Too early to check who is the winner.");
         oldPrice=bate.currVal;
+        //newPrice=age.priceBinarySearch(feedAddress[bate.betType],bate.betDate);
         newPrice=age.getThePrice(feedAddress[bate.betType]);
+
         // deliver the money to the winner
         if(oldPrice<newPrice){
 
@@ -172,7 +167,7 @@ contract BinaryOption{
         // sign the event
         emit MyEvent(battle_id,bate.amountBet*2,winner);
         //delete battleInfo[battle_id]; // battle is finished
-    }*/
+    }
 
     //just for testing
     /*function removeBattle(uint256 battle_id) public {
