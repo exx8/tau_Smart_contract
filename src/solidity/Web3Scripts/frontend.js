@@ -4,16 +4,19 @@ const address = '0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
 let result = 0;
 let web3 = null;
 let contract = null;
+let kovan=true; // otherwise rinkeby
 
 const init = async function init(provide, from = address) {
 
-    //provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/423c508011d14316b04a4ebbf33b0634",chainId:4});
     web3 = new Web3(provide);
     //web3.eth.handleRevert =true;
     try {
+        let id="0";
+        if(kovan){id="42";}
+        else{id="4";}
         contract = new web3.eth.Contract(
             BinaryOption.abi,
-            BinaryOption.networks["4"].address // The address of the deployed smart contract. May be seen in /build/BinaryOption.json
+            BinaryOption.networks[id].address // The address of the deployed smart contract. May be seen in /build/BinaryOption.json
             //deployedNetwork.address
         );
         console.log('before deploy');
@@ -22,9 +25,10 @@ const init = async function init(provide, from = address) {
 
     } catch (e) {
         console.log('caught in init');
+        if(!kovan){
         const index = e.message.indexOf("0");
-
         console.log(e.message.substring(20, index - 1));
+        }
     }
 
 }
@@ -48,8 +52,10 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
         return id;
     } catch (e) {
         console.log('caught addBattle');
+        if(!kovan){
         const index = e.message.indexOf("0");
         console.log(e.message.substring(20, index - 1));
+        }
         return -1;
     }
 }
@@ -65,9 +71,12 @@ export const acceptBattle = async function (id, val, provide, from = address) {
         return 'success';
     } catch (e) {
         console.log('caught acceptBattle');
+        if(!kovan){
         const index = e.message.indexOf("0");
         console.log(e.message.substring(20, index - 1));
         return e.message.substring(20, index - 1);
+        }
+        return "";
     }
 }
 
@@ -95,9 +104,12 @@ export const withdraw = async function (identifier, provide, from = address) {
         return return_msg;
     } catch (e) {
         console.log('caught withdraw');
+        if(!kovan){
         const index = e.message.indexOf("0");
         console.log(e.message.substring(20, index - 1));
         return e.message.substring(20, index - 1);
+        }
+        return "";
     }
 
 }
@@ -113,9 +125,12 @@ export const cancelBattle = async function (id, provide, from = address) {
         return 'success';
     } catch (e) {
         console.log('caught cancel');
+        if(!kovan){
         const index = e.message.indexOf("0");
         console.log(e.message.substring(20, index - 1));
         return e.message.substring(20, index - 1);
+        }
+        return "";
     }
 
 }
@@ -129,9 +144,12 @@ export const getBattleInfo = async function (id, provide, from = address) {
         return battleList;
     } catch (e) {
         console.log('caught getBattleInfo');
+        if(!kovan){
         const index = e.message.indexOf("0");
         console.log(e.message.substring(20, index - 1));
+        }
         return null;
     }
+
 }
 

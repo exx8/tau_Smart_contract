@@ -33,20 +33,28 @@ contract BinaryOption{
         int currVal;
     }
 
+
     constructor()  {
         age=new Aggre();
+        bool isKovan=true; // true if kovan, otherwise rinkeby
         //owner = msg.sender;
-
+        if(isKovan){
+        feedAddress["EthVsUsd"]=0x9326BFA02ADD2366b30bacB125260Af641031331;
+        }
+        else{
         // those addresses (of rinkbey test network) can be found at: https://docs.chain.link/docs/ethereum-addresses/
         feedAddress["EthVsUsd"]=0x8A753747A1Fa494EC906cE90E9f37563A8AF630e;
         //feedAddress["BtcVsUsd"]=0x6135b13325bfC4B00278B4abC5e20bbce2D6580e;
         //feedAddress["EurVsUsd"]=0x0c15Ab9A0DB086e062194c273CC79f41597Bbf13;
+        }
+
     }
+
 
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value>0, "You have to bet on positive value!");
-        battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,block.timestamp+betDate,direction,age.getThePrice(feedAddress[betType]));
+        battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,age.getThePrice(feedAddress[betType]));
         emit AddEvent(battleId,msg.sender);
         battleId++;
     }
@@ -65,7 +73,10 @@ contract BinaryOption{
     /*
 
     function setPrice() public {
+        if(isKovan){
         feed= age.getThePrice(0x9326BFA02ADD2366b30bacB125260Af641031331);
+        }
+        else{age.getThePrice(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e);}
     }
     function getPrice() public view returns (int){
         return feed;
