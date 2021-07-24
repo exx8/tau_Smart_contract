@@ -1,19 +1,27 @@
 
+//import {kovan,infuraKovan,infuraRinkeby,idKovan,idRinkeby,publicAddress,privateAddress,result,web3,
+ // provider,contract} from './PickTestNet'
+
+const PickTestNet=require('./PickTestNet');
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
 const HDWalletProvider=require('@truffle/hdwallet-provider');
-const address='0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
-const privateKey="0x7fa1311bc2a6d203948297437d3751f5fe956634e1e236087ada4ca05b7eb4a2";
-let result=0;
-let web3=null;
-let provider=null;
-let contract=null;
-let kovan=true; // otherwise rinkeby
+let address=PickTestNet.publicAddress;
+let privateKey=PickTestNet.privateAddress;
+let result=PickTestNet.result;
+let web3=PickTestNet.web3;
+let provider=PickTestNet.provider;
+let contract=PickTestNet.contract;
+let kovan=PickTestNet.kovan;
+let infuraKovan=PickTestNet.infuraKovan;
+let infuraRinkeby=PickTestNet.infuraRinkeby;
+let idKovan=PickTestNet.idKovan;
+let idRinkeby=PickTestNet.idRinkeby;
 
 const init=async function init(from=address) {
 
-    if(kovan){provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://kovan.infura.io/v3/9dae83efed4e4a03898b38a302efc552",chainId:4});}
-    else{provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/9dae83efed4e4a03898b38a302efc552",chainId:42});}
+    if(kovan){provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:infuraKovan,chainId:idKovan});}
+    else{provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:infuraRinkeby,chainId:idRinkeby});}
 
 	web3=new Web3(provider);
 	//web3.eth.handleRevert =true;
@@ -67,7 +75,7 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 	console.log('caught addBattle');
 	if(!kovan){
 	const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
+    console.log(e.message);
     }
     return -1;
 	}
