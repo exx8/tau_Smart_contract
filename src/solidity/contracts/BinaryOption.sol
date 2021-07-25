@@ -31,6 +31,7 @@ contract BinaryOption{
         uint betDate;
         bool isUp;
         int currVal;
+        int whoWin; // 0 for opponent, 1 for creator, 2 for draw, 3 if not over
     }
 
 
@@ -54,7 +55,7 @@ contract BinaryOption{
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value>0, "You have to bet on positive value!");
-        battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,age.getThePrice(feedAddress[betType]));
+        battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,age.getThePrice(feedAddress[betType]),3);
         emit AddEvent(battleId,msg.sender);
         battleId++;
     }
@@ -69,6 +70,14 @@ contract BinaryOption{
         //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start.");
         return battleInfo[battle_id];
     }
+
+    function getAll() public view returns (Battle[] memory){
+            Battle[] memory ret = new Battle[](battleId);
+            for (uint i = 0; i < battleId; i++) {
+                ret[i] = battleInfo[i];
+            }
+            return ret;
+        }
 
     /*
 
@@ -160,6 +169,7 @@ contract BinaryOption{
             payable(bate.opponent).transfer(bate.amountBet);
             payable(bate.creator).transfer(bate.amountBet);
         }
+        bate.whoWin=winner;
         // sign the event
         emit MyEvent(battle_id,bate.amountBet*2,winner);
         //delete battleInfo[battle_id]; // battle is finished
