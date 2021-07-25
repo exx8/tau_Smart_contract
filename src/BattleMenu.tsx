@@ -34,6 +34,7 @@ interface BattleMenuState {
     trendChangeable: boolean;
     amountChangeable: boolean;
     typeChangeable: boolean;
+    dateChangeable: boolean;
 
 
 
@@ -61,7 +62,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         date: moment(BattleMenu.getDefaultDueTime()).unix(),
         showMail: false,
         amountChangeable: true,
-        typeChangeable:true
+        typeChangeable: true,
+        dateChangeable: true
     };
 
 
@@ -131,6 +133,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     constructor(props: BattleMenuPros) {
         super(props);
+        this.state.date=moment(BattleMenu.getDefaultDueTime()).unix();
+        console.log(this.state.date,"date");
+
         this.updateFormAccordingToHash();
 
     }
@@ -138,7 +143,6 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     render() {
         let emailBox = this.computeMail();
         let trendToggle = this.computeTrend();
-
         return (
             <div>
                 <div>
@@ -172,7 +176,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                                 id="due-time"
                                 label="due time"
                                 type="datetime-local"
-                                defaultValue={BattleMenu.getDefaultDueTime()}
+                                defaultValue={this.state.date*1000}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -231,7 +235,6 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     private updateFormAccordingToHash() {
         let battleDataPromise: Promise<addBattleResult | undefined> = this.getBattleData();
         battleDataPromise.then((battleData) => {
-            console.log(battleData)
             let senderMode = battleData === undefined;
             if (!senderMode && battleData) {
                 this.props.handleOpen();
@@ -242,7 +245,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                     trendChangeable: senderMode,
                     amountChangeable: false,
                     type: battleData.betType,
-                    typeChangeable:false
+                    typeChangeable: false,
+                    date:battleData.betDate
                 })
             }
         })
@@ -288,7 +292,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 interface addBattleResult extends Array<any> {
 
     amountBet: string;
-    betDate: string;
+    betDate: number;
     betType: string;
     creator: string;
     currVal: string;
