@@ -1,8 +1,8 @@
 const PickTestNet=require('./PickTestNet');
 const Web3 = require('web3');
 const BinaryOption = require('../build/contracts/BinaryOption.json');
-const address = '0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
-let address=PickTestNet.publicAddress;
+let address = '0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
+ address=PickTestNet.publicAddress;
 let privateKey=PickTestNet.privateAddress;
 let result=PickTestNet.result;
 let web3=PickTestNet.web3;
