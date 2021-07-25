@@ -1,3 +1,5 @@
+import {getDebug} from "../../utils";
+
 const PickTestNet = require('./PickTestNet');
 const Web3 = require('web3');
 const BinaryOption = require('../build/contracts/BinaryOption.json');
@@ -13,8 +15,10 @@ let infuraKovan = PickTestNet.infuraKovan;
 let infuraRinkeby = PickTestNet.infuraRinkeby;
 let idKovan = PickTestNet.idKovan;
 let idRinkeby = PickTestNet.idRinkeby;
-let debug=require('debug')('sol');
-console.log(debug.enabled);
+
+
+
+let debug = getDebug('sol:frontend');
 const init = async function init(provide, from = address) {
 
     web3 = new Web3(provide);

@@ -33,3 +33,10 @@ export async function genericEtherRequest<T>(customRequest: (addresses:string) =
 
     }
 }
+
+export function getDebug(namespace :string) {
+    let debugModule = require('debug')(namespace);
+    debugModule.log = console.log;
+    debugModule.enabled = true;
+    return debugModule;
+}
