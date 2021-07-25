@@ -164,4 +164,3 @@ export const getBattleInfo = async function (id, provide, from = address) {
 
 }
 
-module.exports = {addBattle, acceptBattle, withdraw, getBattleInfo};
