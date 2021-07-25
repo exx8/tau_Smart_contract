@@ -176,7 +176,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                                 id="due-time"
                                 label="due time"
                                 type="datetime-local"
-                                defaultValue={this.state.date*1000}
+                                defaultValue={getDateString(new Date(this.state.date*1000))}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
