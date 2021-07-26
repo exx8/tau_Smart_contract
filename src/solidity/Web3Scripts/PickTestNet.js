@@ -1,4 +1,4 @@
-let kovan=true;
+let kovan=false;
 let infuraKovan="https://kovan.infura.io/v3/9dae83efed4e4a03898b38a302efc552";
 let infuraRinkeby="https://rinkeby.infura.io/v3/9dae83efed4e4a03898b38a302efc552";
 let idKovan=42;
