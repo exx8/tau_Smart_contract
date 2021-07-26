@@ -238,7 +238,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             let senderMode = battleData === undefined;
             if (!senderMode && battleData) {
                 this.props.handleOpen();
-                debug("received date:",battleData.betDate,new Date(Number(battleData.betDate)));
+
+                console.log("received date:",battleData.betDate,new Date(Number(battleData.betDate)));
                 this.setState({
                     amount: Number(battleData.amountBet),
                     showMail: senderMode,
@@ -246,7 +247,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                     amountChangeable: false,
                     type: battleData.betType,
                     typeChangeable: false,
-                    date:battleData.betDate
+                    date:Number(battleData.betDate)
                 })
             }
         })
