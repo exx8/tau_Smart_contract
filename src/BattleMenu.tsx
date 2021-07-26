@@ -114,7 +114,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     handleDateChange = (e: any) => {
         this.setState(
             {
-                date: moment(e.target.value).unix()
+                date: moment(e.target.value).unix()*1000
             }
         );
 
