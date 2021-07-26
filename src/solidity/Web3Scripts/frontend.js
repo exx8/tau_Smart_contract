@@ -108,10 +108,10 @@ export const withdraw = async function (identifier, provide, from = address) {
         const winner = result[result.length - 1].returnValues.win;
         let return_msg = null;
         if (winner === 0) {
-            return_msg = 'You lost ' + result[0].returnValues.amount + ' in battle: ' + identifier;
+            return_msg = 'Opponent won ' + result[0].returnValues.amount + ' in battle: ' + identifier;
         } else {
             if (winner === 1) {
-                return_msg = 'You won ' + result[0].returnValues.amount + ' in battle: ' + identifier;
+                return_msg = 'Creator won ' + result[0].returnValues.amount + ' in battle: ' + identifier;
             } else {
                 return_msg = 'There was draw in battle: ' + identifier;
             }
@@ -169,3 +169,23 @@ export const getBattleInfo = async function (id, provide, from = address) {
 
 }
 
+export const getAll= async function (from = address)  {
+	await init(from);
+
+    try{
+
+	let battle=await contract.methods.getAll().call();
+	console.log('getAll passed!');
+	console.log(battle);
+	return battle;
+	}
+	catch(e){
+	console.log('caught getAll');
+	if(!kovan){
+	const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
+	}
+
+    return null;
+	}
+}
