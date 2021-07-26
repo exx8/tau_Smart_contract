@@ -151,8 +151,8 @@ export const cancelBattle = async function (id, provide, from = address) {
 
 }
 
-export const getBattleInfo= async function (provide,id , from = address)  {
-	await init(from);
+export const getBattleInfo= async function (id ,provide, from = address)  {
+	await init(provide,from);
 
     try{
 
@@ -173,7 +173,7 @@ export const getBattleInfo= async function (provide,id , from = address)  {
 }
 
 export const getAll= async function (provide,from = address)  {
-	await init(from);
+	await init(provide,from);
 
     try{
 
