@@ -70,6 +70,14 @@ contract BinaryOption{
         return battleInfo[battle_id];
     }
 
+    function getAll() public view returns (Battle[] memory){
+            Battle[] memory ret = new Battle[](battleId);
+            for (uint i = 0; i < battleId; i++) {
+                ret[i] = battleInfo[i];
+            }
+            return ret;
+        }
+
     /*
 
     function setPrice() public {

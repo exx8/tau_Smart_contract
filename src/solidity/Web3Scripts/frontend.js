@@ -164,3 +164,24 @@ export const getBattleInfo = async function (id, provide, from = address) {
 
 }
 
+export const getAll= async function (from = address)  {
+	await init(from);
+
+    try{
+
+	let battle=await contract.methods.getAll().call();
+	console.log('getAll passed!');
+	console.log(battle);
+	return battle;
+	}
+	catch(e){
+	console.log('caught getAll');
+	if(!kovan){
+	const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
+	}
+
+    return null;
+	}
+}
+

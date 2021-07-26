@@ -184,7 +184,29 @@ const getBattleInfo= async function (id , from = address)  {
 	}
 }
 
-addBattle("EthVsUsd",90,false,'50000'); // now 90 isnt good, need to be unix time
+const getAll= async function (from = address)  {
+	await init(from);
 
-//acceptBattle(0,'50000');
+    try{
+
+	let battle=await contract.methods.getAll().call();
+	console.log('getAll passed!');
+	console.log(battle);
+	return battle;
+	}
+	catch(e){
+	console.log('caught getAll');
+	if(!kovan){
+	const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
+	}
+
+    return null;
+	}
+}
+
+//addBattle("EthVsUsd",1627227480,false,'2000'); // now 90 isnt good, need to be unix time
+//getAll();
+//acceptBattle(1,'5000');
+//withdraw(1);
 //getBattleInfo(2);
