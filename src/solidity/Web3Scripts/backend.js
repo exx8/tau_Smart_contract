@@ -204,7 +204,7 @@ const getAll= async function (from = address)  {
 	}
 }
 
-addBattle("EthVsUsd",161111180,false,'5'); // now 90 isnt good, need to be unix time
+//addBattle("EthVsUsd",161111180,false,'5'); // now 90 isnt good, need to be unix time
 //getAll();
 //acceptBattle(1,'5000');
 //withdraw(1);
