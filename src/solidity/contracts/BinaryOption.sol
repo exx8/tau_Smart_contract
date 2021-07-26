@@ -64,7 +64,7 @@ contract BinaryOption{
         }*/
 
     function getBattleInfo(uint256 battle_id) public payable returns(Battle memory) {
-        Battle storage bate=battleInfo[battle_id];
+        Battle memory bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.\n");
         //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start.");
         return battleInfo[battle_id];

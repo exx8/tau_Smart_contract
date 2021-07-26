@@ -54,7 +54,7 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
         });
         const res = await web3.eth.getBlockNumber();
         result = await contract.getPastEvents('AddEvent', {
-            filter: {address_field: from}, // we filter by the address of the sender
+            filter: {ad: from}, // we filter by the address of the sender
             fromBlock: res - 2, toBlock: res
         });
 
@@ -164,8 +164,8 @@ export const getBattleInfo = async function (id, provide, from = address) {
 
 }
 
-export const getAll= async function (from = address)  {
-	await init(from);
+export const getAll= async function (provide,from = address)  {
+	await init(provide,from);
 
     try{
 
