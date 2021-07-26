@@ -22,6 +22,7 @@ import {sendInvitation} from "./Mail";
 import {genericEtherRequest, getAnchor, getDebug} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {addBattle} from "./solidity/Web3Scripts/frontend"
+import {getAll} from "./solidity/Web3Scripts/frontend"
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 let debug=getDebug("battleMenu");
 interface BattleMenuState {

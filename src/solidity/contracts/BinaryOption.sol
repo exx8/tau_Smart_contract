@@ -31,6 +31,7 @@ contract BinaryOption{
         uint betDate;
         bool isUp;
         int currVal;
+        int whoWin; // 0 for opponent, 1 for creator, 2 for draw, 3 if not over
     }
 
 
@@ -54,7 +55,7 @@ contract BinaryOption{
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value>0, "You have to bet on positive value!");
-        battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,age.getThePrice(feedAddress[betType]));
+        battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,age.getThePrice(feedAddress[betType]),3);
         emit AddEvent(battleId,msg.sender);
         battleId++;
     }
@@ -63,12 +64,20 @@ contract BinaryOption{
             return battleInfo[battle_id].amountBet;
         }*/
 
-    function getBattleInfo(uint256 battle_id) public payable returns(Battle memory) {
-        Battle storage bate=battleInfo[battle_id];
-        require(bate.amountBet>0, "Battle number isn't exist.\n");
-        //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start.");
-        return battleInfo[battle_id];
+    function getBattleDate(uint256 battle_id) public payable returns(Battle memory) {
+            Battle memory bate=battleInfo[battle_id];
+            require(bate.amountBet>0, "Battle number isn't exist.\n");
+            //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start.");
+            return battleInfo[battle_id];
     }
+
+    function getAll() public view returns (Battle[] memory){
+            Battle[] memory ret = new Battle[](battleId);
+            for (uint i = 0; i < battleId; i++) {
+                ret[i] = battleInfo[i];
+            }
+            return ret;
+        }
 
     /*
 
@@ -99,6 +108,7 @@ contract BinaryOption{
         //require(bate.creator!=msg.sender, "Impossible to fight against yourself."); // in comment until we test with two different players
         require(bate.creator==bate.opponent, "This battle is closed, opponent already exist.");
         require(msg.value==bate.amountBet, "Betting value isn't as specified for this battle.");
+        // need to check that he doesnt accept several times
         bate.opponent=msg.sender;
     }
 
@@ -124,7 +134,7 @@ contract BinaryOption{
         int winner; // 0=lose 1=win 2=draw
         int oldPrice;
         int newPrice;
-        Battle memory bate=battleInfo[battle_id];
+        Battle storage bate=battleInfo[battle_id];
         //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start."); // in case the creator try to withdraw before having opponent. He may cancel battle if he wants.
         require((bate.creator==msg.sender||bate.opponent==msg.sender), "You are not part of this battle."); // can be deleted if comes with getcurrval
         require(block.timestamp>=bate.betDate, "Too early to check who is the winner.");
@@ -160,6 +170,7 @@ contract BinaryOption{
             payable(bate.opponent).transfer(bate.amountBet);
             payable(bate.creator).transfer(bate.amountBet);
         }
+        bate.whoWin=winner;
         // sign the event
         emit MyEvent(battle_id,bate.amountBet*2,winner);
         //delete battleInfo[battle_id]; // battle is finished

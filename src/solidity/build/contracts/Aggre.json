@@ -18,12 +18,13 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"a\",\"type\":\"address\"}],\"name\":\"getThePrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/eran/WebstormProjects/tau_Smart_contract/src/solidity/contracts/Aggre.sol\":\"Aggre\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/eran/WebstormProjects/tau_Smart_contract/src/solidity/contracts/Aggre.sol\":{\"keccak256\":\"0xf0bf0599946a3bfda7bfc4d2c34f2589bc95ef3d7c660661dc22cb8d918c2e8d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9ca7f9703104a2f961513e8bcf841250167c6fe18c5350f6229e49cecb3ceb2a\",\"dweb:/ipfs/QmbWwmJuJbMcAQLukTNjCepkMtEwgrRSjV1QGG9DPzowYv\"]},\"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol\":{\"keccak256\":\"0xe6f5ac8c47f3b9b6135051efb9216f9ba5b312a6ecc20209b4f66a780443c328\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ded4aa77b7b8f222a2d992eb95b03592be3250b826b6a38a4c790d2dec8b0d47\",\"dweb:/ipfs/QmNUKpTKXWsBBNMyzZuYvEZ2pUhZ2zEhQuyvxYZpTwo4eT\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506102fc806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c806344a11f6514610030575b600080fd5b61004a60048036038101906100459190610144565b610060565b60405161005791906101f3565b60405180910390f35b6000808273ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156100a957600080fd5b505afa1580156100bd573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906100e1919061016d565b50505091505080915050919050565b6000813590506100ff8161026a565b92915050565b60008151905061011481610281565b92915050565b60008151905061012981610298565b92915050565b60008151905061013e816102af565b92915050565b60006020828403121561015657600080fd5b6000610164848285016100f0565b91505092915050565b600080600080600060a0868803121561018557600080fd5b60006101938882890161012f565b95505060206101a488828901610105565b94505060406101b58882890161011a565b93505060606101c68882890161011a565b92505060806101d78882890161012f565b9150509295509295909350565b6101ed81610220565b82525050565b600060208201905061020860008301846101e4565b92915050565b60006102198261022a565b9050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b600069ffffffffffffffffffff82169050919050565b6102738161020e565b811461027e57600080fd5b50565b61028a81610220565b811461029557600080fd5b50565b6102a18161024a565b81146102ac57600080fd5b50565b6102b881610254565b81146102c357600080fd5b5056fea2646970667358221220d1fdd3ad8c93e43d8a37c14c886a8850dd4c90760c269bdd89edcb07add758af64736f6c63430008030033",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c806344a11f6514610030575b600080fd5b61004a60048036038101906100459190610144565b610060565b60405161005791906101f3565b60405180910390f35b6000808273ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156100a957600080fd5b505afa1580156100bd573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906100e1919061016d565b50505091505080915050919050565b6000813590506100ff8161026a565b92915050565b60008151905061011481610281565b92915050565b60008151905061012981610298565b92915050565b60008151905061013e816102af565b92915050565b60006020828403121561015657600080fd5b6000610164848285016100f0565b91505092915050565b600080600080600060a0868803121561018557600080fd5b60006101938882890161012f565b95505060206101a488828901610105565b94505060406101b58882890161011a565b93505060606101c68882890161011a565b92505060806101d78882890161012f565b9150509295509295909350565b6101ed81610220565b82525050565b600060208201905061020860008301846101e4565b92915050565b60006102198261022a565b9050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b600069ffffffffffffffffffff82169050919050565b6102738161020e565b811461027e57600080fd5b50565b61028a81610220565b811461029557600080fd5b50565b6102a18161024a565b81146102ac57600080fd5b50565b6102b881610254565b81146102c357600080fd5b5056fea2646970667358221220d1fdd3ad8c93e43d8a37c14c886a8850dd4c90760c269bdd89edcb07add758af64736f6c63430008030033",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"a\",\"type\":\"address\"}],\"name\":\"getThePrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/mnt/c/users/admin/ideaprojects/tau_smart_contract/src/solidity/contracts/Aggre.sol\":\"Aggre\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/mnt/c/users/admin/ideaprojects/tau_smart_contract/src/solidity/contracts/Aggre.sol\":{\"keccak256\":\"0xe8f980d71aed685b5eb81af03b67b69d2646f4a4c0ecbf4c4ada82ae133f5669\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e0e4ca262f2b3a55be39a5d8586b2805ee8b9c5ffca9ff19fbeeec9ce0ba38fc\",\"dweb:/ipfs/QmQKVYnqrso3EdVkhQGPjhPUx9RZXFJZHudHqsi6ENRTaR\"]},\"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol\":{\"keccak256\":\"0xe6f5ac8c47f3b9b6135051efb9216f9ba5b312a6ecc20209b4f66a780443c328\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ded4aa77b7b8f222a2d992eb95b03592be3250b826b6a38a4c790d2dec8b0d47\",\"dweb:/ipfs/QmNUKpTKXWsBBNMyzZuYvEZ2pUhZ2zEhQuyvxYZpTwo4eT\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506102fc806100206000396000f3fe608060405234801561001057600080fd5b506004361061002b5760003560e01c806344a11f6514610030575b600080fd5b61004a60048036038101906100459190610144565b610060565b60405161005791906101f3565b60405180910390f35b6000808273ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156100a957600080fd5b505afa1580156100bd573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906100e1919061016d565b50505091505080915050919050565b6000813590506100ff8161026a565b92915050565b60008151905061011481610281565b92915050565b60008151905061012981610298565b92915050565b60008151905061013e816102af565b92915050565b60006020828403121561015657600080fd5b6000610164848285016100f0565b91505092915050565b600080600080600060a0868803121561018557600080fd5b60006101938882890161012f565b95505060206101a488828901610105565b94505060406101b58882890161011a565b93505060606101c68882890161011a565b92505060806101d78882890161012f565b9150509295509295909350565b6101ed81610220565b82525050565b600060208201905061020860008301846101e4565b92915050565b60006102198261022a565b9050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b600069ffffffffffffffffffff82169050919050565b6102738161020e565b811461027e57600080fd5b50565b61028a81610220565b811461029557600080fd5b50565b6102a18161024a565b81146102ac57600080fd5b50565b6102b881610254565b81146102c357600080fd5b5056fea26469706673582212202a0a54a5eda5496a276a896b43c63245c53170adefc666f43e1644db5d5b3d3564736f6c63430008030033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061002b5760003560e01c806344a11f6514610030575b600080fd5b61004a60048036038101906100459190610144565b610060565b60405161005791906101f3565b60405180910390f35b6000808273ffffffffffffffffffffffffffffffffffffffff1663feaf968c6040518163ffffffff1660e01b815260040160a06040518083038186803b1580156100a957600080fd5b505afa1580156100bd573d6000803e3d6000fd5b505050506040513d601f19601f820116820180604052508101906100e1919061016d565b50505091505080915050919050565b6000813590506100ff8161026a565b92915050565b60008151905061011481610281565b92915050565b60008151905061012981610298565b92915050565b60008151905061013e816102af565b92915050565b60006020828403121561015657600080fd5b6000610164848285016100f0565b91505092915050565b600080600080600060a0868803121561018557600080fd5b60006101938882890161012f565b95505060206101a488828901610105565b94505060406101b58882890161011a565b93505060606101c68882890161011a565b92505060806101d78882890161012f565b9150509295509295909350565b6101ed81610220565b82525050565b600060208201905061020860008301846101e4565b92915050565b60006102198261022a565b9050919050565b6000819050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b6000819050919050565b600069ffffffffffffffffffff82169050919050565b6102738161020e565b811461027e57600080fd5b50565b61028a81610220565b811461029557600080fd5b50565b6102a18161024a565b81146102ac57600080fd5b50565b6102b881610254565b81146102c357600080fd5b5056fea26469706673582212202a0a54a5eda5496a276a896b43c63245c53170adefc666f43e1644db5d5b3d3564736f6c63430008030033",
   "immutableReferences": {},
   "generatedSources": [],
   "deployedGeneratedSources": [
@@ -1881,12 +1882,12 @@
       "name": "#utility.yul"
     }
   ],
-  "sourceMap": "243:226:0:-:0;;;;;;;;;;;;;;;;;;;",
-  "deployedSourceMap": "243:226:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;264:202;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;317:3;352:9;417:1;395:40;;;:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;332:105;;;;;;454:5;447:12;;;264:202;;;:::o;7:139:4:-;;91:6;78:20;69:29;;107:33;134:5;107:33;:::i;:::-;59:87;;;;:::o;152:141::-;;239:6;233:13;224:22;;255:32;281:5;255:32;:::i;:::-;214:79;;;;:::o;299:143::-;;387:6;381:13;372:22;;403:33;430:5;403:33;:::i;:::-;362:80;;;;:::o;448:141::-;;535:6;529:13;520:22;;551:32;577:5;551:32;:::i;:::-;510:79;;;;:::o;595:262::-;;703:2;691:9;682:7;678:23;674:32;671:2;;;719:1;716;709:12;671:2;762:1;787:53;832:7;823:6;812:9;808:22;787:53;:::i;:::-;777:63;;733:117;661:196;;;;:::o;863:904::-;;;;;;1047:3;1035:9;1026:7;1022:23;1018:33;1015:2;;;1064:1;1061;1054:12;1015:2;1107:1;1132:63;1187:7;1178:6;1167:9;1163:22;1132:63;:::i;:::-;1122:73;;1078:127;1244:2;1270:63;1325:7;1316:6;1305:9;1301:22;1270:63;:::i;:::-;1260:73;;1215:128;1382:2;1408:64;1464:7;1455:6;1444:9;1440:22;1408:64;:::i;:::-;1398:74;;1353:129;1521:2;1547:64;1603:7;1594:6;1583:9;1579:22;1547:64;:::i;:::-;1537:74;;1492:129;1660:3;1687:63;1742:7;1733:6;1722:9;1718:22;1687:63;:::i;:::-;1677:73;;1631:129;1005:762;;;;;;;;:::o;1773:115::-;1858:23;1875:5;1858:23;:::i;:::-;1853:3;1846:36;1836:52;;:::o;1894:218::-;;2023:2;2012:9;2008:18;2000:26;;2036:69;2102:1;2091:9;2087:17;2078:6;2036:69;:::i;:::-;1990:122;;;;:::o;2118:96::-;;2184:24;2202:5;2184:24;:::i;:::-;2173:35;;2163:51;;;:::o;2220:76::-;;2285:5;2274:16;;2264:32;;;:::o;2302:126::-;;2379:42;2372:5;2368:54;2357:65;;2347:81;;;:::o;2434:77::-;;2500:5;2489:16;;2479:32;;;:::o;2517:105::-;;2593:22;2586:5;2582:34;2571:45;;2561:61;;;:::o;2628:122::-;2701:24;2719:5;2701:24;:::i;:::-;2694:5;2691:35;2681:2;;2740:1;2737;2730:12;2681:2;2671:79;:::o;2756:120::-;2828:23;2845:5;2828:23;:::i;:::-;2821:5;2818:34;2808:2;;2866:1;2863;2856:12;2808:2;2798:78;:::o;2882:122::-;2955:24;2973:5;2955:24;:::i;:::-;2948:5;2945:35;2935:2;;2994:1;2991;2984:12;2935:2;2925:79;:::o;3010:120::-;3082:23;3099:5;3082:23;:::i;:::-;3075:5;3072:34;3062:2;;3120:1;3117;3110:12;3062:2;3052:78;:::o",
-  "source": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.3;\n\n// TODO: implement the code from: https://docs.chain.link/docs/get-the-latest-price/. Works on Remix only.\nimport \"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol\";\n\n\ncontract Aggre{\n\n    function getThePrice(address a) public view returns (int) {\n        (\n        ,\n        int price,\n        ,\n        ,\n        ) = AggregatorV3Interface(a).latestRoundData();\n        return price;\n    }\n\n}",
-  "sourcePath": "/home/eran/WebstormProjects/tau_Smart_contract/src/solidity/contracts/Aggre.sol",
+  "sourceMap": "250:238:0:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "250:238:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;273:210;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;;326:3;364:9;432:1;410:40;;;:42;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;342:110;;;;;;470:5;463:12;;;273:210;;;:::o;7:139:4:-;;91:6;78:20;69:29;;107:33;134:5;107:33;:::i;:::-;59:87;;;;:::o;152:141::-;;239:6;233:13;224:22;;255:32;281:5;255:32;:::i;:::-;214:79;;;;:::o;299:143::-;;387:6;381:13;372:22;;403:33;430:5;403:33;:::i;:::-;362:80;;;;:::o;448:141::-;;535:6;529:13;520:22;;551:32;577:5;551:32;:::i;:::-;510:79;;;;:::o;595:262::-;;703:2;691:9;682:7;678:23;674:32;671:2;;;719:1;716;709:12;671:2;762:1;787:53;832:7;823:6;812:9;808:22;787:53;:::i;:::-;777:63;;733:117;661:196;;;;:::o;863:904::-;;;;;;1047:3;1035:9;1026:7;1022:23;1018:33;1015:2;;;1064:1;1061;1054:12;1015:2;1107:1;1132:63;1187:7;1178:6;1167:9;1163:22;1132:63;:::i;:::-;1122:73;;1078:127;1244:2;1270:63;1325:7;1316:6;1305:9;1301:22;1270:63;:::i;:::-;1260:73;;1215:128;1382:2;1408:64;1464:7;1455:6;1444:9;1440:22;1408:64;:::i;:::-;1398:74;;1353:129;1521:2;1547:64;1603:7;1594:6;1583:9;1579:22;1547:64;:::i;:::-;1537:74;;1492:129;1660:3;1687:63;1742:7;1733:6;1722:9;1718:22;1687:63;:::i;:::-;1677:73;;1631:129;1005:762;;;;;;;;:::o;1773:115::-;1858:23;1875:5;1858:23;:::i;:::-;1853:3;1846:36;1836:52;;:::o;1894:218::-;;2023:2;2012:9;2008:18;2000:26;;2036:69;2102:1;2091:9;2087:17;2078:6;2036:69;:::i;:::-;1990:122;;;;:::o;2118:96::-;;2184:24;2202:5;2184:24;:::i;:::-;2173:35;;2163:51;;;:::o;2220:76::-;;2285:5;2274:16;;2264:32;;;:::o;2302:126::-;;2379:42;2372:5;2368:54;2357:65;;2347:81;;;:::o;2434:77::-;;2500:5;2489:16;;2479:32;;;:::o;2517:105::-;;2593:22;2586:5;2582:34;2571:45;;2561:61;;;:::o;2628:122::-;2701:24;2719:5;2701:24;:::i;:::-;2694:5;2691:35;2681:2;;2740:1;2737;2730:12;2681:2;2671:79;:::o;2756:120::-;2828:23;2845:5;2828:23;:::i;:::-;2821:5;2818:34;2808:2;;2866:1;2863;2856:12;2808:2;2798:78;:::o;2882:122::-;2955:24;2973:5;2955:24;:::i;:::-;2948:5;2945:35;2935:2;;2994:1;2991;2984:12;2935:2;2925:79;:::o;3010:120::-;3082:23;3099:5;3082:23;:::i;:::-;3075:5;3072:34;3062:2;;3120:1;3117;3110:12;3062:2;3052:78;:::o",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.3;\r\n\r\n// TODO: implement the code from: https://docs.chain.link/docs/get-the-latest-price/. Works on Remix only.\r\nimport \"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol\";\r\n\r\n\r\ncontract Aggre{\r\n\r\n    function getThePrice(address a) public view returns (int) {\r\n        (\r\n        ,\r\n        int price,\r\n        ,\r\n        ,\r\n        ) = AggregatorV3Interface(a).latestRoundData();\r\n        return price;\r\n    }\r\n\r\n}",
+  "sourcePath": "/mnt/c/users/admin/ideaprojects/tau_smart_contract/src/solidity/contracts/Aggre.sol",
   "ast": {
-    "absolutePath": "/home/eran/WebstormProjects/tau_Smart_contract/src/solidity/contracts/Aggre.sol",
+    "absolutePath": "/mnt/c/users/admin/ideaprojects/tau_smart_contract/src/solidity/contracts/Aggre.sol",
     "exportedSymbols": {
       "Aggre": [
         21
@@ -1908,7 +1909,7 @@
           ".3"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:0"
+        "src": "33:23:0"
       },
       {
         "absolutePath": "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol",
@@ -1918,7 +1919,7 @@
         "nodeType": "ImportDirective",
         "scope": 22,
         "sourceUnit": 542,
-        "src": "164:76:0",
+        "src": "168:76:0",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -1933,14 +1934,14 @@
           21
         ],
         "name": "Aggre",
-        "nameLocation": "252:5:0",
+        "nameLocation": "259:5:0",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
               "id": 19,
               "nodeType": "Block",
-              "src": "322:144:0",
+              "src": "331:152:0",
               "statements": [
                 {
                   "assignments": [
@@ -1957,10 +1958,10 @@
                       "id": 10,
                       "mutability": "mutable",
                       "name": "price",
-                      "nameLocation": "356:5:0",
+                      "nameLocation": "368:5:0",
                       "nodeType": "VariableDeclaration",
                       "scope": 19,
-                      "src": "352:9:0",
+                      "src": "364:9:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -1971,7 +1972,7 @@
                         "id": 9,
                         "name": "int",
                         "nodeType": "ElementaryTypeName",
-                        "src": "352:3:0",
+                        "src": "364:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
                           "typeString": "int256"
@@ -1996,7 +1997,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4,
-                            "src": "417:1:0",
+                            "src": "432:1:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -2015,7 +2016,7 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 541,
-                          "src": "395:21:0",
+                          "src": "410:21:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$541_$",
                             "typeString": "type(contract AggregatorV3Interface)"
@@ -2029,7 +2030,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "395:24:0",
+                        "src": "410:24:0",
                         "tryCall": false,
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_AggregatorV3Interface_$541",
@@ -2044,7 +2045,7 @@
                       "memberName": "latestRoundData",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": 540,
-                      "src": "395:40:0",
+                      "src": "410:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
                         "typeString": "function () view external returns (uint80,int256,uint256,uint256,uint80)"
@@ -2058,7 +2059,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "395:42:0",
+                    "src": "410:42:0",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
@@ -2066,7 +2067,7 @@
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "332:105:0"
+                  "src": "342:110:0"
                 },
                 {
                   "expression": {
@@ -2075,7 +2076,7 @@
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 10,
-                    "src": "454:5:0",
+                    "src": "470:5:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -2084,7 +2085,7 @@
                   "functionReturnParameters": 8,
                   "id": 18,
                   "nodeType": "Return",
-                  "src": "447:12:0"
+                  "src": "463:12:0"
                 }
               ]
             },
@@ -2094,7 +2095,7 @@
             "kind": "function",
             "modifiers": [],
             "name": "getThePrice",
-            "nameLocation": "273:11:0",
+            "nameLocation": "282:11:0",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 5,
@@ -2105,10 +2106,10 @@
                   "id": 4,
                   "mutability": "mutable",
                   "name": "a",
-                  "nameLocation": "293:1:0",
+                  "nameLocation": "302:1:0",
                   "nodeType": "VariableDeclaration",
                   "scope": 20,
-                  "src": "285:9:0",
+                  "src": "294:9:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2119,7 +2120,7 @@
                     "id": 3,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "285:7:0",
+                    "src": "294:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2129,7 +2130,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "284:11:0"
+              "src": "293:11:0"
             },
             "returnParameters": {
               "id": 8,
@@ -2143,7 +2144,7 @@
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 20,
-                  "src": "317:3:0",
+                  "src": "326:3:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2154,7 +2155,7 @@
                     "id": 6,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "317:3:0",
+                    "src": "326:3:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -2163,23 +2164,23 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "316:5:0"
+              "src": "325:5:0"
             },
             "scope": 21,
-            "src": "264:202:0",
+            "src": "273:210:0",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           }
         ],
         "scope": 22,
-        "src": "243:226:0"
+        "src": "250:238:0"
       }
     ],
-    "src": "32:437:0"
+    "src": "33:455:0"
   },
   "legacyAST": {
-    "absolutePath": "/home/eran/WebstormProjects/tau_Smart_contract/src/solidity/contracts/Aggre.sol",
+    "absolutePath": "/mnt/c/users/admin/ideaprojects/tau_smart_contract/src/solidity/contracts/Aggre.sol",
     "exportedSymbols": {
       "Aggre": [
         21
@@ -2201,7 +2202,7 @@
           ".3"
         ],
         "nodeType": "PragmaDirective",
-        "src": "32:23:0"
+        "src": "33:23:0"
       },
       {
         "absolutePath": "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol",
@@ -2211,7 +2212,7 @@
         "nodeType": "ImportDirective",
         "scope": 22,
         "sourceUnit": 542,
-        "src": "164:76:0",
+        "src": "168:76:0",
         "symbolAliases": [],
         "unitAlias": ""
       },
@@ -2226,14 +2227,14 @@
           21
         ],
         "name": "Aggre",
-        "nameLocation": "252:5:0",
+        "nameLocation": "259:5:0",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
               "id": 19,
               "nodeType": "Block",
-              "src": "322:144:0",
+              "src": "331:152:0",
               "statements": [
                 {
                   "assignments": [
@@ -2250,10 +2251,10 @@
                       "id": 10,
                       "mutability": "mutable",
                       "name": "price",
-                      "nameLocation": "356:5:0",
+                      "nameLocation": "368:5:0",
                       "nodeType": "VariableDeclaration",
                       "scope": 19,
-                      "src": "352:9:0",
+                      "src": "364:9:0",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
@@ -2264,7 +2265,7 @@
                         "id": 9,
                         "name": "int",
                         "nodeType": "ElementaryTypeName",
-                        "src": "352:3:0",
+                        "src": "364:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_int256",
                           "typeString": "int256"
@@ -2289,7 +2290,7 @@
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 4,
-                            "src": "417:1:0",
+                            "src": "432:1:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_address",
                               "typeString": "address"
@@ -2308,7 +2309,7 @@
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 541,
-                          "src": "395:21:0",
+                          "src": "410:21:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$541_$",
                             "typeString": "type(contract AggregatorV3Interface)"
@@ -2322,7 +2323,7 @@
                         "lValueRequested": false,
                         "names": [],
                         "nodeType": "FunctionCall",
-                        "src": "395:24:0",
+                        "src": "410:24:0",
                         "tryCall": false,
                         "typeDescriptions": {
                           "typeIdentifier": "t_contract$_AggregatorV3Interface_$541",
@@ -2337,7 +2338,7 @@
                       "memberName": "latestRoundData",
                       "nodeType": "MemberAccess",
                       "referencedDeclaration": 540,
-                      "src": "395:40:0",
+                      "src": "410:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
                         "typeString": "function () view external returns (uint80,int256,uint256,uint256,uint80)"
@@ -2351,7 +2352,7 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "395:42:0",
+                    "src": "410:42:0",
                     "tryCall": false,
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
@@ -2359,7 +2360,7 @@
                     }
                   },
                   "nodeType": "VariableDeclarationStatement",
-                  "src": "332:105:0"
+                  "src": "342:110:0"
                 },
                 {
                   "expression": {
@@ -2368,7 +2369,7 @@
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
                     "referencedDeclaration": 10,
-                    "src": "454:5:0",
+                    "src": "470:5:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -2377,7 +2378,7 @@
                   "functionReturnParameters": 8,
                   "id": 18,
                   "nodeType": "Return",
-                  "src": "447:12:0"
+                  "src": "463:12:0"
                 }
               ]
             },
@@ -2387,7 +2388,7 @@
             "kind": "function",
             "modifiers": [],
             "name": "getThePrice",
-            "nameLocation": "273:11:0",
+            "nameLocation": "282:11:0",
             "nodeType": "FunctionDefinition",
             "parameters": {
               "id": 5,
@@ -2398,10 +2399,10 @@
                   "id": 4,
                   "mutability": "mutable",
                   "name": "a",
-                  "nameLocation": "293:1:0",
+                  "nameLocation": "302:1:0",
                   "nodeType": "VariableDeclaration",
                   "scope": 20,
-                  "src": "285:9:0",
+                  "src": "294:9:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2412,7 +2413,7 @@
                     "id": 3,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
-                    "src": "285:7:0",
+                    "src": "294:7:0",
                     "stateMutability": "nonpayable",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
@@ -2422,7 +2423,7 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "284:11:0"
+              "src": "293:11:0"
             },
             "returnParameters": {
               "id": 8,
@@ -2436,7 +2437,7 @@
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
                   "scope": 20,
-                  "src": "317:3:0",
+                  "src": "326:3:0",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -2447,7 +2448,7 @@
                     "id": 6,
                     "name": "int",
                     "nodeType": "ElementaryTypeName",
-                    "src": "317:3:0",
+                    "src": "326:3:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_int256",
                       "typeString": "int256"
@@ -2456,20 +2457,20 @@
                   "visibility": "internal"
                 }
               ],
-              "src": "316:5:0"
+              "src": "325:5:0"
             },
             "scope": 21,
-            "src": "264:202:0",
+            "src": "273:210:0",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           }
         ],
         "scope": 22,
-        "src": "243:226:0"
+        "src": "250:238:0"
       }
     ],
-    "src": "32:437:0"
+    "src": "33:455:0"
   },
   "compiler": {
     "name": "solc",
@@ -2485,18 +2486,19 @@
     "42": {
       "events": {},
       "links": {},
-      "address": "0xCBA2db93F42CdAa6E08B28378517C528ccbE6935",
-      "transactionHash": "0x92849fd4abf725b3e62b3053f3a296a29d02d1fb7fda2f598deeb99bed32eaf7"
+      "address": "0x86ed10Ac9714631141351B74647aF2fAc31854a9",
+      "transactionHash": "0x98bea2c7277bf16bec410744a936c7d09aad7477601248a85061271bfff8e2d0"
     },
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xcd129B6C3e15B655c7C0b8dF4f2d5741AE15058c",
-      "transactionHash": "0xf7b2686aac4c1e84b30025fb4b8c91f58dc2875a7cc8c8b35aaa65235032c095"
+      "address": "0x5349eD14408fCC8F0e77F9f41AAee50B63c9E2cf",
+      "transactionHash": "0x7376d69f5c1fad94280a2208a55c14502ddd103dfe1d8320623107720ca99e39"
     }
   },
-  "schemaVersion": "3.3.4",
-  "updatedAt": "2021-07-26T08:42:20.834Z",
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-07-26T13:46:43.032Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
