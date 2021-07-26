@@ -151,25 +151,28 @@ export const cancelBattle = async function (id, provide, from = address) {
 
 }
 
-export const getBattleInfo = async function (id, provide, from = address) {
-    await init(provide, from);
+export const getBattleInfo= async function (provide,id , from = address)  {
+	await init(from);
 
-    try {
-        let battleList = await contract.methods.getBattleInfo(id).call();
-        debug('getBattleInfo passed!');
-        return battleList;
-    } catch (e) {
-        debug('caught getBattleInfo');
-        if (!kovan) {
-            const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
-        }
-        return null;
-    }
+    try{
 
+	const battle=await contract.methods.getBattleDate(id).call();
+	console.log('getBattleInfo passed!');
+	console.log(battle);
+	return battle;
+	}
+	catch(e){
+	console.log('caught getBattleInfo');
+	if(!kovan){
+	const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
+	}
+
+    return null;
+	}
 }
 
-export const getAll= async function (from = address)  {
+export const getAll= async function (provide,from = address)  {
 	await init(from);
 
     try{
