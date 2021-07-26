@@ -1,37 +1,57 @@
+import {getDebug} from "../../utils";
+
+const PickTestNet = require('./PickTestNet');
 const Web3 = require('web3');
 const BinaryOption = require('../build/contracts/BinaryOption.json');
-const address = '0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
-let result = 0;
-let web3 = null;
-let contract = null;
+let address = '0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
+address = PickTestNet.publicAddress;
+let privateKey = PickTestNet.privateAddress;
+let result = PickTestNet.result;
+let web3 = PickTestNet.web3;
+let provider = PickTestNet.provider;
+let contract = PickTestNet.contract;
+let kovan = PickTestNet.kovan;
+let infuraKovan = PickTestNet.infuraKovan;
+let infuraRinkeby = PickTestNet.infuraRinkeby;
+let idKovan = PickTestNet.idKovan;
+let idRinkeby = PickTestNet.idRinkeby;
 
+
+
+let debug = getDebug('sol:frontend');
 const init = async function init(provide, from = address) {
 
-    //provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/423c508011d14316b04a4ebbf33b0634",chainId:4});
     web3 = new Web3(provide);
     //web3.eth.handleRevert =true;
     try {
+        let id = "0";
+        if (kovan) {
+            id = "42";
+        } else {
+            id = "4";
+        }
         contract = new web3.eth.Contract(
             BinaryOption.abi,
-            BinaryOption.networks["4"].address // The address of the deployed smart contract. May be seen in /build/BinaryOption.json
+            BinaryOption.networks[id].address // The address of the deployed smart contract. May be seen in /build/BinaryOption.json
             //deployedNetwork.address
         );
-        console.log('before deploy');
+        debug('before deploy');
         //estimated_gas=web3.eth.estimateGas({data:BinaryOption.bytecode}).then(console.log);
         //console.log(estimated_gas);
 
     } catch (e) {
-        console.log('caught in init');
-        const index = e.message.indexOf("0");
-
-        console.log(e.message.substring(20, index - 1));
+        debug('caught in init');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug(e.message.substring(20, index - 1));
+        }
     }
 
 }
 
 export const addBattle = async function (battle_type, expire_time, winner, val, provide, from = address) {
     await init(provide, from);
-
+    debug("aaaa");
     try {
         await contract.methods.addBattle(battle_type, expire_time, winner).send({
             from: from,
@@ -44,12 +64,14 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
         });
 
         const id = result[result.length - 1].returnValues.id; // we take the last event referred to the address of the sender
-        console.log(id);
+        debug(id);
         return id;
     } catch (e) {
-        console.log('caught addBattle');
-        const index = e.message.indexOf("0");
-        console.log(e.message.substring(20, index - 1));
+        debug('caught addBattle');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug(e.message.substring(20, index - 1));
+        }
         return -1;
     }
 }
@@ -61,13 +83,16 @@ export const acceptBattle = async function (id, val, provide, from = address) {
             from: address,
             value: val
         });
-        console.log('acceptBattle passed!');
+        debug('acceptBattle passed!');
         return 'success';
     } catch (e) {
-        console.log('caught acceptBattle');
-        const index = e.message.indexOf("0");
-        console.log(e.message.substring(20, index - 1));
-        return e.message.substring(20, index - 1);
+        debug('caught acceptBattle');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug(e.message.substring(20, index - 1));
+            return e.message.substring(20, index - 1);
+        }
+        return "";
     }
 }
 
@@ -77,7 +102,7 @@ export const withdraw = async function (identifier, provide, from = address) {
         await contract.methods.withdraw(identifier).send({
             from: from
         });
-        console.log('withdraw passed!');
+        debug('withdraw passed!');
         const res = await web3.eth.getBlockNumber();
         result = await contract.getPastEvents('MyEvent', {filter: {id: identifier}, fromBlock: res - 2, toBlock: res}); // we filter by id
         const winner = result[result.length - 1].returnValues.win;
@@ -91,13 +116,16 @@ export const withdraw = async function (identifier, provide, from = address) {
                 return_msg = 'There was draw in battle: ' + identifier;
             }
         }
-        console.log(return_msg);
+        debug(return_msg);
         return return_msg;
     } catch (e) {
-        console.log('caught withdraw');
-        const index = e.message.indexOf("0");
-        console.log(e.message.substring(20, index - 1));
-        return e.message.substring(20, index - 1);
+        debug('caught withdraw');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug(e.message.substring(20, index - 1));
+            return e.message.substring(20, index - 1);
+        }
+        return "";
     }
 
 }
@@ -109,13 +137,16 @@ export const cancelBattle = async function (id, provide, from = address) {
         await contract.methods.cancelBattle(id).send({
             from: from
         });
-        console.log('cancel passed!');
+        debug('cancel passed!');
         return 'success';
     } catch (e) {
-        console.log('caught cancel');
-        const index = e.message.indexOf("0");
-        console.log(e.message.substring(20, index - 1));
-        return e.message.substring(20, index - 1);
+        debug('caught cancel');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug(e.message.substring(20, index - 1));
+            return e.message.substring(20, index - 1);
+        }
+        return "";
     }
 
 }
@@ -125,13 +156,16 @@ export const getBattleInfo = async function (id, provide, from = address) {
 
     try {
         let battleList = await contract.methods.getBattleInfo(id).call();
-        console.log('getBattleInfo passed!');
+        debug('getBattleInfo passed!');
         return battleList;
     } catch (e) {
-        console.log('caught getBattleInfo');
-        const index = e.message.indexOf("0");
-        console.log(e.message.substring(20, index - 1));
+        debug('caught getBattleInfo');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug(e.message.substring(20, index - 1));
+        }
         return null;
     }
+
 }
 
