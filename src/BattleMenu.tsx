@@ -19,11 +19,11 @@ import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
 import moment from "moment";
 import {sendInvitation} from "./Mail";
-import {genericEtherRequest, getAnchor} from "./utils";
+import {genericEtherRequest, getAnchor, getDebug} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {addBattle} from "./solidity/Web3Scripts/frontend"
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
-
+let debug=getDebug("battleMenu");
 interface BattleMenuState {
     email: string | null | undefined;
     type: string | null;
@@ -133,8 +133,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     constructor(props: BattleMenuPros) {
         super(props);
-        this.state.date=moment(BattleMenu.getDefaultDueTime()).unix();
-        console.log(this.state.date,"date");
+        this.state.date=moment(BattleMenu.getDefaultDueTime()).unix()*1000;
+        debug(this.state.date,"date");
 
         this.updateFormAccordingToHash();
 
@@ -176,7 +176,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                                 id="due-time"
                                 label="due time"
                                 type="datetime-local"
-                                defaultValue={getDateString(new Date(this.state.date*1000))}
+                                defaultValue={getDateString(new Date(this.state.date))}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -238,7 +238,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             let senderMode = battleData === undefined;
             if (!senderMode && battleData) {
                 this.props.handleOpen();
-                console.log(battleData.betDate);
+                debug("received date:",battleData.betDate,new Date(Number(battleData.betDate)));
                 this.setState({
                     amount: Number(battleData.amountBet),
                     showMail: senderMode,
@@ -258,8 +258,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         if (window.ethereum) {
             try {
                 let address = await window.ethereum.enable();
-
-                let battleID: string = await addBattle(this.state.type, this.state.date * 1000 - new Date().getTime(), this.state.trend, this.state.amount,
+                console.log(this.state.date);
+                let battleID: string = await addBattle(this.state.type, this.state.date , this.state.trend, this.state.amount,
                     window.ethereum, address[0]);
                 const fixedEmail: string = this.state.email ?? "";
                 sendInvitation(fixedEmail, battleID)
