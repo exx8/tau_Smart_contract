@@ -22,7 +22,6 @@ import {sendInvitation} from "./Mail";
 import {genericEtherRequest, getAnchor} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {addBattle} from "./solidity/Web3Scripts/frontend"
-import {getAll} from "./solidity/Web3Scripts/frontend"
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 
 interface BattleMenuState {

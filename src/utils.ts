@@ -35,8 +35,8 @@ export async function genericEtherRequest<T>(customRequest: (addresses:string) =
 }
 
 export function getDebug(namespace :string) {
-    let debugNameSpace = require('debug')(namespace);
-    debugNameSpace.log = console.log;
-    debugNameSpace.enabled = true;
-    return debugNameSpace;
+    let debugModule = require('debug')(namespace);
+    debugModule.log = console.log;
+    debugModule.enabled = true;
+    return debugModule;
 }
