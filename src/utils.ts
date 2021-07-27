@@ -34,8 +34,8 @@ export async function genericEtherRequest<T>(customRequest: (addresses:string) =
     }
 }
 
-function bind_trailing_args(fn, ...bound_args) {
-    return function(...args) {
+function bind_trailing_args(fn:Function, ...bound_args:any[]) :Function{
+    return function(...args:any[]) {
         return fn(...args, ...bound_args);
     };
 }
@@ -49,16 +49,22 @@ export async function fillEtherDetailsInFunc(customRequest:Function):Promise<Fun
 
         } catch (e) {
             console.log('Payment using Metamask  was denied');
+            throw e;
 
         }
-    } else if (window.web3) {
+    }
+    /*
+    else if (window.web3) {
         console.log("Need to see how to extract address in this case, provider is just window.web3. than, call addBattle");
         console.log(window.web3)
 
 
-    } else {
-        console.log('please install a wallet. recommended: Metamask');
 
+    }
+    */else {
+
+        console.log('please install a wallet. recommended: Metamask');
+    throw new Error("no wallet was found");
     }
 }
 
