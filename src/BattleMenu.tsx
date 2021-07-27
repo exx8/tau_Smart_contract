@@ -243,19 +243,23 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                 this.props.handleOpen();
 
                 console.log("received date:",battleData.betDate,new Date(Number(battleData.betDate)));
-                this.setState({
-                    amount: Number(battleData.amountBet),
-                    showMail: senderMode,
-                    trendChangeable: senderMode,
-                    amountChangeable: false,
-                    type: battleData.betType,
-                    typeChangeable: false,
-                    date:Number(battleData.betDate),
-                    dateChangeable:false
-                })
+                this.moveToSendMode(battleData);
             }
         })
 
+    }
+
+    private moveToSendMode(battleData: addBattleResult) {
+        this.setState({
+            amount: Number(battleData.amountBet),
+            showMail: false,
+            trendChangeable: false,
+            amountChangeable: false,
+            type: battleData.betType,
+            typeChangeable: false,
+            date: Number(battleData.betDate),
+            dateChangeable: false
+        })
     }
 
     private sendHandle = async () => {
