@@ -79,11 +79,10 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
 }
 
 export const acceptBattle = async function (id, val, provide, from = address) {
-    console.log(arguments);
     await init(provide, from);
     try {
         await contract.methods.acceptBattle(id).send({
-            from: address,
+            from,
             value: val
         });
         debug('acceptBattle passed!');
