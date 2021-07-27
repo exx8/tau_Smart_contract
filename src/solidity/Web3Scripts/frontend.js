@@ -5,16 +5,11 @@ const Web3 = require('web3');
 const BinaryOption = require('../build/contracts/BinaryOption.json');
 let address = '0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
 address = PickTestNet.publicAddress;
-let privateKey = PickTestNet.privateAddress;
 let result = PickTestNet.result;
 let web3 = PickTestNet.web3;
-let provider = PickTestNet.provider;
 let contract = PickTestNet.contract;
 let kovan = PickTestNet.kovan;
-let infuraKovan = PickTestNet.infuraKovan;
-let infuraRinkeby = PickTestNet.infuraRinkeby;
-let idKovan = PickTestNet.idKovan;
-let idRinkeby = PickTestNet.idRinkeby;
+
 
 
 
