@@ -147,13 +147,14 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             id="due-time"
             label="due time"
             type="datetime-local"
-            defaultValue={getDateString(new Date(this.state.date))}
+            value={getDateString(new Date(this.state.date))}
             InputLabelProps={{
                 shrink: true,
             }}
             onChange={this.handleDateChange}
+            disabled={!this.state.dateChangeable}
         />;
-        this.datePicker=datePicker;
+        ;
         return (
             <div>
                 <div>
@@ -249,7 +250,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                     amountChangeable: false,
                     type: battleData.betType,
                     typeChangeable: false,
-                    date:Number(battleData.betDate)
+                    date:Number(battleData.betDate),
+                    dateChangeable:false
                 })
             }
         })
