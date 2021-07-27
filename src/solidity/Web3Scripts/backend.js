@@ -2,7 +2,7 @@
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
 const HDWalletProvider=require('@truffle/hdwallet-provider');
-const address='0x6870b822D30cdAdb788b35321939A73f3Ec7b801';
+const address='0x082a5b7998Ec14bE1CeC5d2562d7335583382a8c';
 const privateKey="0x798c3768cf935dec172b56ac64ae27fcb27b2853e786c84388e8b3fce4425d65";
 let result=0;
 let web3=null;
@@ -13,7 +13,7 @@ const deployedAddress=BinaryOption;
 
 const init=async function init(from=address) {
 
-	provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/423c508011d14316b04a4ebbf33b0634",chainId:4});
+	provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:"https://rinkeby.infura.io/v3/9dae83efed4e4a03898b38a302efc552",chainId:4});
 	web3=new Web3(provider);
 	//web3.eth.handleRevert =true;
 	try{
@@ -196,7 +196,7 @@ const getByDate= async function (rnd,from = address)  {
 	}
 }
 
-addBattle("EthVsUsd",90,false,'50000');
+addBattle("EthVsUsd",90,false,'5');
 
 //acceptBattle(0,'50000');
 //getBattleInfo(2);
