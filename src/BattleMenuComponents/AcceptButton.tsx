@@ -4,7 +4,7 @@ import SendIcon from "@material-ui/icons/Send";
 import {acceptBattle} from "../solidity/Web3Scripts/frontend";
 import CheckIcon from '@material-ui/icons/Check';
 import {fillEtherDetailsInFunc} from "../utils";
-export class AcceptButton extends React.Component<{value:string,id:number}, {}> {
+export class AcceptButton extends React.Component<{value:string,id:number,close:()=>any}, {}> {
 
     render() {
 
@@ -18,5 +18,6 @@ export class AcceptButton extends React.Component<{value:string,id:number}, {}> 
       acceptBattle=async():Promise<void> =>{
         let detailedAcceptBattle = await fillEtherDetailsInFunc(acceptBattle);
          detailedAcceptBattle(this.props.id,this.props.value);
+         this.props.close();
     }
 }

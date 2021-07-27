@@ -214,8 +214,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                 </Button>
             </>;
         return <>
-            <AcceptButton value={String(this.state.amount)} id={getAnchor() ?? -1}/>
-            <CancelButton id={getAnchor() ?? -1}/>
+            <AcceptButton value={String(this.state.amount)} id={getAnchor() ?? -1} close={this.handleClose}/>
+            <CancelButton id={getAnchor() ?? -1} close={this.handleClose}/>
         </>
     }
 

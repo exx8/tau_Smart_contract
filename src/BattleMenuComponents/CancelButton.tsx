@@ -3,7 +3,7 @@ import {Button} from "@material-ui/core";
 import { cancelBattle} from "../solidity/Web3Scripts/frontend";
 import {fillEtherDetailsInFunc} from "../utils";
 import BlockIcon from '@material-ui/icons/Block';
-export class CancelButton extends React.Component<{id:number}, {}> {
+export class CancelButton extends React.Component<{id:number,close:()=>any;}, {}> {
 
     render() {
 
@@ -17,5 +17,7 @@ export class CancelButton extends React.Component<{id:number}, {}> {
       rejectBattle=async():Promise<void> =>{
         let detailedCancelBattle = await fillEtherDetailsInFunc(cancelBattle);
          detailedCancelBattle(this.props.id);
-    }
+          this.props.close();
+
+      }
 }
