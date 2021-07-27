@@ -24,6 +24,7 @@ import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {addBattle} from "./solidity/Web3Scripts/frontend"
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 import {AcceptButton} from "./BattleMenuComponents/AcceptButton";
+import {CancelButton} from "./BattleMenuComponents/CancelButton";
 let debug=getDebug("battleMenu");
 interface BattleMenuState {
     email: string | null | undefined;
@@ -196,7 +197,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                                 <SendIcon/>
                                 Send
                             </Button>
-                            <AcceptButton value={1} id={1}/>
+                            <AcceptButton value={String(this.state.amount) } id={getAnchor()??-1}/>
+                            <CancelButton  id={getAnchor()??-1}/>
+
                         </DialogActions>
                     </Dialog>
                 </div>
