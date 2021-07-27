@@ -252,6 +252,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     private sendHandle = async () => {
         //window.addEventListener("load",async()=>{}); // where to wrap? not in this function, but where page is opended
         if (window.ethereum) {
+
             try {
                 let address = await window.ethereum.enable();
 

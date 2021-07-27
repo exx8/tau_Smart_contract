@@ -62,9 +62,11 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
             filter: {address_field: from}, // we filter by the address of the sender
             fromBlock: res - 2, toBlock: res
         });
-
+        debug(result);
+        debug(result.length);
         const id = result[result.length - 1].returnValues.id; // we take the last event referred to the address of the sender
         debug(id);
+        //return id.toString();
         return id;
     } catch (e) {
         debug('caught addBattle');
@@ -72,6 +74,7 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
             const index = e.message.indexOf("0");
             debug(e.message.substring(20, index - 1));
         }
+        console.log(e);
         return -1;
     }
 }
