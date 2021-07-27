@@ -19,10 +19,14 @@ import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
 import moment from "moment";
 import {sendInvitation} from "./Mail";
-import {genericEtherRequest, getAnchor} from "./utils";
+import {genericEtherRequest, getAnchor, getDebug} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {addBattle} from "./solidity/Web3Scripts/frontend"
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
+import {AcceptButton} from "./BattleMenuComponents/AcceptButton";
+import {CancelButton} from "./BattleMenuComponents/CancelButton";
+
+let debug = getDebug("battleMenu");
 
 interface BattleMenuState {
     email: string | null | undefined;
@@ -34,7 +38,8 @@ interface BattleMenuState {
     trendChangeable: boolean;
     amountChangeable: boolean;
     typeChangeable: boolean;
-
+    dateChangeable: boolean;
+    actionOnSubmitAndCancel: boolean;
 
 
 }
@@ -61,7 +66,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         date: moment(BattleMenu.getDefaultDueTime()).unix(),
         showMail: false,
         amountChangeable: true,
-        typeChangeable:true
+        typeChangeable: true,
+        dateChangeable: true,
+        actionOnSubmitAndCancel: true
     };
 
 
@@ -112,7 +119,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     handleDateChange = (e: any) => {
         this.setState(
             {
-                date: moment(e.target.value).unix()
+                date: moment(e.target.value).unix() * 1000
             }
         );
 
@@ -131,6 +138,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     constructor(props: BattleMenuPros) {
         super(props);
+        this.state.date = moment(BattleMenu.getDefaultDueTime()).unix() * 1000;
+        debug(this.state.date, "date");
+
         this.updateFormAccordingToHash();
 
     }
@@ -138,7 +148,18 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     render() {
         let emailBox = this.computeMail();
         let trendToggle = this.computeTrend();
-
+        let datePicker = <TextField
+            id="due-time"
+            label="due time"
+            type="datetime-local"
+            value={getDateString(new Date(this.state.date))}
+            InputLabelProps={{
+                shrink: true,
+            }}
+            onChange={this.handleDateChange}
+            disabled={!this.state.dateChangeable}
+        />;
+        ;
         return (
             <div>
                 <div>
@@ -168,32 +189,34 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
                                 {trendToggle}
                             </div>
-                            <TextField
-                                id="due-time"
-                                label="due time"
-                                type="datetime-local"
-                                defaultValue={BattleMenu.getDefaultDueTime()}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={this.handleDateChange}
-                            />
+                            {datePicker}
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={this.handleClose} color="primary">
-                                <CloseIcon/>
-                                Cancel
-                            </Button>
-                            <Button onClick={this.sendHandle} color="primary">
-                                <SendIcon/>
-                                Send
-                            </Button>
+                            {this.getActionButton()}
 
                         </DialogActions>
                     </Dialog>
                 </div>
             </div>
         );
+    }
+
+    private getActionButton() {
+        if (this.state.actionOnSubmitAndCancel)
+            return <>
+                <Button onClick={this.handleClose} color="primary">
+                    <CloseIcon/>
+                    Cancel
+                </Button>
+                <Button onClick={this.sendHandle} color="primary">
+                    <SendIcon/>
+                    Send
+                </Button>
+            </>;
+        return <>
+            <AcceptButton value={String(this.state.amount)} id={getAnchor() ?? -1} close={this.handleClose}/>
+            <CancelButton id={getAnchor() ?? -1} close={this.handleClose}/>
+        </>
     }
 
     private computeTrend() {
@@ -231,22 +254,29 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     private updateFormAccordingToHash() {
         let battleDataPromise: Promise<addBattleResult | undefined> = this.getBattleData();
         battleDataPromise.then((battleData) => {
-            console.log(battleData)
             let senderMode = battleData === undefined;
             if (!senderMode && battleData) {
                 this.props.handleOpen();
 
-                this.setState({
-                    amount: Number(battleData.amountBet),
-                    showMail: senderMode,
-                    trendChangeable: senderMode,
-                    amountChangeable: false,
-                    type: battleData.betType,
-                    typeChangeable:false
-                })
+                console.log("received date:", battleData.betDate, new Date(Number(battleData.betDate)));
+                this.moveToSendMode(battleData);
             }
         })
 
+    }
+
+    protected moveToSendMode(battleData: addBattleResult) {
+        this.setState({
+            amount: Number(battleData.amountBet),
+            showMail: false,
+            trendChangeable: false,
+            amountChangeable: false,
+            type: battleData.betType,
+            typeChangeable: false,
+            date: Number(battleData.betDate),
+            dateChangeable: false,
+            actionOnSubmitAndCancel: false
+        })
     }
 
     private sendHandle = async () => {
@@ -255,8 +285,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
             try {
                 let address = await window.ethereum.enable();
-
-                let battleID: string = await addBattle(this.state.type, this.state.date * 1000 - new Date().getTime(), this.state.trend, this.state.amount,
+                console.log(this.state.date);
+                let battleID: string = await addBattle(this.state.type, this.state.date, this.state.trend, this.state.amount,
                     window.ethereum, address[0]);
                 const fixedEmail: string = this.state.email ?? "";
                 sendInvitation(fixedEmail, battleID)
@@ -289,7 +319,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 interface addBattleResult extends Array<any> {
 
     amountBet: string;
-    betDate: string;
+    betDate: number;
     betType: string;
     creator: string;
     currVal: string;

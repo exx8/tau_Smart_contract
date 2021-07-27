@@ -12,7 +12,6 @@ let kovan = PickTestNet.kovan;
 
 
 
-
 let debug = getDebug('sol:frontend');
 const init = async function init(provide, from = address) {
 
@@ -78,7 +77,7 @@ export const acceptBattle = async function (id, val, provide, from = address) {
     await init(provide, from);
     try {
         await contract.methods.acceptBattle(id).send({
-            from: address,
+            from,
             value: val
         });
         debug('acceptBattle passed!');
@@ -149,44 +148,42 @@ export const cancelBattle = async function (id, provide, from = address) {
 
 }
 
-export const getBattleInfo= async function (id ,provide, from = address)  {
-	await init(provide,from);
+export const getBattleInfo = async function (id, provide, from = address) {
+    await init(provide, from);
 
-    try{
+    try {
 
-	const battle=await contract.methods.getBattleInfo(id).call();
-	debug('getBattleInfo passed!');
-	console.log(battle);
-	return battle;
-	}
-	catch(e){
-	debug('caught getBattleInfo');
-	if(!kovan){
-	const index=e.message.indexOf("0");
-    debug(e.message.substring(20,index-1));
-	}
+        const battle = await contract.methods.getBattleInfo(id).call();
+        debug('getBattleInfo passed!');
+        console.log(battle);
+        return battle;
+    } catch (e) {
+        debug('caught getBattleInfo');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug(e.message.substring(20, index - 1));
+        }
 
-    return null;
-	}
+        return null;
+    }
 }
 
-export const getAll= async function (provide,from = address)  {
-	await init(provide,from);
+export const getAll = async function (provide, from = address) {
+    await init(provide, from);
 
-    try{
+    try {
 
-	let battle=await contract.methods.getAll().call();
-	console.log('getAll passed!');
-	console.log(battle);
-	return battle;
-	}
-	catch(e){
-	console.log('caught getAll');
-	if(!kovan){
-	const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
-	}
+        let battle = await contract.methods.getAll().call();
+        console.log('getAll passed!');
+        console.log(battle);
+        return battle;
+    } catch (e) {
+        console.log('caught getAll');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            console.log(e.message.substring(20, index - 1));
+        }
 
-    return null;
-	}
+        return null;
+    }
 }
