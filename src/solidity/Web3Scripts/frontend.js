@@ -159,7 +159,7 @@ export const getBattleInfo= async function (id ,provide, from = address)  {
 
     try{
 
-	const battle=await contract.methods.getBattleDate(id).call();
+	const battle=await contract.methods.getBattleInfo(id).call();
 	console.log('getBattleInfo passed!');
 	console.log(battle);
 	return battle;
