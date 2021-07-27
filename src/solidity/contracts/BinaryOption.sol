@@ -94,7 +94,7 @@ contract BinaryOption{
     }*/
 
     // an opponent is signed to battle number: battleid
-    /*function acceptBattle(uint256 battle_id) public payable{
+    function acceptBattle(uint256 battle_id) public payable{
 
         Battle storage bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.\n");
@@ -102,7 +102,7 @@ contract BinaryOption{
         require(bate.creator==bate.opponent, "This battle is closed, opponent already exist.");
         require(msg.value==bate.amountBet, "Betting value isn't as specified for this battle.");
         bate.opponent=msg.sender;
-    }*/
+    }
 
     // a creator cancel his battle
     /*function cancelBattle(uint256 battle_id) public payable{

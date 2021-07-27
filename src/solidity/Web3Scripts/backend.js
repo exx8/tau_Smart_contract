@@ -3,7 +3,7 @@ const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
 const HDWalletProvider=require('@truffle/hdwallet-provider');
 const address='0x082a5b7998Ec14bE1CeC5d2562d7335583382a8c';
-const privateKey="0x798c3768cf935dec172b56ac64ae27fcb27b2853e786c84388e8b3fce4425d65";
+const privateKey="0x3cd65d6030aa8915165d7bebec4897b30278e4b26d3527ca72b9838eb6b8c38c";
 let result=0;
 let web3=null;
 let provider=null;
@@ -60,9 +60,11 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
         return id;
 	}
 	catch(e){
-	console.log('caught addBattle');
-	const index=e.message.indexOf("0");
-    console.log(e.message);
+	const data = e.data;
+	console.log(data);
+
+
+        console.log(reason);
     return -1;
 	}
 }
@@ -70,7 +72,7 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 const acceptBattle= async function (id,val,from = address)  {
 	await init(from);
     try{
-    let nonce=await web3.eth.getTransactionCount(from);
+
 	await contract.methods.acceptBattle(id).send({
 	from: address,
 	value:val
@@ -196,9 +198,9 @@ const getByDate= async function (rnd,from = address)  {
 	}
 }
 
-addBattle("EthVsUsd",90,false,'5');
+addBattle("EthVsUsd",90,false,'0');
 
-//acceptBattle(0,'50000');
+//acceptBattle(1,'50');
 //getBattleInfo(2);
 
 //getRound();
