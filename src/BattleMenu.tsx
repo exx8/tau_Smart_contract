@@ -25,7 +25,9 @@ import {addBattle} from "./solidity/Web3Scripts/frontend"
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 import {AcceptButton} from "./BattleMenuComponents/AcceptButton";
 import {CancelButton} from "./BattleMenuComponents/CancelButton";
-let debug=getDebug("battleMenu");
+
+let debug = getDebug("battleMenu");
+
 interface BattleMenuState {
     email: string | null | undefined;
     type: string | null;
@@ -37,8 +39,7 @@ interface BattleMenuState {
     amountChangeable: boolean;
     typeChangeable: boolean;
     dateChangeable: boolean;
-    actionOnSubmitAndCancel:boolean;
-
+    actionOnSubmitAndCancel: boolean;
 
 
 }
@@ -67,7 +68,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         amountChangeable: true,
         typeChangeable: true,
         dateChangeable: true,
-        actionOnSubmitAndCancel:true
+        actionOnSubmitAndCancel: true
     };
 
 
@@ -118,7 +119,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     handleDateChange = (e: any) => {
         this.setState(
             {
-                date: moment(e.target.value).unix()*1000
+                date: moment(e.target.value).unix() * 1000
             }
         );
 
@@ -137,8 +138,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     constructor(props: BattleMenuPros) {
         super(props);
-        this.state.date=moment(BattleMenu.getDefaultDueTime()).unix()*1000;
-        debug(this.state.date,"date");
+        this.state.date = moment(BattleMenu.getDefaultDueTime()).unix() * 1000;
+        debug(this.state.date, "date");
 
         this.updateFormAccordingToHash();
 
@@ -201,21 +202,21 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     }
 
     private getActionButton() {
-        if(this.state.actionOnSubmitAndCancel)
+        if (this.state.actionOnSubmitAndCancel)
             return <>
-            <Button onClick={this.handleClose} color="primary">
-                <CloseIcon/>
-                Cancel
-            </Button>
-            <Button onClick={this.sendHandle} color="primary">
-                <SendIcon/>
-                Send
-            </Button>
-        </>;
+                <Button onClick={this.handleClose} color="primary">
+                    <CloseIcon/>
+                    Cancel
+                </Button>
+                <Button onClick={this.sendHandle} color="primary">
+                    <SendIcon/>
+                    Send
+                </Button>
+            </>;
         return <>
             <AcceptButton value={String(this.state.amount)} id={getAnchor() ?? -1}/>
             <CancelButton id={getAnchor() ?? -1}/>
-      </>
+        </>
     }
 
     private computeTrend() {
@@ -257,7 +258,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             if (!senderMode && battleData) {
                 this.props.handleOpen();
 
-                console.log("received date:",battleData.betDate,new Date(Number(battleData.betDate)));
+                console.log("received date:", battleData.betDate, new Date(Number(battleData.betDate)));
                 this.moveToSendMode(battleData);
             }
         })
@@ -274,7 +275,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             typeChangeable: false,
             date: Number(battleData.betDate),
             dateChangeable: false,
-            actionOnSubmitAndCancel:false
+            actionOnSubmitAndCancel: false
         })
     }
 
@@ -285,7 +286,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             try {
                 let address = await window.ethereum.enable();
                 console.log(this.state.date);
-                let battleID: string = await addBattle(this.state.type, this.state.date , this.state.trend, this.state.amount,
+                let battleID: string = await addBattle(this.state.type, this.state.date, this.state.trend, this.state.amount,
                     window.ethereum, address[0]);
                 const fixedEmail: string = this.state.email ?? "";
                 sendInvitation(fixedEmail, battleID)
