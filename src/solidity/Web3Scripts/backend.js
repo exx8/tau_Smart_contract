@@ -29,6 +29,7 @@ const init=async function init(from=address) {
     let id="0";
     if(kovan){id="42";}
     else{id="4";}
+
 	contract= new web3.eth.Contract(
 
 	BinaryOption.abi,
@@ -66,6 +67,7 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 	const res=await web3.eth.getBlockNumber();
     result=await contract.getPastEvents('AddEvent',{filter:{ad: from},
                 fromBlock: res-2, toBlock: res});
+                console.log(result);
 
     const id=result[result.length-1].returnValues.id;
     console.log(id);
@@ -138,6 +140,7 @@ const withdraw= async function (identifier,from = address) {
     console.log(e.message.substring(20,index-1));
     return e.message.substring(20,index-1);
     }
+
     return "";
     }
 
@@ -170,8 +173,8 @@ const getBattleInfo= async function (id , from = address)  {
 	await init(from);
 
     try{
-    //let nonce=await web3.eth.getTransactionCount(from); // still need to deal with the nonce issue, since now we do not deploy here
-	let battle=await contract.methods.getBattleInfo(id).call();
+
+	const battle=await contract.methods.getBattleInfo(id).call();
 	console.log('getBattleInfo passed!');
 	console.log(battle);
 	return battle;
@@ -208,8 +211,8 @@ const getAll= async function (from = address)  {
 	}
 }
 
-//addBattle("EthVsUsd",1627227480,false,'2000'); // now 90 isnt good, need to be unix time
+//addBattle("EthVsUsd",0,false,'5'); // now 90 isnt good, need to be unix time
 //getAll();
-//acceptBattle(1,'5000');
-//withdraw(1);
-//getBattleInfo(2);
+//acceptBattle(0,'1');
+//withdraw(0);
+getBattleInfo(3);

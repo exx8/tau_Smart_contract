@@ -1,5 +1,3 @@
-
-
 declare let window: any;
 
 export function getAnchor() {
@@ -12,7 +10,7 @@ export function getAnchor() {
     }
 }
 
-export async function genericEtherRequest<T>(customRequest: (addresses:string) => Promise<T>) {
+export async function genericEtherRequest<T>(customRequest: (addresses: string) => Promise<T>) {
     if (window.ethereum) {
         try {
             let address = await window.ethereum.enable();
@@ -34,7 +32,42 @@ export async function genericEtherRequest<T>(customRequest: (addresses:string) =
     }
 }
 
-export function getDebug(namespace :string) {
+function bind_trailing_args(fn: Function, ...bound_args: any[]): Function {
+    return function (...args: any[]) {
+        return fn(...args, ...bound_args);
+    };
+}
+
+export async function fillEtherDetailsInFunc(customRequest: Function): Promise<Function> {
+    if (window.ethereum) {
+        try {
+            let address = await window.ethereum.enable();
+            console.log( address[0]);
+            return bind_trailing_args(customRequest, window.ethereum, address[0]);
+
+
+        } catch (e) {
+            console.log('Payment using Metamask  was denied');
+            throw e;
+
+        }
+    }
+    /*
+    else if (window.web3) {
+        console.log("Need to see how to extract address in this case, provider is just window.web3. than, call addBattle");
+        console.log(window.web3)
+
+
+
+    }
+    */ else {
+
+        console.log('please install a wallet. recommended: Metamask');
+        throw new Error("no wallet was found");
+    }
+}
+
+export function getDebug(namespace: string) {
     let debugNameSpace = require('debug')(namespace);
     debugNameSpace.log = console.log;
     debugNameSpace.enabled = true;

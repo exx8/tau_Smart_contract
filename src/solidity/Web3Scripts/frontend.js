@@ -5,16 +5,10 @@ const Web3 = require('web3');
 const BinaryOption = require('../build/contracts/BinaryOption.json');
 let address = '0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
 address = PickTestNet.publicAddress;
-let privateKey = PickTestNet.privateAddress;
 let result = PickTestNet.result;
 let web3 = PickTestNet.web3;
-let provider = PickTestNet.provider;
 let contract = PickTestNet.contract;
 let kovan = PickTestNet.kovan;
-let infuraKovan = PickTestNet.infuraKovan;
-let infuraRinkeby = PickTestNet.infuraRinkeby;
-let idKovan = PickTestNet.idKovan;
-let idRinkeby = PickTestNet.idRinkeby;
 
 
 
@@ -62,9 +56,11 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
             filter: {address_field: from}, // we filter by the address of the sender
             fromBlock: res - 2, toBlock: res
         });
-
+        debug(result);
+        debug(result.length);
         const id = result[result.length - 1].returnValues.id; // we take the last event referred to the address of the sender
         debug(id);
+        //return id.toString();
         return id;
     } catch (e) {
         debug('caught addBattle');
@@ -72,6 +68,7 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
             const index = e.message.indexOf("0");
             debug(e.message.substring(20, index - 1));
         }
+        console.log(e);
         return -1;
     }
 }
@@ -80,7 +77,7 @@ export const acceptBattle = async function (id, val, provide, from = address) {
     await init(provide, from);
     try {
         await contract.methods.acceptBattle(id).send({
-            from: address,
+            from,
             value: val
         });
         debug('acceptBattle passed!');
@@ -155,37 +152,38 @@ export const getBattleInfo = async function (id, provide, from = address) {
     await init(provide, from);
 
     try {
-        let battleList = await contract.methods.getBattleInfo(id).call();
+
+        const battle = await contract.methods.getBattleInfo(id).call();
         debug('getBattleInfo passed!');
-        return battleList;
+        console.log(battle);
+        return battle;
     } catch (e) {
         debug('caught getBattleInfo');
         if (!kovan) {
             const index = e.message.indexOf("0");
             debug(e.message.substring(20, index - 1));
         }
+
         return null;
     }
-
 }
 
-export const getAll= async function (from = address)  {
-	await init(from);
+export const getAll = async function (provide, from = address) {
+    await init(provide, from);
 
-    try{
+    try {
 
-	let battle=await contract.methods.getAll().call();
-	console.log('getAll passed!');
-	console.log(battle);
-	return battle;
-	}
-	catch(e){
-	console.log('caught getAll');
-	if(!kovan){
-	const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
-	}
+        let battle = await contract.methods.getAll().call();
+        console.log('getAll passed!');
+        console.log(battle);
+        return battle;
+    } catch (e) {
+        console.log('caught getAll');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            console.log(e.message.substring(20, index - 1));
+        }
 
-    return null;
-	}
+        return null;
+    }
 }
