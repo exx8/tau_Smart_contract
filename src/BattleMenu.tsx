@@ -316,7 +316,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     }
 }
 
-interface addBattleResult extends Array<any> {
+export interface addBattleResult extends Array<any> {
 
     amountBet: string;
     betDate: number;
@@ -325,7 +325,8 @@ interface addBattleResult extends Array<any> {
     currVal: string;
     isUp: boolean;
     opponent: string;
-    length: 7;
+    whoWin:1|2;
+    length: 8;
 
 }
 
