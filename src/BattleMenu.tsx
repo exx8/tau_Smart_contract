@@ -143,6 +143,17 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     render() {
         let emailBox = this.computeMail();
         let trendToggle = this.computeTrend();
+        let datePicker = <TextField
+            id="due-time"
+            label="due time"
+            type="datetime-local"
+            defaultValue={getDateString(new Date(this.state.date))}
+            InputLabelProps={{
+                shrink: true,
+            }}
+            onChange={this.handleDateChange}
+        />;
+        this.datePicker=datePicker;
         return (
             <div>
                 <div>
@@ -172,16 +183,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
                                 {trendToggle}
                             </div>
-                            <TextField
-                                id="due-time"
-                                label="due time"
-                                type="datetime-local"
-                                defaultValue={getDateString(new Date(this.state.date))}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={this.handleDateChange}
-                            />
+                            {datePicker}
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={this.handleClose} color="primary">
@@ -249,6 +251,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                     typeChangeable: false,
                     date:Number(battleData.betDate)
                 })
+                this.datePicker.props.value=getDateString(new Date(this.state.date));
             }
         })
 
