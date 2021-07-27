@@ -3,14 +3,20 @@ import {Button} from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import {acceptBattle} from "../solidity/Web3Scripts/frontend";
 import CheckIcon from '@material-ui/icons/Check';
-export class BattleMenu extends React.Component<{}, {}> {
+import {fillEtherDetailsInFunc} from "../utils";
+export class AcceptButton extends React.Component<{value:number,id:number}, {}> {
+
     render() {
 
         return (
-            <Button onClick={acceptBattle} color="primary">
+            <Button color="primary" onClick={ this.acceptBattle}>
                 <CheckIcon/>
-                Send
+                accept
             </Button>)
     }
 
+      acceptBattle=async():Promise<void> =>{
+        let detailedAcceptBattle = await fillEtherDetailsInFunc(acceptBattle);
+         detailedAcceptBattle(this.props.value, this.props.id);
+    }
 }
