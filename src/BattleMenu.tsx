@@ -249,7 +249,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
     }
 
-    private moveToSendMode(battleData: addBattleResult) {
+    protected moveToSendMode(battleData: addBattleResult) {
         this.setState({
             amount: Number(battleData.amountBet),
             showMail: false,
