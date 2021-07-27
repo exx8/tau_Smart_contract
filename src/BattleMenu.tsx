@@ -172,7 +172,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                             <Select
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
-                                defaultValue={this.state.type}
+                                value={this.state.type}
                                 onChange={this.handleTypeChange}
                                 disabled={!this.state.typeChangeable}
                             >
