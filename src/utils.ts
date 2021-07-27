@@ -34,6 +34,34 @@ export async function genericEtherRequest<T>(customRequest: (addresses:string) =
     }
 }
 
+function bind_trailing_args(fn, ...bound_args) {
+    return function(...args) {
+        return fn(...args, ...bound_args);
+    };
+}
+
+export async function fillEtherDetailsInFunc(customRequest:Function):Promise<Function> {
+    if (window.ethereum) {
+        try {
+            let address = await window.ethereum.enable();
+            return  bind_trailing_args(customRequest,window.ethereum,address);
+
+
+        } catch (e) {
+            console.log('Payment using Metamask  was denied');
+
+        }
+    } else if (window.web3) {
+        console.log("Need to see how to extract address in this case, provider is just window.web3. than, call addBattle");
+        console.log(window.web3)
+
+
+    } else {
+        console.log('please install a wallet. recommended: Metamask');
+
+    }
+}
+
 export function getDebug(namespace :string) {
     let debugNameSpace = require('debug')(namespace);
     debugNameSpace.log = console.log;
