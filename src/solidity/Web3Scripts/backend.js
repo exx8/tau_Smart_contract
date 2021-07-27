@@ -1,6 +1,4 @@
 
-//import {kovan,infuraKovan,infuraRinkeby,idKovan,idRinkeby,publicAddress,privateAddress,result,web3,
- // provider,contract} from './PickTestNet'
 
 const PickTestNet=require('./PickTestNet');
 const Web3=require('web3');
@@ -108,43 +106,45 @@ const acceptBattle= async function (id,val,from = address)  {
 
 }
 
-const withdraw= async function (identifier,from = address) {
-	await init(from);
-    try{
-	const receipt=await contract.methods.withdraw(identifier).send({
-		from: from
-	});
-	console.log('withdraw passed!');
-	const res=await web3.eth.getBlockNumber();
-	result=await contract.getPastEvents('MyEvent',{filter:{id: identifier},fromBlock: "latest"});
-	const winner=result[result.length-1].returnValues.win;
-	let return_msg=null;
-	if (winner==0){
-	return_msg='Opponent won ' +result[0].returnValues.amount+' in battle: '+identifier;
-	}
-	else{
-	if(winner==1){
-	return_msg='Creator won ' +result[0].returnValues.amount+' in battle: '+identifier;
-	}
-	else{
-	return_msg='There was draw in battle: '+identifier;
-	}
-	}
-	console.log(return_msg);
-    return return_msg;
-	}
-    catch(e){
-    console.log('caught withdraw');
-    if(!kovan){
-    const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
-    return e.message.substring(20,index-1);
-    }
 
-    return "";
-    }
+
+const withdraw= async function (from = address) {
+	let battleList=await getAll(from);
+
+	for(let i = 0; i < battleList.length; i++){
+	let currBattle=battleList[i];
+
+	if((currBattle.creator==from||currBattle.opponent==from)&&(currBattle.betDate<=Date.now())&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent)){
+
+	    try{
+    	    await contract.methods.withdraw(i).send({
+    		from: from
+    	    });
+    	    console.log("withdraw in battle: "+i);
+        }
+
+        catch(e){
+            console.log('caught withdraw');
+            if(!kovan){
+            const index=e.message.indexOf("0");
+            console.log(e.message.substring(20,index-1));
+            return e.message.substring(20,index-1);
+            }
+
+            return "";
+            }
+    	}
+	}
+
+
+	return "success";
 
 }
+
+
+
+
+
 
 const cancelBattle= async function(id,from = address) {
 	await init(from);
@@ -211,8 +211,8 @@ const getAll= async function (from = address)  {
 	}
 }
 
-//addBattle("EthVsUsd",0,false,'5'); // now 90 isnt good, need to be unix time
+//addBattle("EthVsUsd",1,false,'3'); // now 90 isnt good, need to be unix time
 //getAll();
-//acceptBattle(0,'1');
-//withdraw(0);
-getBattleInfo(3);
+//acceptBattle(2,'3');
+withdraw();
+//getBattleInfo(1);

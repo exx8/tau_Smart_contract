@@ -93,38 +93,36 @@ export const acceptBattle = async function (id, val, provide, from = address) {
     }
 }
 
-export const withdraw = async function (identifier, provide, from = address) {
-    await init(provide, from);
-    try {
-        await contract.methods.withdraw(identifier).send({
-            from: from
-        });
-        debug('withdraw passed!');
-        const res = await web3.eth.getBlockNumber();
-        result = await contract.getPastEvents('MyEvent', {filter: {id: identifier}, fromBlock: res - 2, toBlock: res}); // we filter by id
-        const winner = result[result.length - 1].returnValues.win;
-        let return_msg = null;
-        if (winner === 0) {
-            return_msg = 'Opponent won ' + result[0].returnValues.amount + ' in battle: ' + identifier;
-        } else {
-            if (winner === 1) {
-                return_msg = 'Creator won ' + result[0].returnValues.amount + ' in battle: ' + identifier;
-            } else {
-                return_msg = 'There was draw in battle: ' + identifier;
-            }
-        }
-        debug(return_msg);
-        return return_msg;
-    } catch (e) {
-        debug('caught withdraw');
-        if (!kovan) {
-            const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
-            return e.message.substring(20, index - 1);
-        }
-        return "";
-    }
+export const withdraw= async function (provide,from = address) {
+	let battleList=await getAll(provide,from);
 
+	for(let i = 0; i < battleList.length; i++){
+	let currBattle=battleList[i];
+
+    // when the code will be 100%, we will remove the corresponding reverts from withdraw in BinaryOption.sol
+	if((currBattle.creator==from||currBattle.opponent==from)&&(currBattle.betDate<=Date.now())
+	&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent)){
+
+	    try{
+    	    await contract.methods.withdraw(i).send({
+    		from: from
+    	    });
+    	    console.log("withdraw in battle: "+i);
+        }
+
+        catch(e){
+            console.log('caught withdraw');
+            if(!kovan){
+            const index=e.message.indexOf("0");
+            console.log(e.message.substring(20,index-1));
+            return e.message.substring(20,index-1);
+            }
+
+            return "";
+            }
+    	}
+	}
+	return "success";
 }
 
 export const cancelBattle = async function (id, provide, from = address) {
