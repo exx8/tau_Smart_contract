@@ -11,6 +11,8 @@ export async function withdraw() {
             return false;
         if(battleData.betDate<Date.now())
             return false;
+        if(battleData.whoWin!=="3")
+            return false;
         if (battleData.creator.toLowerCase() === myaddress[0]) {
             return true;
         }
@@ -20,6 +22,7 @@ export async function withdraw() {
         return false;
 
     })
+    console.log(filteredBattles);
         // eslint-disable-next-line
     filteredBattles.forEach(async (result,id)=>
     {

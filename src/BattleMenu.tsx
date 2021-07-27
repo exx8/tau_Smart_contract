@@ -325,7 +325,7 @@ export interface addBattleResult extends Array<any> {
     currVal: string;
     isUp: boolean;
     opponent: string;
-    whoWin:1|2;
+    whoWin:"1"|"2"|"3"|"4";
     length: 8;
 
 }
