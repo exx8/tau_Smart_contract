@@ -37,7 +37,7 @@ contract BinaryOption{
 
     constructor()  {
         age=new Aggre();
-        bool isKovan=true; // true if kovan, otherwise rinkeby
+        bool isKovan=false; // true if kovan, otherwise rinkeby
         //owner = msg.sender;
         if(isKovan){
         feedAddress["EthVsUsd"]=0x9326BFA02ADD2366b30bacB125260Af641031331;
@@ -64,11 +64,11 @@ contract BinaryOption{
             return battleInfo[battle_id].amountBet;
         }*/
 
-    function getBattleDate(uint256 battle_id) public payable returns(Battle memory) {
-            Battle memory bate=battleInfo[battle_id];
-            require(bate.amountBet>0, "Battle number isn't exist.\n");
-            //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start.");
-            return battleInfo[battle_id];
+    function getBattleInfo(uint256 battle_id) public payable returns(Battle memory) {
+        Battle storage bate=battleInfo[battle_id];
+        require(bate.amountBet>0, "Battle number isn't exist.\n");
+        //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start.");
+        return battleInfo[battle_id];
     }
 
     function getAll() public view returns (Battle[] memory){
@@ -80,7 +80,6 @@ contract BinaryOption{
         }
 
     /*
-
     function setPrice() public {
         if(isKovan){
         feed= age.getThePrice(0x9326BFA02ADD2366b30bacB125260Af641031331);
@@ -90,7 +89,6 @@ contract BinaryOption{
     function getPrice() public view returns (int){
         return feed;
     }
-
     */
     /*function getId() public view returns (uint256){
         return battleId;
@@ -108,7 +106,6 @@ contract BinaryOption{
         //require(bate.creator!=msg.sender, "Impossible to fight against yourself."); // in comment until we test with two different players
         require(bate.creator==bate.opponent, "This battle is closed, opponent already exist.");
         require(msg.value==bate.amountBet, "Betting value isn't as specified for this battle.");
-        // need to check that he doesnt accept several times
         bate.opponent=msg.sender;
     }
 

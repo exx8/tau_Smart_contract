@@ -22,7 +22,6 @@ import {sendInvitation} from "./Mail";
 import {genericEtherRequest, getAnchor, getDebug} from "./utils";
 import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {addBattle} from "./solidity/Web3Scripts/frontend"
-import {getAll} from "./solidity/Web3Scripts/frontend"
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 let debug=getDebug("battleMenu");
 interface BattleMenuState {
@@ -258,6 +257,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
     private sendHandle = async () => {
         //window.addEventListener("load",async()=>{}); // where to wrap? not in this function, but where page is opended
         if (window.ethereum) {
+
             try {
                 let address = await window.ethereum.enable();
                 console.log(this.state.date);

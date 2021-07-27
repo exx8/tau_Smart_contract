@@ -62,9 +62,11 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
             filter: {address_field: from}, // we filter by the address of the sender
             fromBlock: res - 2, toBlock: res
         });
-
+        debug(result);
+        debug(result.length);
         const id = result[result.length - 1].returnValues.id; // we take the last event referred to the address of the sender
         debug(id);
+        //return id.toString();
         return id;
     } catch (e) {
         debug('caught addBattle');
@@ -72,6 +74,7 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
             const index = e.message.indexOf("0");
             debug(e.message.substring(20, index - 1));
         }
+        console.log(e);
         return -1;
     }
 }
@@ -151,21 +154,21 @@ export const cancelBattle = async function (id, provide, from = address) {
 
 }
 
-export const getBattleInfo= async function (provide,id , from = address)  {
-	await init(from);
+export const getBattleInfo= async function (id ,provide, from = address)  {
+	await init(provide,from);
 
     try{
 
-	const battle=await contract.methods.getBattleDate(id).call();
-	console.log('getBattleInfo passed!');
+	const battle=await contract.methods.getBattleInfo(id).call();
+	debug('getBattleInfo passed!');
 	console.log(battle);
 	return battle;
 	}
 	catch(e){
-	console.log('caught getBattleInfo');
+	debug('caught getBattleInfo');
 	if(!kovan){
 	const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
+    debug(e.message.substring(20,index-1));
 	}
 
     return null;
@@ -173,7 +176,7 @@ export const getBattleInfo= async function (provide,id , from = address)  {
 }
 
 export const getAll= async function (provide,from = address)  {
-	await init(from);
+	await init(provide,from);
 
     try{
 

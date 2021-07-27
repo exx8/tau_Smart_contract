@@ -67,6 +67,7 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 	const res=await web3.eth.getBlockNumber();
     result=await contract.getPastEvents('AddEvent',{filter:{ad: from},
                 fromBlock: res-2, toBlock: res});
+                console.log(result);
 
     const id=result[result.length-1].returnValues.id;
     console.log(id);
@@ -173,7 +174,7 @@ const getBattleInfo= async function (id , from = address)  {
 
     try{
 
-	const battle=await contract.methods.getBattleDate(id).call();
+	const battle=await contract.methods.getBattleInfo(id).call();
 	console.log('getBattleInfo passed!');
 	console.log(battle);
 	return battle;
@@ -212,6 +213,6 @@ const getAll= async function (from = address)  {
 
 //addBattle("EthVsUsd",0,false,'5'); // now 90 isnt good, need to be unix time
 //getAll();
-//acceptBattle(2,'5');
-//withdraw(2);
-//getBattleInfo(3);
+//acceptBattle(0,'1');
+//withdraw(0);
+getBattleInfo(3);
