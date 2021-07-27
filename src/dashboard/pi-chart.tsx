@@ -2,13 +2,10 @@ import React from "react";
 import Chart from 'chart.js/auto';
 import {fillEtherDetailsInFunc, genericEtherRequest} from "../utils";
 import {getAll as getAllFE} from "../solidity/Web3Scripts/frontend";
-import {addBattleResult, BattleMenu} from "../BattleMenu";
+import {addBattleResult} from "../BattleMenu";
 
 export class PiChart extends React.Component<{}, {}> {
-    constructor(props: {}) {
-        super(props);
 
-    }
 
     render() {
         return <>
@@ -25,7 +22,7 @@ export class PiChart extends React.Component<{}, {}> {
             let statusOfBattles = [0, 0, 0, 0];
             for (let battle of results) {
 
-                if (battle.creator.toLowerCase() == address[0])
+                if (battle.creator.toLowerCase() === address[0])
                     switch (battle.whoWin) {
                         case "1"://you win
                             statusOfBattles[0]++;
@@ -41,7 +38,7 @@ export class PiChart extends React.Component<{}, {}> {
                             break;
 
                     }
-                if (battle.opponent.toLowerCase() == address[0])
+                if (battle.opponent.toLowerCase() === address[0])
                     switch (battle.whoWin) {
                         case "1"://you win
                             statusOfBattles[1]++
@@ -63,7 +60,7 @@ export class PiChart extends React.Component<{}, {}> {
             }
             var ct: HTMLCanvasElement = document.getElementById('myChart') as HTMLCanvasElement;
             var ctx = ct.getContext('2d') as CanvasRenderingContext2D;
-            var chart = new Chart(ctx, {
+           new Chart(ctx, {
                 type: 'pie',
                 // The type of chart we want to create
 
