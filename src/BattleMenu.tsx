@@ -315,7 +315,6 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         return getDateString(futureDate(this.defaultDueTimeInTheFutureInDays));
     }
 }
-
 export interface addBattleResult extends Array<any> {
 
     amountBet: string;
@@ -325,7 +324,7 @@ export interface addBattleResult extends Array<any> {
     currVal: string;
     isUp: boolean;
     opponent: string;
-
+    whoWin:"1"|"2"|"3"|"0";
     length: 8;
 
 }
