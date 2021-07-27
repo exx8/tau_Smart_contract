@@ -37,6 +37,7 @@ interface BattleMenuState {
     amountChangeable: boolean;
     typeChangeable: boolean;
     dateChangeable: boolean;
+    actionOnSubmitAndCancel:boolean;
 
 
 
@@ -65,7 +66,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         showMail: false,
         amountChangeable: true,
         typeChangeable: true,
-        dateChangeable: true
+        dateChangeable: true,
+        actionOnSubmitAndCancel:true
     };
 
 
@@ -189,22 +191,31 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                             {datePicker}
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={this.handleClose} color="primary">
-                                <CloseIcon/>
-                                Cancel
-                            </Button>
-                            <Button onClick={this.sendHandle} color="primary">
-                                <SendIcon/>
-                                Send
-                            </Button>
-                            <AcceptButton value={String(this.state.amount) } id={getAnchor()??-1}/>
-                            <CancelButton  id={getAnchor()??-1}/>
+                            {this.getActionButton()}
 
                         </DialogActions>
                     </Dialog>
                 </div>
             </div>
         );
+    }
+
+    private getActionButton() {
+        if(this.state.actionOnSubmitAndCancel)
+            return <>
+            <Button onClick={this.handleClose} color="primary">
+                <CloseIcon/>
+                Cancel
+            </Button>
+            <Button onClick={this.sendHandle} color="primary">
+                <SendIcon/>
+                Send
+            </Button>
+        </>;
+        return <>
+            <AcceptButton value={String(this.state.amount)} id={getAnchor() ?? -1}/>
+            <CancelButton id={getAnchor() ?? -1}/>
+      </>
     }
 
     private computeTrend() {
@@ -262,7 +273,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             type: battleData.betType,
             typeChangeable: false,
             date: Number(battleData.betDate),
-            dateChangeable: false
+            dateChangeable: false,
+            actionOnSubmitAndCancel:false
         })
     }
 
