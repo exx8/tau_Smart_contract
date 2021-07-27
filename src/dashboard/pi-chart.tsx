@@ -10,7 +10,7 @@ export class PiChart extends React.Component<{}, {}> {
     render() {
         return <>
             <div>
-                <canvas id={"myChart"} style={{height:"250px",width:"250px"}}/>
+                <canvas id={"myChart"} style={{height: "250px", width: "250px"}}/>
             </div>
         </>;
     }
@@ -60,7 +60,7 @@ export class PiChart extends React.Component<{}, {}> {
             }
             var ct: HTMLCanvasElement = document.getElementById('myChart') as HTMLCanvasElement;
             var ctx = ct.getContext('2d') as CanvasRenderingContext2D;
-           new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'pie',
                 // The type of chart we want to create
 
