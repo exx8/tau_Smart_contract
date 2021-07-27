@@ -71,14 +71,17 @@ export class PiChart extends React.Component<{}, {}> {
                     datasets: [{
                         label: "My First dataset",
                         backgroundColor: [
-                            'rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)',
-                            'rgb(255, 205, 86)',
-                            'rgb(40, 205, 86)'
-                        ], borderColor: ['rgb(255, 99, 132)',
-                            'rgb(54, 162, 235)',
-                            'rgb(255, 205, 86)',
-                            'rgb(40, 205, 86)'],
+                            'rgb(7,83,26)',
+                            'rgb(169,1,30)',
+                            'rgb(245,87,0)',
+                            'rgb(255,255,255)',
+                        ], borderColor: [
+                            'rgb(7,83,26)',
+                            'rgb(169,1,30)',
+                            'rgb(245,87,0)',
+                            'rgb(255,255,255)',
+
+                        ],
                         data: statusOfBattles,
                     }]
                 },
