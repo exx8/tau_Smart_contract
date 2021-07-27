@@ -24,7 +24,6 @@ export class PiChart extends React.Component<{}, {}> {
             let results: addBattleResult[] = await getAll();
             let statusOfBattles = [0, 0, 0, 0];
             for (let battle of results) {
-                console.log(battle)
 
                 if (battle.creator.toLowerCase() == address[0])
                     switch (battle.whoWin) {
