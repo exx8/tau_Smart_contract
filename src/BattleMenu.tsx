@@ -251,7 +251,6 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                     typeChangeable: false,
                     date:Number(battleData.betDate)
                 })
-                this.datePicker.props.value=getDateString(new Date(this.state.date));
             }
         })
 
