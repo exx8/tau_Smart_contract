@@ -29,6 +29,7 @@ const init=async function init(from=address) {
     let id="0";
     if(kovan){id="42";}
     else{id="4";}
+
 	contract= new web3.eth.Contract(
 
 	BinaryOption.abi,
@@ -66,6 +67,7 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 	const res=await web3.eth.getBlockNumber();
     result=await contract.getPastEvents('AddEvent',{filter:{ad: from},
                 fromBlock: res-2, toBlock: res});
+                console.log(result);
 
     const id=result[result.length-1].returnValues.id;
     console.log(id);
@@ -73,10 +75,12 @@ const addBattle= async function (battle_type, expire_time, winner, val, from = a
 	}
 	catch(e){
 	console.log('caught addBattle');
+	console.log(e);
 	if(!kovan){
 	const index=e.message.indexOf("0");
     console.log(e.message);
     }
+
     return -1;
 	}
 }
@@ -116,11 +120,11 @@ const withdraw= async function (identifier,from = address) {
 	const winner=result[result.length-1].returnValues.win;
 	let return_msg=null;
 	if (winner==0){
-	return_msg='You lost ' +result[0].returnValues.amount+' in battle: '+identifier;
+	return_msg='Opponent won ' +result[0].returnValues.amount+' in battle: '+identifier;
 	}
 	else{
 	if(winner==1){
-	return_msg='You won ' +result[0].returnValues.amount+' in battle: '+identifier;
+	return_msg='Creator won ' +result[0].returnValues.amount+' in battle: '+identifier;
 	}
 	else{
 	return_msg='There was draw in battle: '+identifier;
@@ -136,6 +140,7 @@ const withdraw= async function (identifier,from = address) {
     console.log(e.message.substring(20,index-1));
     return e.message.substring(20,index-1);
     }
+
     return "";
     }
 
@@ -168,9 +173,10 @@ const getBattleInfo= async function (id , from = address)  {
 	await init(from);
 
     try{
-    //let nonce=await web3.eth.getTransactionCount(from); // still need to deal with the nonce issue, since now we do not deploy here
-	let battle=await contract.methods.getBattleInfo(id).call();
+
+	const battle=await contract.methods.getBattleInfo(id).call();
 	console.log('getBattleInfo passed!');
+	console.log(battle);
 	return battle;
 	}
 	catch(e){
@@ -184,7 +190,29 @@ const getBattleInfo= async function (id , from = address)  {
 	}
 }
 
-addBattle("EthVsUsd",90,false,'50000'); // now 90 isnt good, need to be unix time
+const getAll= async function (from = address)  {
+	await init(from);
 
-//acceptBattle(0,'50000');
-//getBattleInfo(2);
+    try{
+
+	let battle=await contract.methods.getAll().call();
+	console.log('getAll passed!');
+	console.log(battle);
+	return battle;
+	}
+	catch(e){
+	console.log('caught getAll');
+	if(!kovan){
+	const index=e.message.indexOf("0");
+    console.log(e.message.substring(20,index-1));
+	}
+
+    return null;
+	}
+}
+
+//addBattle("EthVsUsd",0,false,'5'); // now 90 isnt good, need to be unix time
+//getAll();
+//acceptBattle(0,'1');
+//withdraw(0);
+getBattleInfo(3);
