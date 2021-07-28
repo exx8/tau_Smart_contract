@@ -18,8 +18,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"a\",\"type\":\"address\"}],\"name\":\"getThePrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/mnt/c/users/admin/ideaprojects/tau_smart_contract/src/solidity/contracts/Aggre.sol\":\"Aggre\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/mnt/c/users/admin/ideaprojects/tau_smart_contract/src/solidity/contracts/Aggre.sol\":{\"keccak256\":\"0xe8f980d71aed685b5eb81af03b67b69d2646f4a4c0ecbf4c4ada82ae133f5669\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e0e4ca262f2b3a55be39a5d8586b2805ee8b9c5ffca9ff19fbeeec9ce0ba38fc\",\"dweb:/ipfs/QmQKVYnqrso3EdVkhQGPjhPUx9RZXFJZHudHqsi6ENRTaR\"]},\"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol\":{\"keccak256\":\"0xe6f5ac8c47f3b9b6135051efb9216f9ba5b312a6ecc20209b4f66a780443c328\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ded4aa77b7b8f222a2d992eb95b03592be3250b826b6a38a4c790d2dec8b0d47\",\"dweb:/ipfs/QmNUKpTKXWsBBNMyzZuYvEZ2pUhZ2zEhQuyvxYZpTwo4eT\"]}},\"version\":1}",
@@ -1893,7 +1892,7 @@
         21
       ],
       "AggregatorV3Interface": [
-        658
+        605
       ]
     },
     "id": 22,
@@ -1918,7 +1917,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 22,
-        "sourceUnit": 659,
+        "sourceUnit": 606,
         "src": "168:76:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2015,10 +2014,10 @@
                           "name": "AggregatorV3Interface",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 658,
+                          "referencedDeclaration": 605,
                           "src": "410:21:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$658_$",
+                            "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$605_$",
                             "typeString": "type(contract AggregatorV3Interface)"
                           }
                         },
@@ -2033,7 +2032,7 @@
                         "src": "410:24:0",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$658",
+                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$605",
                           "typeString": "contract AggregatorV3Interface"
                         }
                       },
@@ -2044,7 +2043,7 @@
                       "lValueRequested": false,
                       "memberName": "latestRoundData",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 657,
+                      "referencedDeclaration": 604,
                       "src": "410:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
@@ -2186,7 +2185,7 @@
         21
       ],
       "AggregatorV3Interface": [
-        658
+        605
       ]
     },
     "id": 22,
@@ -2211,7 +2210,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 22,
-        "sourceUnit": 659,
+        "sourceUnit": 606,
         "src": "168:76:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2308,10 +2307,10 @@
                           "name": "AggregatorV3Interface",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 658,
+                          "referencedDeclaration": 605,
                           "src": "410:21:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$658_$",
+                            "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$605_$",
                             "typeString": "type(contract AggregatorV3Interface)"
                           }
                         },
@@ -2326,7 +2325,7 @@
                         "src": "410:24:0",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$658",
+                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$605",
                           "typeString": "contract AggregatorV3Interface"
                         }
                       },
@@ -2337,7 +2336,7 @@
                       "lValueRequested": false,
                       "memberName": "latestRoundData",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 657,
+                      "referencedDeclaration": 604,
                       "src": "410:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
@@ -2497,8 +2496,7 @@
     }
   },
   "schemaVersion": "3.4.1",
-  "updatedAt": "2021-07-27T16:17:38.468Z",
-  "networkType": "ethereum",
+  "updatedAt": "2021-07-27T20:35:36.662Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
