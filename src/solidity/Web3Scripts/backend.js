@@ -114,7 +114,8 @@ const withdraw= async function (from = address) {
 	for(let i = 0; i < battleList.length; i++){
 	let currBattle=battleList[i];
 
-	if((currBattle.creator==from||currBattle.opponent==from)&&(currBattle.betDate<=Date.now())&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent)){
+	if((currBattle.creator==from||currBattle.opponent==from)&&(currBattle.betDate<=Date.now())
+	&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent)){
 
 	    try{
     	    await contract.methods.withdraw(i).send({
