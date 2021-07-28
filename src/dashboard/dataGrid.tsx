@@ -5,8 +5,12 @@ import '@inovua/reactdatagrid-community/index.css';
 
 export class DataGrid extends React.Component<{}, {}> {
      columns = [
-        { name: 'name', header: 'Name', minWidth: 50, defaultFlex: 2 },
-        { name: 'age', header: 'Age', maxWidth: 1000, defaultFlex: 1 },
+        { name: 'amountBet', header: 'amount', minWidth: 50, defaultFlex: 2 },
+         { name: 'betType', header: 'type', minWidth: 50, defaultFlex: 3 },
+         { name: 'isUp', header: 'trend', minWidth: 50, defaultFlex: 4 },
+         { name: 'WhoWin', header: 'status', minWidth: 50, defaultFlex: 5 },
+
+         { name: 'betDate', header: 'date', maxWidth: 1000, defaultFlex: 1 },
     ];
 
      gridStyle = { minHeight: 550,display:"inline-block" ,minWidth:"20vw"};
