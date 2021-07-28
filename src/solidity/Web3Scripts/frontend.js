@@ -52,32 +52,38 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
             value: val
         });
         const res = await web3.eth.getBlockNumber();
+        debug("blockNumber is: "+res);
         result = await contract.getPastEvents('AddEvent', {
             filter: {address_field: from}, // we filter by the address of the sender
             fromBlock: res - 2, toBlock: res
         });
-        debug(result);
-        debug(result.length);
+        debug("result is: "+result);
+        debug("result length is: "+result.length);
         const id = result[result.length - 1].returnValues.id; // we take the last event referred to the address of the sender
-        debug(id);
+        debug("id is: "+id);
+
         //return id.toString();
         return id;
     } catch (e) {
         debug('caught addBattle');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
+            debug("revert cuz of: "+e.message.substring(20, index - 1));
         }
-        console.log(e);
+
+        debug("full error: "+e);
+
         return -1;
     }
 }
 
 export const acceptBattle = async function (id, val, provide, from = address) {
-    await init(provide, from);
+    debug("acceptBattle start");
+    let battleList=await getAll(provide, from);
+
     try {
         await contract.methods.acceptBattle(id).send({
-            from,
+            from: from,
             value: val
         });
         debug('acceptBattle passed!');
@@ -86,9 +92,11 @@ export const acceptBattle = async function (id, val, provide, from = address) {
         debug('caught acceptBattle');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
-            return e.message.substring(20, index - 1);
+            debug("revert cuz of: "+e.message.substring(20, index - 1));
+
+
         }
+        debug("full error: "+e);
         return "";
     }
 }
@@ -107,17 +115,17 @@ export const withdraw= async function (provide,from = address) {
     	    await contract.methods.withdraw(i).send({
     		from: from
     	    });
-    	    console.log("withdraw in battle: "+i);
+    	    debug("withdraw in battle: "+i);
         }
 
         catch(e){
-            console.log('caught withdraw');
+            console.log('caught withdraw in battle: '+i);
             if(!kovan){
             const index=e.message.indexOf("0");
-            console.log(e.message.substring(20,index-1));
-            return e.message.substring(20,index-1);
-            }
+            debug("revert cuz of: "+e.message.substring(20, index - 1));
 
+            }
+            debug("full error: "+e);
             return "";
             }
     	}
@@ -138,9 +146,10 @@ export const cancelBattle = async function (id, provide, from = address) {
         debug('caught cancel');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
-            return e.message.substring(20, index - 1);
+            debug("revert cuz of: "+e.message.substring(20, index - 1));
+
         }
+         debug("full error: "+e);
         return "";
     }
 
@@ -153,15 +162,15 @@ export const getBattleInfo = async function (id, provide, from = address) {
 
         const battle = await contract.methods.getBattleInfo(id).call();
         debug('getBattleInfo passed!');
-        console.log(battle);
+        debug(battle);
         return battle;
     } catch (e) {
         debug('caught getBattleInfo');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
+            debug(debug("revert cuz of: "+e.message.substring(20, index - 1)));
         }
-
+        debug("full error: "+e);
         return null;
     }
 }
@@ -172,16 +181,17 @@ export const getAll = async function (provide, from = address) {
     try {
 
         let battle = await contract.methods.getAll().call();
-        console.log('getAll passed!');
-        console.log(battle);
+        debug('getAll passed!');
+        debug("battle list is: "+battle);
+        debug("battle length is: "+battle.length);
         return battle;
     } catch (e) {
         console.log('caught getAll');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            console.log(e.message.substring(20, index - 1));
+            debug("revert cuz of: "+e.message.substring(20, index - 1));
         }
-
+        debug("full error: "+e);
         return null;
     }
 }

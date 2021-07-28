@@ -215,7 +215,7 @@ const getAll= async function (from = address)  {
 
 
 //addBattle("EthVsUsd",2,false,'2'); // now 90 isnt good, need to be unix time
-//acceptBattle(0,'2');
+//acceptBattle(4,'2');
 //getAll();
 withdraw();
 //getBattleInfo(1);
