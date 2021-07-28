@@ -18,7 +18,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"a\",\"type\":\"address\"}],\"name\":\"getThePrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/home/eran/WebstormProjects/tau_Smart_contract/src/solidity/contracts/Aggre.sol\":\"Aggre\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/home/eran/WebstormProjects/tau_Smart_contract/src/solidity/contracts/Aggre.sol\":{\"keccak256\":\"0xf0bf0599946a3bfda7bfc4d2c34f2589bc95ef3d7c660661dc22cb8d918c2e8d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://9ca7f9703104a2f961513e8bcf841250167c6fe18c5350f6229e49cecb3ceb2a\",\"dweb:/ipfs/QmbWwmJuJbMcAQLukTNjCepkMtEwgrRSjV1QGG9DPzowYv\"]},\"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol\":{\"keccak256\":\"0xe6f5ac8c47f3b9b6135051efb9216f9ba5b312a6ecc20209b4f66a780443c328\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ded4aa77b7b8f222a2d992eb95b03592be3250b826b6a38a4c790d2dec8b0d47\",\"dweb:/ipfs/QmNUKpTKXWsBBNMyzZuYvEZ2pUhZ2zEhQuyvxYZpTwo4eT\"]}},\"version\":1}",
@@ -2479,8 +2480,8 @@
     "4": {
       "events": {},
       "links": {},
-      "address": "0xCbB9B1964F9bC36A61eE081C3dE0778921Ec7d89",
-      "transactionHash": "0xaf39ec1008931818463a4488d03814f423b2cbeefc97cc841af639cbe829edc5"
+      "address": "0xab381a1f78b9f2A115E36E8a1c6F76E029ab8ef8",
+      "transactionHash": "0x186352c165f4a0390481165ed1c8bf81c822fd11cea96b219aa5232288e1d007"
     },
     "42": {
       "events": {},
@@ -2496,7 +2497,8 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-07-27T07:08:42.124Z",
+  "updatedAt": "2021-07-28T11:53:51.822Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

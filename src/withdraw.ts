@@ -4,25 +4,22 @@ import {addBattleResult} from "./BattleMenu";
 import {withdraw as frontend_withdraw} from "./solidity/Web3Scripts/frontend.js"
 export async function withdraw() {
     let getAllDetailed = await fillEtherDetailsInFunc(getAll);
-    let myaddress = await genericEtherRequest(async address => address);
+    let from = await genericEtherRequest(async address => address);
     let allBattles: addBattleResult[] = await (getAllDetailed());
-    let filteredBattles = allBattles.filter((battleData) => {
-        if (!myaddress)
+    let filteredBattles = allBattles.filter((currBattle) => {
+        if (!from)
             return false;
-        if(battleData.betDate<Date.now())
-            return false;
-        if(battleData.whoWin!=="3")
-            return false;
-        if (battleData.creator.toLowerCase() === myaddress[0]) {
-            return true;
-        }
-        if (battleData.opponent.toLowerCase() === myaddress[0]) {
-            return true;
-        }
-        return false;
+        return true;
+        if((currBattle.creator.toLowerCase()===from||currBattle.opponent.toLowerCase()===from)&&(currBattle.betDate<=Date.now())&&(currBattle.whoWin==="3")
+            &&(currBattle.creator.toLowerCase()!==currBattle.opponent.toLowerCase()))
+        {
 
-    })
-    console.log(filteredBattles);
+            return true;
+    }
+        else
+            return false;
+    });
+    console.log(filteredBattles,from);
         // eslint-disable-next-line
     filteredBattles.forEach(async (result,id)=>
     {
