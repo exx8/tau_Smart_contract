@@ -9,7 +9,7 @@ export class PiChart extends React.Component<{}, {}> {
 
     render() {
         return <>
-            <div>
+            <div style={{display:"inline-block"}}>
                 <canvas id={"myChart"} style={{height: "250px", width: "250px"}}/>
             </div>
         </>;

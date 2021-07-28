@@ -12,7 +12,7 @@ function App() {
         <div className="App">
 
             <header className="App-header">
-                <div style={{padding:"10px"}}>
+                <div style={{padding:"10px" ,display:"inherit"}}>
                     <PiChart/>
                                         <DataGrid/>
 

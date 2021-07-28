@@ -2,13 +2,14 @@ import React from "react";
 import ReactDataGrid from '@inovua/reactdatagrid-community';
 import '@inovua/reactdatagrid-community/index.css';
 
+
 export class DataGrid extends React.Component<{}, {}> {
      columns = [
         { name: 'name', header: 'Name', minWidth: 50, defaultFlex: 2 },
         { name: 'age', header: 'Age', maxWidth: 1000, defaultFlex: 1 },
     ];
 
-     gridStyle = { minHeight: 550 };
+     gridStyle = { minHeight: 550,display:"inline-block" ,minWidth:"20vw"};
 
      dataSource = [
         { id: 1, name: 'John McQueen', age: 35 },
