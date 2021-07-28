@@ -275,7 +275,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             typeChangeable: false,
             date: Number(battleData.betDate),
             dateChangeable: false,
-            actionOnSubmitAndCancel: false
+            actionOnSubmitAndCancel: false,
+            trend:!battleData.isUp
         })
     }
 
