@@ -48,7 +48,7 @@ export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
                         betType: String(value.betType),
                         isUp: (value.isUp)? <TrendingUp/>:<TrendingDown/>,
                         WhoWin: status[value.whoWin as 1|2|3|0 ],
-                        betDate: new Date(value.betDate).toString()
+                        betDate: new Date(Number(value.betDate)).toString()
 
                     };
                     return returned_value;
