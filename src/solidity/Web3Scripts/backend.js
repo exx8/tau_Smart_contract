@@ -211,8 +211,10 @@ const getAll= async function (from = address)  {
 	}
 }
 
-//addBattle("EthVsUsd",1,false,'3'); // now 90 isnt good, need to be unix time
+
+
+//addBattle("EthVsUsd",2,false,'2'); // now 90 isnt good, need to be unix time
+//acceptBattle(0,'2');
 //getAll();
-//acceptBattle(2,'3');
 withdraw();
 //getBattleInfo(1);

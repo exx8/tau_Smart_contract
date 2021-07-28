@@ -100,7 +100,7 @@ export const withdraw= async function (provide,from = address) {
 	let currBattle=battleList[i];
 
     // when the code will be 100%, we will remove the corresponding reverts from withdraw in BinaryOption.sol
-	if((currBattle.creator==from||currBattle.opponent==from)&&(currBattle.betDate<=Date.now())
+	if((currBattle.creator==from||currBattle.opponent==from)&&(currBattle.betDate<=Date.now())&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent))
 	&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent)){
 
 	    try{
