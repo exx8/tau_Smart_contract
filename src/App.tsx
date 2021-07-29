@@ -4,6 +4,7 @@ import {Button} from '@material-ui/core';
 import {BattleMenu} from './BattleMenu';
 import {PiChart} from "./dashboard/pi-chart";
 import {DataGrid} from "./dashboard/dataGrid";
+import {Balance} from "./dashboard/balance";
 
 function App() {
     const [dialogOpen, setDialogOpen] = React.useState(false);
@@ -15,6 +16,7 @@ function App() {
                 <div style={{padding:"10px" ,display:"inherit"}}>
                     <PiChart/>
                                         <DataGrid/>
+                    <Balance/>
 
                 </div>
                 <div>

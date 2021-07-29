@@ -32,7 +32,6 @@ export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
     async componentDidMount() {
         let getAll = await fillEtherDetailsInFunc(getAllFE);
             let results: addBattleResult = await getAll();
-            console.log(results);
             const status={
                 0:"opponent",
                 1: "creator",
@@ -52,7 +51,6 @@ export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
                     return returned_value;
                 }
             );
-            console.log(dataSource)
             this.setState({
                 dataSource: dataSource
             });
