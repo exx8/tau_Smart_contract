@@ -12,11 +12,11 @@ contract BinaryOption{
     mapping(string=>address) public feedAddress;
     Aggre public age;
 
-    event MyEvent(
+    /*event MyEvent(
     uint256 indexed id,
     uint256 indexed amount,
     int win
-    );
+    );*/
 
     event AddEvent(
     uint256 indexed id,
@@ -44,9 +44,14 @@ contract BinaryOption{
         }
         else{
         // those addresses (of rinkbey test network) can be found at: https://docs.chain.link/docs/ethereum-addresses/
-        feedAddress["EthVsUsd"]=0x8A753747A1Fa494EC906cE90E9f37563A8AF630e;
-        //feedAddress["BtcVsUsd"]=0x6135b13325bfC4B00278B4abC5e20bbce2D6580e;
-        //feedAddress["EurVsUsd"]=0x0c15Ab9A0DB086e062194c273CC79f41597Bbf13;
+        feedAddress["eth_vs_usd"]=0x8A753747A1Fa494EC906cE90E9f37563A8AF630e;
+        feedAddress["btc_vs_usd"]=0xECe365B379E1dD183B20fc5f022230C044d51404;
+        feedAddress["eur_vs_usd"]=0x78F9e60608bF48a1155b4B2A5e31F32318a1d85F;
+        feedAddress["usdc_vs_eth"]=0xdCA36F27cbC4E38aE16C4E9f99D39b42337F6dcf;
+        feedAddress["dai_vs_usd"]=0x2bA49Aaa16E6afD2a993473cfB70Fa8559B523cF;
+        feedAddress["dai_vs_eth"]=0x74825DbC8BF76CC4e9494d0ecB210f676Efa001D;
+        feedAddress["sdefi_vs_usd"]=0x0630521aC362bc7A19a4eE44b57cE72Ea34AD01c;
+        feedAddress["snx_vs_usd"]=0xE96C4407597CD507002dF88ff6E0008AB41266Ee;
         }
 
     }
@@ -170,7 +175,7 @@ contract BinaryOption{
         }
         bate.whoWin=winner;
         // sign the event
-        emit MyEvent(battle_id,bate.amountBet*2,winner);
+        //emit MyEvent(battle_id,bate.amountBet*2,winner);
         //delete battleInfo[battle_id]; // battle is finished
     }
 
