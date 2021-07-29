@@ -26,10 +26,10 @@ export class Balance extends React.Component<{}, {}> {
                     let amount = Number(value.amountBet);
                     switch (value.whoWin) {
                         case "0":
-                            amount *= value.opponent == address ? -1 : 1;
+                            amount *= value.opponent === address ? -1 : 1;
                             break;
                         case "1":
-                            amount *= value.creator == address ? -1 : 1
+                            amount *= value.creator === address ? -1 : 1
                             break;
                         case "2":
                         case "3":
