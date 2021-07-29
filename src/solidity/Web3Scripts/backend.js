@@ -56,33 +56,34 @@ const init=async function init(from=address) {
 
 }
 
-const addBattle= async function (battle_type, expire_time, winner, val, from = address)  {
-	await init(from);
-
-    try{
-	await contract.methods.addBattle(battle_type,expire_time,winner).send({
-		from: from,
-		value:val
-	});
-	const res=await web3.eth.getBlockNumber();
-    result=await contract.getPastEvents('AddEvent',{filter:{ad: from},
-                fromBlock: res-2, toBlock: res});
-                console.log(result);
-
-    const id=result[result.length-1].returnValues.id;
-    console.log(id);
-    return id;
-	}
-	catch(e){
-	console.log('caught addBattle');
-	console.log(e);
-	if(!kovan){
-	const index=e.message.indexOf("0");
-    console.log(e.message);
+const addBattle = async function (battle_type, expire_time, winner, val,  from = address) {
+    await init( from);
+    console.log("aaaa");
+    try {
+        await contract.methods.addBattle(battle_type, expire_time, winner).send({
+            from: from,
+            value: val
+        });
+        const res = await web3.eth.getBlockNumber();
+        result = await contract.getPastEvents('AddEvent', {
+            filter: {address_field: from}, // we filter by the address of the sender
+            fromBlock: res - 2, toBlock: res
+        });
+        console.log(result);
+        console.log(result.length);
+        const id = result[result.length - 1].returnValues.id; // we take the last event referred to the address of the sender
+        console.log(id);
+        //return id.toString();
+        return id;
+    } catch (e) {
+        console.log('caught addBattle');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            console.log(e.message.substring(20, index - 1));
+        }
+        console.log(e);
+        return -1;
     }
-
-    return -1;
-	}
 }
 
 const acceptBattle= async function (id,val,from = address)  {
@@ -211,8 +212,8 @@ const getAll= async function (from = address)  {
 	}
 }
 
-//addBattle("EthVsUsd",0,false,'5'); // now 90 isnt good, need to be unix time
+addBattle("snx_vs_usd",0,false,'5'); // now 90 isnt good, need to be unix time
 //getAll();
 //acceptBattle(0,'1');
 //withdraw(0);
-getBattleInfo(3);
+//getBattleInfo(3);

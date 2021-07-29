@@ -51,7 +51,7 @@ interface BattleMenuPros {
 }
 
 export var stock: string = ("stock");
-export var coin: string = ("EthVsUsd");
+export var coin: string = ("eth_vs_usd");
 
 declare let window: any;
 

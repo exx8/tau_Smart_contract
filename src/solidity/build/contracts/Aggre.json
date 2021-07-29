@@ -1892,7 +1892,7 @@
         21
       ],
       "AggregatorV3Interface": [
-        567
+        592
       ]
     },
     "id": 22,
@@ -1917,7 +1917,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 22,
-        "sourceUnit": 568,
+        "sourceUnit": 593,
         "src": "164:76:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2014,10 +2014,10 @@
                           "name": "AggregatorV3Interface",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 567,
+                          "referencedDeclaration": 592,
                           "src": "395:21:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$567_$",
+                            "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$592_$",
                             "typeString": "type(contract AggregatorV3Interface)"
                           }
                         },
@@ -2032,7 +2032,7 @@
                         "src": "395:24:0",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$567",
+                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$592",
                           "typeString": "contract AggregatorV3Interface"
                         }
                       },
@@ -2043,7 +2043,7 @@
                       "lValueRequested": false,
                       "memberName": "latestRoundData",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 566,
+                      "referencedDeclaration": 591,
                       "src": "395:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
@@ -2185,7 +2185,7 @@
         21
       ],
       "AggregatorV3Interface": [
-        567
+        592
       ]
     },
     "id": 22,
@@ -2210,7 +2210,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 22,
-        "sourceUnit": 568,
+        "sourceUnit": 593,
         "src": "164:76:0",
         "symbolAliases": [],
         "unitAlias": ""
@@ -2307,10 +2307,10 @@
                           "name": "AggregatorV3Interface",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 567,
+                          "referencedDeclaration": 592,
                           "src": "395:21:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$567_$",
+                            "typeIdentifier": "t_type$_t_contract$_AggregatorV3Interface_$592_$",
                             "typeString": "type(contract AggregatorV3Interface)"
                           }
                         },
@@ -2325,7 +2325,7 @@
                         "src": "395:24:0",
                         "tryCall": false,
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$567",
+                          "typeIdentifier": "t_contract$_AggregatorV3Interface_$592",
                           "typeString": "contract AggregatorV3Interface"
                         }
                       },
@@ -2336,7 +2336,7 @@
                       "lValueRequested": false,
                       "memberName": "latestRoundData",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 566,
+                      "referencedDeclaration": 591,
                       "src": "395:40:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_external_view$__$returns$_t_uint80_$_t_int256_$_t_uint256_$_t_uint256_$_t_uint80_$",
@@ -2475,28 +2475,9 @@
     "name": "solc",
     "version": "0.8.3+commit.8d00100c.Emscripten.clang"
   },
-  "networks": {
-    "4": {
-      "events": {},
-      "links": {},
-      "address": "0x8F5914cb1970973740F7dBC76EC801B6b6D9c525",
-      "transactionHash": "0x1641feaf8ec0752bc89bc71fb7c256266c5020db1f9efca165720d29dbb570d2"
-    },
-    "42": {
-      "events": {},
-      "links": {},
-      "address": "0x86ed10Ac9714631141351B74647aF2fAc31854a9",
-      "transactionHash": "0x98bea2c7277bf16bec410744a936c7d09aad7477601248a85061271bfff8e2d0"
-    },
-    "5777": {
-      "events": {},
-      "links": {},
-      "address": "0x5349eD14408fCC8F0e77F9f41AAee50B63c9E2cf",
-      "transactionHash": "0x7376d69f5c1fad94280a2208a55c14502ddd103dfe1d8320623107720ca99e39"
-    }
-  },
+  "networks": {},
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-07-30T20:20:20.456Z",
+  "updatedAt": "2021-07-30T20:27:46.059Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
