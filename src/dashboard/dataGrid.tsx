@@ -38,7 +38,7 @@ export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
                 2: "draw",
                 3:"not settled"
             }
-            let dataSource = results.map((value, index, array) => {
+            let dataSource = (results??[]).map((value, index, array) => {
 
                     let returned_value = {
                         amountBet: value.amountBet,
