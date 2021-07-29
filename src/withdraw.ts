@@ -1,6 +1,6 @@
 import {fillEtherDetailsInFunc} from "./utils";
 
 export async function withdraw() {
-    let withdraw = await fillEtherDetailsInFunc(withdraw);
-    return withdraw();
+    let withdrawFunc = await fillEtherDetailsInFunc(withdraw);
+    return withdrawFunc();
 }
