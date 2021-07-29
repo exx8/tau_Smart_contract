@@ -45,7 +45,7 @@ const init = async function init(provide, from = address) {
 
 export const addBattle = async function (battle_type, expire_time, winner, val, provide, from = address) {
     await init(provide, from);
-    debug("aaaa");
+    debug(typeof (expire_time));
     try {
         await contract.methods.addBattle(battle_type, expire_time, winner).send({
             from: from,
@@ -77,12 +77,15 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
     }
 }
 
-export const acceptBattle = async function (id, val, provide, from = address) {
+export const acceptBattle = async function (id, val, provide, from = address) { // id is number and val is string?
     debug("acceptBattle start");
+    debug("id is: "+id+ " val is: "+val+" from: "+from);
+    console.log(typeof(id)+" "+typeof(val));
+    let idNum=parseInt(id);
     let battleList=await getAll(provide, from);
-
+    debug("accepting battle: "+battleList[id]);
     try {
-        await contract.methods.acceptBattle(id).send({
+        await contract.methods.acceptBattle(idNum).send({
             from: from,
             value: val
         });
