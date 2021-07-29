@@ -2,6 +2,7 @@ import React from "react";
 import ReactDataGrid from '@inovua/reactdatagrid-community';
 import '@inovua/reactdatagrid-community/index.css';
 import {getAll as getAllFE} from "../solidity/Web3Scripts/frontend";
+import {withdraw as withdrawFE} from "../solidity/Web3Scripts/frontend";
 import {addBattleResult} from "../BattleMenu";
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 import {fillEtherDetailsInFunc} from "./../utils"
@@ -39,7 +40,7 @@ export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
                 2: "draw",
                 3:"not settled"
             }
-            let dataSource = results.map((value, index, array) => {
+            /*let dataSource = results.map((value, index, array) => {
 
                     let returned_value = {
                         amountBet: value.amountBet,
@@ -55,7 +56,7 @@ export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
             console.log(dataSource)
             this.setState({
                 dataSource: dataSource
-            });
+            });*/
 
 
     }
