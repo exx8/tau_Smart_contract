@@ -275,7 +275,8 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             typeChangeable: false,
             date: Number(battleData.betDate),
             dateChangeable: false,
-            actionOnSubmitAndCancel: false
+            actionOnSubmitAndCancel: false,
+            trend:!battleData.isUp
         })
     }
 
@@ -315,8 +316,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         return getDateString(futureDate(this.defaultDueTimeInTheFutureInDays));
     }
 }
-
-interface addBattleResult extends Array<any> {
+export interface addBattleResult extends Array<any> {
 
     amountBet: string;
     betDate: number;
@@ -325,7 +325,8 @@ interface addBattleResult extends Array<any> {
     currVal: string;
     isUp: boolean;
     opponent: string;
-    length: 7;
+    whoWin:"1"|"2"|"3"|"0";
+    length: 8;
 
 }
 
