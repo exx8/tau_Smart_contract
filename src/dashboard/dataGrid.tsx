@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDataGrid from '@inovua/reactdatagrid-community';
 import '@inovua/reactdatagrid-community/index.css';
-import {fillEtherDetailsInFunc, genericEtherRequest} from "../utils";
 import {getAll as getAllFE} from "../solidity/Web3Scripts/frontend";
 import {addBattleResult} from "../BattleMenu";
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
-
+import {fillEtherDetailsInFunc} from "./../utils"
 
 export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
     columns = [
@@ -32,7 +31,6 @@ export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
 
     async componentDidMount() {
         let getAll = await fillEtherDetailsInFunc(getAllFE);
-        genericEtherRequest(async (address) => {
             let results: addBattleResult = await getAll();
             console.log(results);
             const status={
@@ -58,7 +56,7 @@ export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
             this.setState({
                 dataSource: dataSource
             });
-        })
+
 
     }
 }
