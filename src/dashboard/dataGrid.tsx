@@ -6,7 +6,7 @@ import {addBattleResult} from "../BattleMenu";
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 import {fillEtherDetailsInFunc} from "./../utils"
 
-export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
+export class DataGrid extends React.Component<{}, { dataSource: any[] }> {
     columns = [
         {name: 'amountBet', header: 'wei', minWidth: 20, defaultFlex: 2},
         {name: 'betType', header: 'type', minWidth: 40, defaultFlex: 3},
@@ -31,29 +31,29 @@ export class DataGrid extends React.Component<{}, {dataSource:any[]}> {
 
     async componentDidMount() {
         let getAll = await fillEtherDetailsInFunc(getAllFE);
-            let results: addBattleResult = await getAll();
-            const status={
-                0:"opponent",
-                1: "creator",
-                2: "draw",
-                3:"not settled"
+        let results: addBattleResult = await getAll();
+        const status = {
+            0: "opponent",
+            1: "creator",
+            2: "draw",
+            3: "not settled"
+        }
+        let dataSource = (results ?? []).map((value, index, array) => {
+
+                let returned_value = {
+                    amountBet: value.amountBet,
+                    betType: String(value.betType),
+                    isUp: (value.isUp) ? <TrendingUp/> : <TrendingDown/>,
+                    WhoWin: status[value.whoWin as 1 | 2 | 3 | 0],
+                    betDate: new Date(Number(value.betDate)).toString()
+
+                };
+                return returned_value;
             }
-            let dataSource = (results??[]).map((value, index, array) => {
-
-                    let returned_value = {
-                        amountBet: value.amountBet,
-                        betType: String(value.betType),
-                        isUp: (value.isUp)? <TrendingUp/>:<TrendingDown/>,
-                        WhoWin: status[value.whoWin as 1|2|3|0 ],
-                        betDate: new Date(Number(value.betDate)).toString()
-
-                    };
-                    return returned_value;
-                }
-            );
-            this.setState({
-                dataSource: dataSource
-            });
+        );
+        this.setState({
+            dataSource: dataSource
+        });
 
 
     }
