@@ -4,6 +4,7 @@ import {Button} from '@material-ui/core';
 import {BattleMenu} from './BattleMenu';
 import {PiChart} from "./dashboard/pi-chart";
 import {DataGrid} from "./dashboard/dataGrid";
+import {withdraw} from "./withdraw";
 import {Balance} from "./dashboard/balance";
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
 
                     <Button variant="contained" color="primary" onClick={setDialogOpen.bind(null, true)}>Create an
                         Option</Button>
+                    <Button variant="contained" color="primary" onClick={withdraw}>withdraw</Button>
+
                 </div>
                 <BattleMenu isOpen={dialogOpen} handleClose={setDialogOpen.bind(null, false)}
                             handleOpen={setDialogOpen.bind(null, true)}/>

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDataGrid from '@inovua/reactdatagrid-community';
 import '@inovua/reactdatagrid-community/index.css';
 import {getAll as getAllFE} from "../solidity/Web3Scripts/frontend";
+import {withdraw as withdrawFE} from "../solidity/Web3Scripts/frontend";
 import {addBattleResult} from "../BattleMenu";
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 import {fillEtherDetailsInFunc} from "./../utils"
