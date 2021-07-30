@@ -4,10 +4,12 @@ const PickTestNet = require('./PickTestNet');
 const Web3 = require('web3');
 const BinaryOption = require('../build/contracts/BinaryOption.json');
 //address = PickTestNet.publicAddress;
-let result = PickTestNet.result;
+let past_events = PickTestNet.past_events;
 let web3 = PickTestNet.web3;
 let contract = PickTestNet.contract;
 let kovan = PickTestNet.kovan;
+const idKovan=PickTestNet.idKovan;
+const idRinkeby=PickTestNet.idRinkeby;
 
 
 
@@ -19,9 +21,9 @@ const init = async function init(provide, from) {
     try {
         let id = "0";
         if (kovan) {
-            id = "42";
+            id = idKovan;
         } else {
-            id = "4";
+            id = idRinkeby;
         }
         contract = new web3.eth.Contract(
             BinaryOption.abi,
@@ -42,22 +44,20 @@ const init = async function init(provide, from) {
 
 }
 
-export const addBattle = async function (battle_type, expire_time, winner, val, provide, from) {
+export const addBattle = async function (battle_type, expire_time, winner, bet_amount, provide, from) {
     await init(provide, from);
     try {
         await contract.methods.addBattle(battle_type, expire_time, winner).send({
             from: from,
-            value: val
+            value: bet_amount
         });
-        const res = await web3.eth.getBlockNumber();
-        result = await contract.getPastEvents('AddEvent', {
+        const block_num = await web3.eth.getBlockNumber();
+        past_events = await contract.getPastEvents('AddEvent', {
             filter: {address_field: from}, // we filter by the address of the sender
-            fromBlock: res - 2, toBlock: res
+            fromBlock: block_num - 2, toBlock: block_num
         });
-        debug(result);
-        debug(result.length);
-        const id = result[result.length - 1].returnValues.id; // we take the last event referred to the address of the sender
-        debug(id);
+        const id = past_events[past_events.length - 1].returnValues.id; // we take the last event referred to the address of the sender
+        debug("id is: "+id);
         //return id.toString();
         return id;
     } catch (e) {
@@ -66,17 +66,17 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
             const index = e.message.indexOf("0");
             debug(e.message.substring(20, index - 1));
         }
-        console.log(e);
+        debug(e);
         return -1;
     }
 }
 
-export const acceptBattle = async function (id, val, provide, from) {
+export const acceptBattle = async function (id, bet_amount, provide, from) {
     await init(provide, from);
     try {
         await contract.methods.acceptBattle(id).send({
             from,
-            value: val
+            value: bet_amount
         });
         debug('acceptBattle passed!');
         return 'success';
@@ -107,13 +107,12 @@ export const withdraw= async function (provide,from) {
         }
 
         catch(e){
-            console.log('caught withdraw in battle: '+i);
+            debug('caught withdraw in battle: '+i);
             if(!kovan){
             const index=e.message.indexOf("0");
             debug("revert because of: "+e.message.substring(20, index - 1));
 
             }
-            debug("full error: "+e);
             return "";
             }
     	}
@@ -137,7 +136,7 @@ export const cancelBattle = async function (id, provide, from) {
         debug('caught cancel');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
+            debug("revert because of: "+e.message.substring(20, index - 1));
             return e.message.substring(20, index - 1);
         }
         return "";
@@ -158,7 +157,7 @@ export const getBattleInfo = async function (id, provide, from) {
         debug('caught getBattleInfo');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
+            debug("revert because of: "+e.message.substring(20, index - 1));
         }
 
         return null;
@@ -174,10 +173,10 @@ export const getAll = async function (provide, from) {
         debug("battleList: "+battle);
         return battle;
     } catch (e) {
-        console.log('caught getAll');
+        debug('caught getAll');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            console.log(e.message.substring(20, index - 1));
+            debug("revert because of: "+e.message.substring(20, index - 1));
         }
 
         return null;
