@@ -25,6 +25,7 @@ import {addBattle} from "./solidity/Web3Scripts/frontend"
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 import {AcceptButton} from "./BattleMenuComponents/AcceptButton";
 import {CancelButton} from "./BattleMenuComponents/CancelButton";
+import {assetList} from "./assetsList";
 
 let debug = getDebug("battleMenu");
 
@@ -59,7 +60,7 @@ declare let window: any;
 export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMenuState>> {
     state: BattleMenuState = {
         email: null,
-        type: coin,
+        type: "eth_vs_usd",
         amount: 1,
         trend: true,
         trendChangeable: true,
@@ -144,6 +145,16 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         this.updateFormAccordingToHash();
 
     }
+   static mapAsset()
+    {
+        let arr=[]
+        for(const [key, value] of Object.entries(assetList) )
+        {
+            arr.push(<MenuItem value={key as string }>{(key as string).replaceAll("_"," ")}</MenuItem>)
+        }
+
+        return arr;
+    }
 
     render() {
         let emailBox = this.computeMail();
@@ -176,9 +187,9 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                                 onChange={this.handleTypeChange}
                                 disabled={!this.state.typeChangeable}
                             >
+                                {BattleMenu.mapAsset()}
 
-                                <MenuItem value={coin}>coin</MenuItem>
-                                <MenuItem value={stock}>stock</MenuItem>
+
                             </Select>
                             <FormHelperText>type of asset</FormHelperText>
                             <div><TextField id="standard-basic" inputProps={{min: 0}} label="amount"
