@@ -42,7 +42,6 @@ export async function fillEtherDetailsInFunc(customRequest: Function): Promise<F
     if (window.ethereum) {
         try {
             let address = await window.ethereum.enable();
-            console.log( address[0]);
             return bind_trailing_args(customRequest, window.ethereum, address[0]);
 
 

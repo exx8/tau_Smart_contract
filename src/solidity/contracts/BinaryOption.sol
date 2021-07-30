@@ -103,7 +103,7 @@ contract BinaryOption{
 
         Battle storage bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.\n");
-        //require(bate.creator!=msg.sender, "Impossible to fight against yourself."); // in comment until we test with two different players
+        require(bate.creator!=msg.sender, "Impossible to fight against yourself."); // in comment until we test with two different players
         require(bate.creator==bate.opponent, "This battle is closed, opponent already exist.");
         require(msg.value==bate.amountBet, "Betting value isn't as specified for this battle.");
         bate.opponent=msg.sender;
@@ -132,9 +132,10 @@ contract BinaryOption{
         int oldPrice;
         int newPrice;
         Battle storage bate=battleInfo[battle_id];
-        //require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start."); // in case the creator try to withdraw before having opponent. He may cancel battle if he wants.
+        require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start."); // in case the creator try to withdraw before having opponent. He may cancel battle if he wants.
         require((bate.creator==msg.sender||bate.opponent==msg.sender), "You are not part of this battle."); // can be deleted if comes with getcurrval
-        require(block.timestamp>=bate.betDate, "Too early to check who is the winner.");
+        //require(block.timestamp>=bate.betDate, "Too early to check who is the winner.");
+        require(bate.whoWin==3, "Withdraw already.");
         oldPrice=bate.currVal;
         newPrice=age.getThePrice(feedAddress[bate.betType]);
         // deliver the money to the winner

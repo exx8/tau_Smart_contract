@@ -93,39 +93,62 @@ export const acceptBattle = async function (id, val, provide, from = address) {
     }
 }
 
-export const withdraw = async function (identifier, provide, from = address) {
-    await init(provide, from);
-    try {
-        await contract.methods.withdraw(identifier).send({
-            from: from
-        });
-        debug('withdraw passed!');
-        const res = await web3.eth.getBlockNumber();
-        result = await contract.getPastEvents('MyEvent', {filter: {id: identifier}, fromBlock: res - 2, toBlock: res}); // we filter by id
-        const winner = result[result.length - 1].returnValues.win;
-        let return_msg = null;
-        if (winner === 0) {
-            return_msg = 'Opponent won ' + result[0].returnValues.amount + ' in battle: ' + identifier;
-        } else {
-            if (winner === 1) {
-                return_msg = 'Creator won ' + result[0].returnValues.amount + ' in battle: ' + identifier;
-            } else {
-                return_msg = 'There was draw in battle: ' + identifier;
-            }
-        }
-        debug(return_msg);
-        return return_msg;
-    } catch (e) {
-        debug('caught withdraw');
-        if (!kovan) {
-            const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
-            return e.message.substring(20, index - 1);
-        }
-        return "";
-    }
+export const withdraw= async function (provide,from = address) {
+	let battleList=await getAll(provide,from);
 
+	for(let i = 0; i < battleList.length; i++){
+	let currBattle=battleList[i];
+	debug("battle number "+i+" is: "+currBattle+"\n");
+    let j=0;
+    if(currBattle.creator.toLowerCase()==from||currBattle.opponent.toLowerCase()==from){
+    debug("passsed1");
+    j++;
+    }
+    else{
+    debug("from: "+from+" creator: "+currBattle.creator+" opponent: "+currBattle.opponent);
+    }
+    if(currBattle.betDate<=Date.now()){
+        debug("passed2");
+        j++;
+    }
+    else{
+        debug("betDate: "+currBattle.betDate+" now: "+Date.now());
+    }
+    if(currBattle.whoWin==3){
+            debug("passed3");
+            j++;
+    }
+    if(currBattle.creator!=currBattle.opponent){
+                debug("passed4");
+                j++;
+    }
+    // when the code will be 100%, we will remove the corresponding reverts from withdraw in BinaryOption.sol
+	if(j==4){
+
+	    try{
+    	    await contract.methods.withdraw(i).send({
+    		from: from
+    	    });
+    	    debug("withdraw in battle: "+i);
+        }
+
+        catch(e){
+            console.log('caught withdraw in battle: '+i);
+            if(!kovan){
+            const index=e.message.indexOf("0");
+            debug("revert cuz of: "+e.message.substring(20, index - 1));
+
+            }
+            debug("full error: "+e);
+            return "";
+            }
+    	}
+    	debug("\n\n");
+	}
+
+	return "success";
 }
+
 
 export const cancelBattle = async function (id, provide, from = address) {
     await init(provide, from);
@@ -174,7 +197,8 @@ export const getAll = async function (provide, from = address) {
     try {
 
         let battle = await contract.methods.getAll().call();
-        console.log('getAll passed!');
+        debug("battleList: "+battle);
+        debug("battleList length: "+battle.length);
         return battle;
     } catch (e) {
         console.log('caught getAll');

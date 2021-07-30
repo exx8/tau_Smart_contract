@@ -1,7 +1,3 @@
-
-//import {kovan,infuraKovan,infuraRinkeby,idKovan,idRinkeby,publicAddress,privateAddress,result,web3,
- // provider,contract} from './PickTestNet'
-
 const PickTestNet=require('./PickTestNet');
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');

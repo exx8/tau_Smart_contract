@@ -329,4 +329,3 @@ export interface addBattleResult extends Array<any> {
     length: 8;
 
 }
-
