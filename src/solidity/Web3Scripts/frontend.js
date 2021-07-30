@@ -3,8 +3,7 @@ import {getDebug} from "../../utils";
 const PickTestNet = require('./PickTestNet');
 const Web3 = require('web3');
 const BinaryOption = require('../build/contracts/BinaryOption.json');
-let address = '0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
-address = PickTestNet.publicAddress;
+//address = PickTestNet.publicAddress;
 let result = PickTestNet.result;
 let web3 = PickTestNet.web3;
 let contract = PickTestNet.contract;
@@ -13,7 +12,7 @@ let kovan = PickTestNet.kovan;
 
 
 let debug = getDebug('sol:frontend');
-const init = async function init(provide, from = address) {
+const init = async function init(provide, from) {
 
     web3 = new Web3(provide);
     //web3.eth.handleRevert =true;
@@ -43,9 +42,8 @@ const init = async function init(provide, from = address) {
 
 }
 
-export const addBattle = async function (battle_type, expire_time, winner, val, provide, from = address) {
+export const addBattle = async function (battle_type, expire_time, winner, val, provide, from) {
     await init(provide, from);
-    debug("aaaa");
     try {
         await contract.methods.addBattle(battle_type, expire_time, winner).send({
             from: from,
@@ -73,7 +71,7 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
     }
 }
 
-export const acceptBattle = async function (id, val, provide, from = address) {
+export const acceptBattle = async function (id, val, provide, from) {
     await init(provide, from);
     try {
         await contract.methods.acceptBattle(id).send({
@@ -93,37 +91,13 @@ export const acceptBattle = async function (id, val, provide, from = address) {
     }
 }
 
-export const withdraw= async function (provide,from = address) {
+export const withdraw= async function (provide,from) {
 	let battleList=await getAll(provide,from);
 
 	for(let i = 0; i < battleList.length; i++){
 	let currBattle=battleList[i];
-	debug("battle number "+i+" is: "+currBattle+"\n");
-    let j=0;
-    if(currBattle.creator.toLowerCase()==from||currBattle.opponent.toLowerCase()==from){
-    debug("passsed1");
-    j++;
-    }
-    else{
-    debug("from: "+from+" creator: "+currBattle.creator+" opponent: "+currBattle.opponent);
-    }
-    if(currBattle.betDate<=Date.now()){
-        debug("passed2");
-        j++;
-    }
-    else{
-        debug("betDate: "+currBattle.betDate+" now: "+Date.now());
-    }
-    if(currBattle.whoWin==3){
-            debug("passed3");
-            j++;
-    }
-    if(currBattle.creator!=currBattle.opponent){
-                debug("passed4");
-                j++;
-    }
-
-	if(j==4){
+        // eslint-disable-next-line
+	if((currBattle.creator.toLowerCase()==from||currBattle.opponent.toLowerCase()==from)&&(currBattle.betDate<=Date.now())&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent)){
 
 	    try{
     	    await contract.methods.withdraw(i).send({
@@ -136,7 +110,7 @@ export const withdraw= async function (provide,from = address) {
             console.log('caught withdraw in battle: '+i);
             if(!kovan){
             const index=e.message.indexOf("0");
-            debug("revert cuz of: "+e.message.substring(20, index - 1));
+            debug("revert because of: "+e.message.substring(20, index - 1));
 
             }
             debug("full error: "+e);
@@ -150,7 +124,7 @@ export const withdraw= async function (provide,from = address) {
 }
 
 
-export const cancelBattle = async function (id, provide, from = address) {
+export const cancelBattle = async function (id, provide, from) {
     await init(provide, from);
 
     try {
@@ -171,7 +145,7 @@ export const cancelBattle = async function (id, provide, from = address) {
 
 }
 
-export const getBattleInfo = async function (id, provide, from = address) {
+export const getBattleInfo = async function (id, provide, from) {
     await init(provide, from);
 
     try {
@@ -191,14 +165,13 @@ export const getBattleInfo = async function (id, provide, from = address) {
     }
 }
 
-export const getAll = async function (provide, from = address) {
+export const getAll = async function (provide, from) {
     await init(provide, from);
 
     try {
 
         let battle = await contract.methods.getAll().call();
         debug("battleList: "+battle);
-        debug("battleList length: "+battle.length);
         return battle;
     } catch (e) {
         console.log('caught getAll');
