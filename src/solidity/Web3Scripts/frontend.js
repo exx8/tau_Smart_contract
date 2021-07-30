@@ -122,7 +122,7 @@ export const withdraw= async function (provide,from = address) {
                 debug("passed4");
                 j++;
     }
-    // when the code will be 100%, we will remove the corresponding reverts from withdraw in BinaryOption.sol
+
 	if(j==4){
 
 	    try{

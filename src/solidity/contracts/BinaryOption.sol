@@ -65,10 +65,6 @@ contract BinaryOption{
         battleId++;
     }
 
-    /*function getAmount(uint256 battle_id) public view returns (uint){
-            return battleInfo[battle_id].amountBet;
-        }*/
-
     function getBattleInfo(uint256 battle_id) public payable returns(Battle memory) {
         Battle storage bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.\n");
@@ -83,25 +79,6 @@ contract BinaryOption{
             }
             return ret;
         }
-
-    /*
-    function setPrice() public {
-        if(isKovan){
-        feed= age.getThePrice(0x9326BFA02ADD2366b30bacB125260Af641031331);
-        }
-        else{age.getThePrice(0x8A753747A1Fa494EC906cE90E9f37563A8AF630e);}
-    }
-    function getPrice() public view returns (int){
-        return feed;
-    }
-    */
-    /*function getId() public view returns (uint256){
-        return battleId;
-    }*/
-
-    /*function getEvent() public {
-        emit MyEvent(battleId,battleId);
-    }*/
 
     // an opponent is signed to battle number: battleid
     function acceptBattle(uint256 battle_id) public payable{
@@ -119,17 +96,10 @@ contract BinaryOption{
         Battle memory bate=battleInfo[battle_id];
         require(bate.amountBet>0, "Battle number isn't exist.");
         require(bate.creator==msg.sender, "Only the creator may cancel his own battle.");
-
         require(bate.creator==bate.opponent, "There is already opponent, this battle can't be canceled.");
-        payable(bate.creator).transfer(bate.amountBet); // return the amount invested
+        payable(bate.creator).transfer(bate.amountBet); // return the amount which was invested
         delete battleInfo[battle_id]; // battle is canceled
     }
-
-
-    /*function getcurrVal(uint256 battle_id) public view returns (uint256){
-        require(msg.sender==battleInfo[battle_id].creator||msg.sender==battleInfo[battle_id].opponent, "You are not part of this battle.");
-        return battleInfo[battle_id].amountBet;
-    }*/
 
     // the winner may draw his money
     function withdraw(uint256 battle_id) public {
@@ -139,13 +109,12 @@ contract BinaryOption{
         Battle storage bate=battleInfo[battle_id];
         require(battleInfo[battle_id].creator!=battleInfo[battle_id].opponent, "This battle didn't start."); // in case the creator try to withdraw before having opponent. He may cancel battle if he wants.
         require((bate.creator==msg.sender||bate.opponent==msg.sender), "You are not part of this battle."); // can be deleted if comes with getcurrval
-        //require(block.timestamp>=bate.betDate, "Too early to check who is the winner.");
+        require(block.timestamp>=bate.betDate, "Too early to check who is the winner.");
         require(bate.whoWin==3, "Withdraw already.");
         oldPrice=bate.currVal;
         newPrice=age.getThePrice(feedAddress[bate.betType]);
         // deliver the money to the winner
         if(oldPrice<newPrice){
-
             if(bate.isUp){
                 winner=1;
                 payable(bate.creator).transfer(2*bate.amountBet); // multiply by 2 since we deliver the money of both the creator and his opponent
@@ -157,7 +126,6 @@ contract BinaryOption{
 
         }
         else if(oldPrice>newPrice){
-
             if(bate.isUp){
                 winner=0;
                 payable(bate.opponent).transfer(2*bate.amountBet);
@@ -167,16 +135,12 @@ contract BinaryOption{
                 payable(bate.creator).transfer(2*bate.amountBet);
             }
         }
-        // if nothing has changed, the creator lose his money
         else {
             winner=2;
             payable(bate.opponent).transfer(bate.amountBet);
             payable(bate.creator).transfer(bate.amountBet);
         }
         bate.whoWin=winner;
-        // sign the event
-        //emit MyEvent(battle_id,bate.amountBet*2,winner);
-        //delete battleInfo[battle_id]; // battle is finished
     }
 
     //just for testing
