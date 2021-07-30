@@ -3,26 +3,27 @@ import {getDebug} from "../../utils";
 const PickTestNet = require('./PickTestNet');
 const Web3 = require('web3');
 const BinaryOption = require('../build/contracts/BinaryOption.json');
-let address = '0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
-address = PickTestNet.publicAddress;
-let result = PickTestNet.result;
+//address = PickTestNet.publicAddress;
+let past_events = PickTestNet.past_events;
 let web3 = PickTestNet.web3;
 let contract = PickTestNet.contract;
 let kovan = PickTestNet.kovan;
+const idKovan=PickTestNet.idKovan;
+const idRinkeby=PickTestNet.idRinkeby;
 
 
 
 let debug = getDebug('sol:frontend');
-const init = async function init(provide, from = address) {
+const init = async function init(provide, from) {
 
     web3 = new Web3(provide);
     //web3.eth.handleRevert =true;
     try {
         let id = "0";
         if (kovan) {
-            id = "42";
+            id = idKovan;
         } else {
-            id = "4";
+            id = idRinkeby;
         }
         contract = new web3.eth.Contract(
             BinaryOption.abi,
@@ -43,23 +44,22 @@ const init = async function init(provide, from = address) {
 
 }
 
-export const addBattle = async function (battle_type, expire_time, winner, val, provide, from = address) {
+export const addBattle = async function (battle_type, expire_time, winner, bet_amount, provide, from ) {
     await init(provide, from);
-    debug("aaaa");
+
     try {
         await contract.methods.addBattle(battle_type, expire_time, winner).send({
             from: from,
-            value: val
+            value: bet_amount
         });
-        const res = await web3.eth.getBlockNumber();
-        result = await contract.getPastEvents('AddEvent', {
+        const block_num = await web3.eth.getBlockNumber();
+        past_events = await contract.getPastEvents('AddEvent', {
             filter: {address_field: from}, // we filter by the address of the sender
-            fromBlock: res - 2, toBlock: res
+            fromBlock: block_num - 2, toBlock: block_num
         });
-        debug(result);
-        debug(result.length);
-        const id = result[result.length - 1].returnValues.id; // we take the last event referred to the address of the sender
-        debug(id);
+
+        const id = past_events[past_events.length - 1].returnValues.id; // we take the last event referred to the address of the sender
+        debug("id is: "+id);
         //return id.toString();
         return id;
     } catch (e) {
@@ -68,17 +68,17 @@ export const addBattle = async function (battle_type, expire_time, winner, val, 
             const index = e.message.indexOf("0");
             debug(e.message.substring(20, index - 1));
         }
-        console.log(e);
+        debug(e);
         return -1;
     }
 }
 
-export const acceptBattle = async function (id, val, provide, from = address) {
+export const acceptBattle = async function (id, bet_amount, provide, from) {
     await init(provide, from);
     try {
         await contract.methods.acceptBattle(id).send({
             from,
-            value: val
+            value: bet_amount
         });
         debug('acceptBattle passed!');
         return 'success';
@@ -86,44 +86,21 @@ export const acceptBattle = async function (id, val, provide, from = address) {
         debug('caught acceptBattle');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
+            debug("revert because of: "+e.message.substring(20, index - 1));
             return e.message.substring(20, index - 1);
         }
         return "";
     }
 }
 
-export const withdraw= async function (provide,from = address) {
+export const withdraw= async function (provide,from) {
 	let battleList=await getAll(provide,from);
 
 	for(let i = 0; i < battleList.length; i++){
 	let currBattle=battleList[i];
-	debug("battle number "+i+" is: "+currBattle+"\n");
-    let j=0;
-    if(currBattle.creator.toLowerCase()==from||currBattle.opponent.toLowerCase()==from){
-    debug("passsed1");
-    j++;
-    }
-    else{
-    debug("from: "+from+" creator: "+currBattle.creator+" opponent: "+currBattle.opponent);
-    }
-    if(currBattle.betDate<=Date.now()){
-        debug("passed2");
-        j++;
-    }
-    else{
-        debug("betDate: "+currBattle.betDate+" now: "+Date.now());
-    }
-    if(currBattle.whoWin==3){
-            debug("passed3");
-            j++;
-    }
-    if(currBattle.creator!=currBattle.opponent){
-                debug("passed4");
-                j++;
-    }
-    // when the code will be 100%, we will remove the corresponding reverts from withdraw in BinaryOption.sol
-	if(j==4){
+
+    // eslint-disable-next-line
+    if((currBattle.creator.toLowerCase()==from||currBattle.opponent.toLowerCase()==from)&&(currBattle.betDate<=Date.now())&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent)){
 
 	    try{
     	    await contract.methods.withdraw(i).send({
@@ -136,7 +113,7 @@ export const withdraw= async function (provide,from = address) {
             console.log('caught withdraw in battle: '+i);
             if(!kovan){
             const index=e.message.indexOf("0");
-            debug("revert cuz of: "+e.message.substring(20, index - 1));
+            debug("revert because of: "+e.message.substring(20, index - 1));
 
             }
             debug("full error: "+e);
@@ -150,7 +127,7 @@ export const withdraw= async function (provide,from = address) {
 }
 
 
-export const cancelBattle = async function (id, provide, from = address) {
+export const cancelBattle = async function (id, provide, from) {
     await init(provide, from);
 
     try {
@@ -163,7 +140,7 @@ export const cancelBattle = async function (id, provide, from = address) {
         debug('caught cancel');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
+            debug("revert because of: "+e.message.substring(20, index - 1));
             return e.message.substring(20, index - 1);
         }
         return "";
@@ -171,27 +148,27 @@ export const cancelBattle = async function (id, provide, from = address) {
 
 }
 
-export const getBattleInfo = async function (id, provide, from = address) {
+export const getBattleInfo = async function (id, provide, from) {
     await init(provide, from);
 
     try {
 
         const battle = await contract.methods.getBattleInfo(id).call();
         debug('getBattleInfo passed!');
-        console.log(battle);
+        debug(battle);
         return battle;
     } catch (e) {
         debug('caught getBattleInfo');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
+            debug("revert because of: "+e.message.substring(20, index - 1));
         }
 
         return null;
     }
 }
 
-export const getAll = async function (provide, from = address) {
+export const getAll = async function (provide, from) {
     await init(provide, from);
 
     try {
@@ -204,7 +181,7 @@ export const getAll = async function (provide, from = address) {
         console.log('caught getAll');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            console.log(e.message.substring(20, index - 1));
+            debug("revert because of: "+e.message.substring(20, index - 1));
         }
 
         return null;
