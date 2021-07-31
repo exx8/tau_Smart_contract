@@ -148,7 +148,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
    static mapAsset()
     {
         let arr=[]
-        for(const [key, value] of Object.entries(assetList) )
+        for(const [key, ] of Object.entries(assetList) )
         {
             arr.push(<MenuItem value={key as string }>{(key as string).replaceAll("_"," ")}</MenuItem>)
         }

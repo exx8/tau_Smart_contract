@@ -1,4 +1,4 @@
-const PickTestNet=require('./PickTestNet');
+/*const PickTestNet=require('./PickTestNet');
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
 const HDWalletProvider=require('@truffle/hdwallet-provider');
@@ -14,201 +14,176 @@ let infuraRinkeby=PickTestNet.infuraRinkeby;
 let idKovan=PickTestNet.idKovan;
 let idRinkeby=PickTestNet.idRinkeby;
 
-const init=async function init(from=address) {
+const init = async function init(from) {
 
     if(kovan){provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:infuraKovan,chainId:idKovan});}
     else{provider=new HDWalletProvider({privateKeys:[privateKey],providerOrUrl:infuraRinkeby,chainId:idRinkeby});}
+    web3 = new Web3(provide);
+    //web3.eth.handleRevert =true;
+    try {
+        let id = "0";
+        if (kovan) {
+            id = idKovan;
+        } else {
+            id = idRinkeby;
+        }
+        contract = new web3.eth.Contract(
+            BinaryOption.abi,
+            BinaryOption.networks[id].address // The address of the deployed smart contract. May be seen in /build/BinaryOption.json
+            //deployedNetwork.address
+        );
+        console.log('before deploy');
+        //estimated_gas=web3.eth.estimateGas({data:BinaryOption.bytecode}).then(console.log);
+        //console.log(estimated_gas);
 
-	web3=new Web3(provider);
-	//web3.eth.handleRevert =true;
-	try{
-    let id="0";
-    if(kovan){id="42";}
-    else{id="4";}
-
-	contract= new web3.eth.Contract(
-
-	BinaryOption.abi,
-	BinaryOption.networks[id].address,
-	//deployedNetwork.address
-	);
-
-	//estimated_gas=web3.eth.estimateGas({data:BinaryOption.bytecode}).then(console.log);
-	//console.log(estimated_gas);
-    //let nonce=await web3.eth.getTransactionCount(from);
-
-    	//contract=await contract.deploy({data: BinaryOption.bytecode})
-        //.send({from: from, gas: 2010686, gasPrice: '20000000000',nonce});
-    //console.log('after deploy');
-	}
-
-	catch(e){
-    	console.log('caught in init');
-    	if(!kovan){
-        const index=e.message.indexOf("0");
-        console.log(e.message.substring(20,index-1));
+    } catch (e) {
+        debug('caught in init');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            console.log(e.message.substring(20, index - 1));
         }
     }
 
 }
 
-const addBattle= async function (battle_type, expire_time, winner, val, from = address)  {
-	await init(from);
+export const addBattle = async function (battle_type, expire_time, winner, bet_amount, from ) {
+    await init(from);
 
-    try{
-	await contract.methods.addBattle(battle_type,expire_time,winner).send({
-		from: from,
-		value:val
-	});
-	const res=await web3.eth.getBlockNumber();
-    result=await contract.getPastEvents('AddEvent',{filter:{ad: from},
-                fromBlock: res-2, toBlock: res});
-                console.log(result);
 
-    const id=result[result.length-1].returnValues.id;
-    console.log(id);
-    return id;
-	}
-	catch(e){
-	console.log('caught addBattle');
-	console.log(e);
-	if(!kovan){
-	const index=e.message.indexOf("0");
-    console.log(e.message);
-    }
+        await contract.methods.addBattle(battle_type, expire_time, winner).send({
+            from: from,
+            value: bet_amount
+        });
+        const block_num = await web3.eth.getBlockNumber();
+        past_events = await contract.getPastEvents('AddEvent', {
+            filter: {address_field: from}, // we filter by the address of the sender
+            fromBlock: block_num - 2, toBlock: block_num
+        });
 
-    return -1;
-	}
-}
-
-const acceptBattle= async function (id,val,from = address)  {
-	await init(from);
-    try{
-    let nonce=await web3.eth.getTransactionCount(from);
-	await contract.methods.acceptBattle(id).send({
-	from: address,
-	value:val
-	});
-	console.log('acceptBattle passed!');
-	return 'success';
-	}
-	catch(e){
-	console.log('caught acceptBattle');
-	if(!kovan){
-    const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
-    return e.message.substring(20,index-1);
-    }
-    return "";
-    }
+        const id = past_events[past_events.length - 1].returnValues.id; // we take the last event referred to the address of the sender
+        console.log("id is: "+id);
+        //return id.toString();
+        return id;
 
 }
 
-const withdraw= async function (identifier,from = address) {
-	await init(from);
-    try{
-	const receipt=await contract.methods.withdraw(identifier).send({
-		from: from
-	});
-	console.log('withdraw passed!');
-	const res=await web3.eth.getBlockNumber();
-	result=await contract.getPastEvents('MyEvent',{filter:{id: identifier},fromBlock: "latest"});
-	const winner=result[result.length-1].returnValues.win;
-	let return_msg=null;
-	if (winner==0){
-	return_msg='Opponent won ' +result[0].returnValues.amount+' in battle: '+identifier;
-	}
-	else{
-	if(winner==1){
-	return_msg='Creator won ' +result[0].returnValues.amount+' in battle: '+identifier;
-	}
-	else{
-	return_msg='There was draw in battle: '+identifier;
-	}
-	}
-	console.log(return_msg);
-    return return_msg;
-	}
-    catch(e){
-    console.log('caught withdraw');
-    if(!kovan){
-    const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
-    return e.message.substring(20,index-1);
+export const acceptBattle = async function (id, bet_amount, from) {
+    await init(from);
+    try {
+        await contract.methods.acceptBattle(id).send({
+            from,
+            value: bet_amount
+        });
+        console.log('acceptBattle passed!');
+        return 'success';
+    } catch (e) {
+        debug('caught acceptBattle');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            console.log("revert because of: "+e.message.substring(20, index - 1));
+            return e.message.substring(20, index - 1);
+        }
+        return "";
     }
-
-    return "";
-    }
-
 }
 
-const cancelBattle= async function(id,from = address) {
-	await init(from);
+export const withdraw= async function (from) {
+	let battleList=await getAll(from);
 
-    try{
-	await contract.methods.cancelBattle(id).send({
-		from: from
+	for(let i = 0; i < battleList.length; i++){
+	let currBattle=battleList[i];
 
-	});
-	console.log('cancel passed!');
-	return 'success';
+    // eslint-disable-next-line
+    if((currBattle.creator.toLowerCase()==from||currBattle.opponent.toLowerCase()==from)&&(currBattle.betDate<=Date.now())&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent)){
+
+	    try{
+    	    await contract.methods.withdraw(i).send({
+    		from: from
+    	    });
+    	    console.log("withdraw in battle: "+i);
+        }
+
+        catch(e){
+            console.log('caught withdraw in battle: '+i);
+            if(!kovan){
+            const index=e.message.indexOf("0");
+            console.log("revert because of: "+e.message.substring(20, index - 1));
+
+            }
+            console.log("full error: "+e);
+            return "";
+            }
+    	}
+    	console.log("\n\n");
 	}
-	catch(e){
-    console.log('caught cancel');
-    if(!kovan){
-    const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
-    }
-    return "";
+
+	return "success";
+}
+
+
+export const cancelBattle = async function (id, from) {
+    await init(from);
+
+    try {
+        await contract.methods.cancelBattle(id).send({
+            from: from
+        });
+        console.log('cancel passed!');
+        return 'success';
+    } catch (e) {
+        console.log('caught cancel');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            console.log("revert because of: "+e.message.substring(20, index - 1));
+            return e.message.substring(20, index - 1);
+        }
+        return "";
     }
 
 }
 
+export const getBattleInfo = async function (id, from) {
+    await init(from);
 
-const getBattleInfo= async function (id , from = address)  {
-	await init(from);
+    try {
 
-    try{
+        const battle = await contract.methods.getBattleInfo(id).call();
+        console.log('getBattleInfo passed!');
+        console.log(battle);
+        return battle;
+    } catch (e) {
+        debug('caught getBattleInfo');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            console.log("revert because of: "+e.message.substring(20, index - 1));
+        }
 
-	const battle=await contract.methods.getBattleInfo(id).call();
-	console.log('getBattleInfo passed!');
-	console.log(battle);
-	return battle;
-	}
-	catch(e){
-	console.log('caught getBattleInfo');
-	if(!kovan){
-	const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
-	}
-
-    return null;
-	}
+        return null;
+    }
 }
 
-const getAll= async function (from = address)  {
-	await init(from);
+export const getAll = async function ( from) {
+    await init( from);
 
-    try{
+    try {
 
-	let battle=await contract.methods.getAll().call();
-	console.log('getAll passed!');
-	console.log(battle);
-	return battle;
-	}
-	catch(e){
-	console.log('caught getAll');
-	if(!kovan){
-	const index=e.message.indexOf("0");
-    console.log(e.message.substring(20,index-1));
-	}
+        let battle = await contract.methods.getAll().call();
+        console.log("battleList: "+battle);
+        console.log("battleList length: "+battle.length);
+        return battle;
+    } catch (e) {
+        console.log('caught getAll');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            console.log("revert because of: "+e.message.substring(20, index - 1));
+        }
 
-    return null;
-	}
+        return null;
+    }
 }
 
 //addBattle("EthVsUsd",0,false,'5'); // now 90 isnt good, need to be unix time
 //getAll();
 //acceptBattle(0,'1');
 //withdraw(0);
-getBattleInfo(3);
+//getBattleInfo(3);*/

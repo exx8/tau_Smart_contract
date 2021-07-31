@@ -1,8 +1,8 @@
 const Web3=require('web3');
 const BinaryOption= require('../build/contracts/BinaryOption.json');
 const HDWalletProvider=require('@truffle/hdwallet-provider');
-const address='0xDEdbf82289edB28763463D1FF482a9A94604E6dc';
-const privateKey="0xccc943d4061cda10d3c617ff06234810fd195598851774f0c6359e086d31660f";
+const address='';
+const privateKey="";
 
 let result=0;
 let web3=null;
@@ -155,7 +155,7 @@ const getId= async function()  {
 }
 //getId();
 //getPrice();
-addBattle("EthVsUsd",15,false,'50000');
+//addBattle("EthVsUsd",15,false,'50000');
 //acceptBattle(0,'500000');
 //addBattle("EthVsUsd",10,false,'50000');
 //acceptBattle(1,'500000');

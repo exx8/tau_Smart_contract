@@ -1,3 +1,5 @@
+// variables in comment are relevant only for backend.js
+
 let kovan=false;
 //let infuraKovan="";
 //let infuraRinkeby="";
