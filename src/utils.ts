@@ -72,3 +72,9 @@ export function getDebug(namespace: string) {
     debugNameSpace.enabled = true;
     return debugNameSpace;
 }
+
+export function switchAnchor(anchor:string)
+{
+    window.location = (""+window.location).replace(/#[A-Za-z0-9_]*$/,'')+"#"+anchor;
+
+}

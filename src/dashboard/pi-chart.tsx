@@ -58,7 +58,6 @@ export class PiChart extends React.Component<{}, {}> {
 
 
             }
-            console.log(statusOfBattles)
             var ct: HTMLCanvasElement = document.getElementById('myChart') as HTMLCanvasElement;
             var ctx = ct.getContext('2d') as CanvasRenderingContext2D;
             new Chart(ctx, {

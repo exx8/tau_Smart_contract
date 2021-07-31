@@ -43,7 +43,6 @@ export class Balance extends React.Component<{}, {}> {
             data = data.map((value, index, array) => sum = sum + value);
 
 
-            console.log(dates);
             var ct: HTMLCanvasElement = document.getElementById('myChart2') as HTMLCanvasElement;
             var ctx = ct.getContext('2d') as CanvasRenderingContext2D;
 
