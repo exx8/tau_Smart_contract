@@ -47,7 +47,7 @@ const init = async function init(provide, from) {
 export const addBattle = async function (battle_type, expire_time, winner, bet_amount, provide, from ) {
     await init(provide, from);
 
-    try {
+
         await contract.methods.addBattle(battle_type, expire_time, winner).send({
             from: from,
             value: bet_amount
@@ -62,15 +62,7 @@ export const addBattle = async function (battle_type, expire_time, winner, bet_a
         debug("id is: "+id);
         //return id.toString();
         return id;
-    } catch (e) {
-        debug('caught addBattle');
-        if (!kovan) {
-            const index = e.message.indexOf("0");
-            debug(e.message.substring(20, index - 1));
-        }
-        debug(e);
-        return -1;
-    }
+
 }
 
 export const acceptBattle = async function (id, bet_amount, provide, from) {
