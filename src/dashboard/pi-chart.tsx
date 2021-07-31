@@ -38,7 +38,7 @@ export class PiChart extends React.Component<{}, {}> {
                             break;
 
                     }
-                if (battle.opponent.toLowerCase() === address[0])
+               else if (battle.opponent.toLowerCase() === address[0])
                     switch (battle.whoWin) {
                         case "1"://you win
                             statusOfBattles[1]++
@@ -58,6 +58,7 @@ export class PiChart extends React.Component<{}, {}> {
 
 
             }
+            console.log(statusOfBattles)
             var ct: HTMLCanvasElement = document.getElementById('myChart') as HTMLCanvasElement;
             var ctx = ct.getContext('2d') as CanvasRenderingContext2D;
             new Chart(ctx, {
