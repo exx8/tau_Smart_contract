@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.3;
-import "./Aggre.sol";
+import "./PriceFeed.sol";
 
 contract BinaryOption{
 
     uint256  public battleId; // unique id for each battle
     mapping(uint256 => Battle) public battleInfo; // map of the existing battles
     mapping(string=>address) public feedAddress; // map of addresses for the price feeds
-    Aggre public age;
+    PriceFeed public priceFeed;
+
 
     event AddEvent(
     uint256 indexed id,
@@ -27,7 +28,7 @@ contract BinaryOption{
 
 
     constructor()  {
-        age=new Aggre();
+        priceFeed=new PriceFeed();
         bool isKovan=false; // true if kovan, otherwise rinkeby
 
         if(isKovan){
@@ -51,7 +52,7 @@ contract BinaryOption{
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value>0, "You have to bet on positive value!");
-        battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,age.getThePrice(feedAddress[betType]),3);
+        battleInfo[battleId]=Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,priceFeed.getThePrice(feedAddress[betType]),3);
         emit AddEvent(battleId,msg.sender);
         battleId++;
     }
@@ -93,6 +94,8 @@ contract BinaryOption{
         delete battleInfo[battle_id]; // battle is canceled
     }
 
+
+
     // the winner may draw his money
     function withdraw(uint256 battle_id) public {
         int winner; // 0=lose 1=win 2=draw
@@ -104,7 +107,9 @@ contract BinaryOption{
         require(block.timestamp>=bate.betDate/1000, "Too early to check who is the winner.");
         require(bate.whoWin==3, "Withdraw already.");
         oldPrice=bate.currVal;
-        newPrice=age.getThePrice(feedAddress[bate.betType]);
+
+        newPrice=priceFeed.getThePrice(feedAddress[bate.betType]);
+
         // deliver the money to the winner
         if(oldPrice<newPrice){
 

@@ -99,10 +99,11 @@ export const withdraw= async function (provide,from) {
     		from: from
     	    });
     	    debug("withdraw in battle: "+i);
+
         }
 
         catch(e){
-            console.log('caught withdraw in battle: '+i);
+            debug('caught withdraw in battle: '+i);
             if(!kovan){
             const index=e.message.indexOf("0");
             debug("revert because of: "+e.message.substring(20, index - 1));
@@ -179,3 +180,6 @@ export const getAll = async function (provide, from) {
         return null;
     }
 }
+
+
+
