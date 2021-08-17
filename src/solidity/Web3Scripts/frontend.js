@@ -8,8 +8,8 @@ let past_events = PickTestNet.past_events;
 let web3 = PickTestNet.web3;
 let contract = PickTestNet.contract;
 let kovan = PickTestNet.kovan;
-const idKovan=PickTestNet.idKovan;
-const idRinkeby=PickTestNet.idRinkeby;
+const idKovan = PickTestNet.idKovan;
+const idRinkeby = PickTestNet.idRinkeby;
 
 
 
