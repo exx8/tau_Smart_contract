@@ -58,7 +58,7 @@ contract BinaryOption{
     }
 
 
-    function getBattleInfo(uint256 battle_id) public payable returns(Battle memory) {
+    function getBattleInfo(uint256 battle_id) public returns(Battle memory) {
         Battle storage bate = battleInfo[battle_id];
         require(bate.amountBet > 0, "This battle isn't exist.\n");
         return battleInfo[battle_id];
@@ -84,7 +84,7 @@ contract BinaryOption{
     }
 
     // a creator cancels his battle
-    function cancelBattle(uint256 battle_id) public payable{
+    function cancelBattle(uint256 battle_id) public {
         Battle memory bate = battleInfo[battle_id];
         require(bate.amountBet > 0, "This battle isn't exist.");
         require(bate.creator == msg.sender, "Only the creator may cancel his own battle.");

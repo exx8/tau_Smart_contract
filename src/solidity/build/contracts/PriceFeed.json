@@ -18,8 +18,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.3+commit.8d00100c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"a\",\"type\":\"address\"}],\"name\":\"getThePrice\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/Admin/IdeaProjects/tau_Smart_contract/src/solidity/contracts/PriceFeed.sol\":\"PriceFeed\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Admin/IdeaProjects/tau_Smart_contract/src/solidity/contracts/PriceFeed.sol\":{\"keccak256\":\"0x0372504dbab79df13350d7f41a1a8d6370105d49542adad1438df88530cb2495\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://589bc02d0bfebc038535394d753d44122172f31d3b52d512b14dd9268f410d8f\",\"dweb:/ipfs/QmX65m9Z1ttw6WQKJhRxywiVgMorwnEJ5b2KpMU8KPfC5G\"]},\"@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol\":{\"keccak256\":\"0xe6f5ac8c47f3b9b6135051efb9216f9ba5b312a6ecc20209b4f66a780443c328\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ded4aa77b7b8f222a2d992eb95b03592be3250b826b6a38a4c790d2dec8b0d47\",\"dweb:/ipfs/QmNUKpTKXWsBBNMyzZuYvEZ2pUhZ2zEhQuyvxYZpTwo4eT\"]}},\"version\":1}",
@@ -2485,8 +2484,7 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-08-17T11:27:16.421Z",
-  "networkType": "ethereum",
+  "updatedAt": "2021-08-21T20:50:25.703Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
