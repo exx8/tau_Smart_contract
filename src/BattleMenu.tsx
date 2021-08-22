@@ -150,7 +150,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
         let arr=[]
         for(const [key, ] of Object.entries(assetList) )
         {
-            arr.push(<MenuItem value={key as string }>{(key as string).replaceAll("_"," ")}</MenuItem>)
+            arr.push(<MenuItem key={key} value={key as string }>{(key as string).replaceAll("_"," ")}</MenuItem>)
         }
 
         return arr;
@@ -175,12 +175,13 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             <div>
                 <div>
 
-                    <Dialog open={this.props.isOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                        <DialogTitle id="form-dialog-title"> Create a Binary Option</DialogTitle>
-                        <DialogContent>
+                    <Dialog  key={"maindialog"} open={this.props.isOpen} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+                        <DialogTitle key={"title"} id="form-dialog-title"> Create a Binary Option</DialogTitle>
+                        <DialogContent key={"emailbox"}>
                             {emailBox}
                             <InputLabel id="demo-simple-select-helper-label">Type</InputLabel>
                             <Select
+                                key={"select"}
                                 labelId="demo-simple-select-helper-label"
                                 id="demo-simple-select-helper"
                                 value={this.state.type}
