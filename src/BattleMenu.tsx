@@ -305,16 +305,16 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
 
                 console.log("battle data is ", battleID);
             } catch (e) {
-                console.log('Payment using Metamask  was denied');
+                alert('Payment using Metamask  was denied');
 
             }
         } else if (window.web3) {
-            console.log("Need to see how to extract address in this case, provider is just window.web3. than, call addBattle");
-            console.log(window.web3)
+            alert('please install a wallet. recommended: Metamask');
+            alert(window.web3)
 
 
         } else {
-            console.log('please install a wallet. recommended: Metamask');
+            alert('please install a wallet. recommended: Metamask');
 
         }
         this.handleClose();
