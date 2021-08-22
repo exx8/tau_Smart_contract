@@ -24,7 +24,7 @@ export class Balance extends React.Component<{}, {}> {
             let dates = results.map((value, index, array) => format(Number(value.betDate), 'yyyy-MM-dd'));
             let data = results.map((value, index, array) => {
                     let amount = Number(value.amountBet);
-                    switch (value.status) {
+                    switch (value.whoWin) {
                         case "0":
                             amount *= value.opponent === address ? -1 : 1;
                             break;

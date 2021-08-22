@@ -93,7 +93,7 @@ export const withdraw= async function (provide,from) {
 
     // eslint-disable-next-line
     if((currBattle.creator.toLowerCase() == from || currBattle.opponent.toLowerCase() == from) &&
-     (currBattle.betDate <= Date.now()) && (currBattle.status == 3) && (currBattle.creator != currBattle.opponent)){
+     (currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) && (currBattle.creator != currBattle.opponent)){
 
 	    try{
     	    await contract.methods.withdraw(i).send({

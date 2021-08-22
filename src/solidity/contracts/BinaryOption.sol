@@ -29,7 +29,7 @@ contract BinaryOption{
         uint betDate;
         bool isUp;
         int currVal;
-        Status status; // 0 for opponent, 1 for creator, 2 for draw, 3 if not over
+        Status whoWin; // 0 for opponent, 1 for creator, 2 for draw, 3 if not over
     }
 
 
@@ -111,11 +111,11 @@ contract BinaryOption{
         int oldPrice;
         int newPrice;
         Battle storage bate=battleInfo[battle_id];
+        uint betDateSecond = bate.betDate / 1000; // divide by 1000 to convert milliseconds to seconds
         require(battleInfo[battle_id].creator != battleInfo[battle_id].opponent, "This battle didn't start."); // in case the creator try to withdraw before having opponent. He may cancel battle if he wants.
-        require((bate.creator == msg.sender||bate.opponent == msg.sender), "You are not part of this battle.");
-        require(block.timestamp >= bate.betDate / 1000, "Too early to check who is the winner."); // divide by 1000 to convert milliseconds to seconds
-        require(block.timestamp >= bate.betDate / 1000, "Too early to check who is the winner.");
-        require(bate.status == Status.NotOver, "Withdraw already.");
+        require((bate.creator == msg.sender || bate.opponent == msg.sender), "You are not part of this battle.");
+        require(block.timestamp >= betDateSecond, "Too early to check who is the winner.");
+        require(bate.whoWin == Status.NotOver, "Withdraw already.");
         oldPrice = bate.currVal;
         newPrice = priceFeed.getThePrice(feedAddress[bate.betType]);
         // deliver the money to the winner
@@ -148,7 +148,7 @@ contract BinaryOption{
             payable(bate.opponent).transfer(bate.amountBet);
             payable(bate.creator).transfer(bate.amountBet);
         }
-        bate.status = winner;
+        bate.whoWin = winner;
     }
 
 }
