@@ -75,8 +75,7 @@ export function getDebug(namespace: string) {
 
 export function switchAnchor(anchor: string) {
     const baseAddress = ("" + window.location).replace(/#[A-Za-z0-9_]*$/, '');
-    console.log(anchor == "");
-    if (anchor == "") {
+    if (anchor === "") {
         window.location = baseAddress;
         return;
     }

@@ -16,7 +16,7 @@ export class CancelButton extends React.Component<{id:number,close:()=>any;}, {}
 
       rejectBattle=async():Promise<void> =>{
         let detailedCancelBattle = await fillEtherDetailsInFunc(cancelBattle);
-         detailedCancelBattle(this.props.id);
+         await detailedCancelBattle(this.props.id);
          switchAnchor("");
           this.props.close();
 
