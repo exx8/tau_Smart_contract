@@ -14,6 +14,13 @@ contract BinaryOption{
     address address_field
     );
 
+    enum Status {
+            Opponent,
+            Creator,
+            Draw,
+            NotOver
+        }
+
     struct Battle {
         address creator;
         address opponent;
@@ -22,7 +29,7 @@ contract BinaryOption{
         uint betDate;
         bool isUp;
         int currVal;
-        int whoWin; // 0 for opponent, 1 for creator, 2 for draw, 3 if not over
+        Status status; // 0 for opponent, 1 for creator, 2 for draw, 3 if not over
     }
 
 
@@ -47,13 +54,17 @@ contract BinaryOption{
 
     }
 
+    function getNotOver() public view returns (Status){
+                return Status.NotOver;
+            }
+
 
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value > 0, "You have to bet on positive value!");
         battleInfo[battleId] = Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,
-        priceFeed.getThePrice(feedAddress[betType]),3);
-        emit AddEvent(battleId,msg.sender);
+        priceFeed.getThePrice(feedAddress[betType]), Status.NotOver);
+        emit AddEvent(battleId, msg.sender);
         battleId++;
     }
 
@@ -96,25 +107,26 @@ contract BinaryOption{
 
     // the winner may draw his money
     function withdraw(uint256 battle_id) public {
-        int winner; // 0 = lose 1 = win 2 = draw
+        Status winner; // 0 = lose 1 = win 2 = draw
         int oldPrice;
         int newPrice;
         Battle storage bate=battleInfo[battle_id];
         require(battleInfo[battle_id].creator != battleInfo[battle_id].opponent, "This battle didn't start."); // in case the creator try to withdraw before having opponent. He may cancel battle if he wants.
         require((bate.creator == msg.sender||bate.opponent == msg.sender), "You are not part of this battle.");
-        require(block.timestamp >= bate.betDate/1000, "Too early to check who is the winner.");
-        require(bate.whoWin == 3, "Withdraw already.");
+        require(block.timestamp >= bate.betDate / 1000, "Too early to check who is the winner."); // divide by 1000 to convert milliseconds to seconds
+        require(block.timestamp >= bate.betDate / 1000, "Too early to check who is the winner.");
+        require(bate.status == Status.NotOver, "Withdraw already.");
         oldPrice = bate.currVal;
         newPrice = priceFeed.getThePrice(feedAddress[bate.betType]);
         // deliver the money to the winner
         if(oldPrice < newPrice){
 
             if (bate.isUp){
-                winner = 1;
+                winner = Status.Creator;
                 payable(bate.creator).transfer(2 * bate.amountBet); // multiply by 2 since we deliver the money of both the creator and his opponent
             }
             else{
-                winner = 0;
+                winner = Status.Opponent;
                 payable(bate.opponent).transfer(2*bate.amountBet);
             }
 
@@ -122,21 +134,21 @@ contract BinaryOption{
         else if (oldPrice > newPrice){
 
             if (bate.isUp){
-                winner = 0;
+                winner = Status.Opponent;
                 payable(bate.opponent).transfer(2 * bate.amountBet);
             }
             else {
-                winner=1;
+                winner = Status.Creator;
                 payable(bate.creator).transfer(2*bate.amountBet);
             }
         }
 
         else {
-            winner = 2;
+            winner = Status.Draw;
             payable(bate.opponent).transfer(bate.amountBet);
             payable(bate.creator).transfer(bate.amountBet);
         }
-        bate.whoWin = winner;
+        bate.status = winner;
     }
 
 }

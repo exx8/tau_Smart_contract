@@ -86,13 +86,14 @@ export const acceptBattle = async function (id, bet_amount, provide, from) {
 }
 
 export const withdraw= async function (provide,from) {
-	let battleList=await getAll(provide,from);
+	let battleList = await getAll(provide,from);
 
 	for(let i = 0; i < battleList.length; i++){
 	let currBattle=battleList[i];
 
     // eslint-disable-next-line
-    if((currBattle.creator.toLowerCase()==from||currBattle.opponent.toLowerCase()==from)&&(currBattle.betDate<=Date.now())&&(currBattle.whoWin==3)&&(currBattle.creator!=currBattle.opponent)){
+    if((currBattle.creator.toLowerCase() == from || currBattle.opponent.toLowerCase() == from) &&
+     (currBattle.betDate <= Date.now()) && (currBattle.status == 3) && (currBattle.creator != currBattle.opponent)){
 
 	    try{
     	    await contract.methods.withdraw(i).send({
@@ -179,3 +180,22 @@ export const getAll = async function (provide, from) {
         return null;
     }
 }
+
+/*export const getNotOver = async function () {
+
+    try {
+
+        let notOver = await contract.methods.getNotOver().call();
+        debug("not over returned: " + notOver);
+
+        return notOver;
+    } catch (e) {
+        console.log('caught getNotOver');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug("revert because of: "+e.message.substring(20, index - 1));
+        }
+
+        return null;
+    }
+}*/
