@@ -303,22 +303,19 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                 const fixedEmail: string = this.state.email ?? "";
                 sendInvitation(fixedEmail, battleID)
 
-                console.log("battle data is ", battleID);
             } catch (e) {
-                alert('Payment using Metamask  was denied');
-
+                alert('Payment using Metamask was denied');
+                throw new Error('Payment using Metamask was denied');
             }
         } else if (window.web3) {
             alert('please install a wallet. recommended: Metamask');
-            alert(window.web3)
-
-
+            throw new Error("no wallet was found");
         } else {
             alert('please install a wallet. recommended: Metamask');
+            throw new Error("no wallet was found");
 
         }
         this.handleClose();
-
     }
 
     protected static readonly defaultDueTimeInTheFutureInDays = 7;

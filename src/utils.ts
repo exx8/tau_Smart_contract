@@ -18,16 +18,18 @@ export async function genericEtherRequest<T>(customRequest: (addresses: string) 
 
 
         } catch (e) {
-            alert('Payment using Metamask  was denied');
+            alert('Payment using Metamask was denied');
+            throw new Error('Payment using Metamask was denied');
 
         }
     } else if (window.web3) {
         alert('please install a wallet. recommended: Metamask');
-        alert(window.web3)
+        throw new Error("no wallet was found");
 
 
     } else {
         alert('please install a wallet. recommended: Metamask');
+        throw new Error("no wallet was found");
 
     }
 }
