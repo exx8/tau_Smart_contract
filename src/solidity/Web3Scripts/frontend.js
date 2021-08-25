@@ -46,19 +46,20 @@ const init = async function init(provide, from) {
 
 export const addBattle = async function (battle_type, expire_time, winner, bet_amount, provide, from ) {
     await init(provide, from);
-
-
         await contract.methods.addBattle(battle_type, expire_time, winner).send({
             from: from,
             value: bet_amount
         });
+        const parallelism = 5;
         const block_num = await web3.eth.getBlockNumber();
+        // filtering by the address of the sender to allow parallelism of different senders
         past_events = await contract.getPastEvents('AddEvent', {
-            filter: {address_field: from}, // we filter by the address of the sender
-            fromBlock: block_num - 2, toBlock: block_num
+            filter: {address_field: from},
+            fromBlock: block_num - parallelism, toBlock: block_num
         });
-
-        const id = past_events[past_events.length - 1].returnValues.id; // we take the last event referred to the address of the sender
+        // we take the most relevant battle referred to address_field
+        console.log(past_events);
+        const id = past_events[past_events.length - 1].returnValues.id;
         debug("id is: "+id);
         //return id.toString();
         return id;
