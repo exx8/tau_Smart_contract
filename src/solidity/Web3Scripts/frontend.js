@@ -88,14 +88,14 @@ export const acceptBattle = async function (id, bet_amount, provide, from) {
 
 export const withdraw= async function (provide,from) {
 	let battleList = await getAll(provide,from);
-
+    let anyBattleMatch = false;
 	for(let i = 0; i < battleList.length; i++){
 	let currBattle=battleList[i];
 
     // eslint-disable-next-line
     if((currBattle.creator.toLowerCase() == from || currBattle.opponent.toLowerCase() == from) &&
      (currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) && (currBattle.creator != currBattle.opponent)){
-
+        anyBattleMatch = true;
 	    try{
     	    await contract.methods.withdraw(i).send({
     		from: from
@@ -111,13 +111,13 @@ export const withdraw= async function (provide,from) {
 
             }
             debug("full error: "+e);
-            return "";
+            return false;
             }
     	}
     	debug("\n\n");
 	}
 
-	return "success";
+	return anyBattleMatch;
 }
 
 
