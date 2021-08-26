@@ -6,12 +6,13 @@ contract BinaryOption{
 
     uint256 public battleId; // unique id for each battle
     mapping(uint256 => Battle) public battleInfo; // map of the existing battles
-    mapping(string=>address) public feedAddress; // map of addresses for the price feeds
+    mapping(address => uint256[]) public addressToBattle; // map of relevant battles
+    mapping(string => address) public feedAddress; // map of addresses for the price feeds
     PriceFeed public priceFeed;
-
+    int public b = 2;
     event AddEvent(
     uint256 indexed id,
-    address address_field
+    address address_field//
     );
 
     enum Status {
@@ -53,21 +54,42 @@ contract BinaryOption{
         }
 
     }
+       /*function getB() public view returns (int){
+          return b;
+       }
 
-    function getNotOver() public view returns (Status){
-                return Status.NotOver;
-            }
+       function getList(address a) public view returns (uint256[] memory){
+          return addressToBattle[a];
+       }*/
 
 
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value > 0, "You have to bet on positive value!");
+        // doesn't play more than 3 games simultaneously
+        require(!(addressToBattle[msg.sender].length > 0) || (addressToBattle[msg.sender].length > 0
+        && (addressToBattle[msg.sender][0]==100 || addressToBattle[msg.sender][1]==100 || addressToBattle[msg.sender][2]==100)), "Too many battles" );
         battleInfo[battleId] = Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,
         priceFeed.getThePrice(feedAddress[betType]), Status.NotOver);
         emit AddEvent(battleId, msg.sender);
+        if (!(addressToBattle[msg.sender].length > 0)){
+        //b = 1;
+        addressToBattle[msg.sender] = [battleId, 100, 100]; // 100 signs empty entry. -1 doesn't work
+        } else {
+            //b = 0;
+            for(uint i = 0; i < 3; i++){
+                if (addressToBattle[msg.sender][i] == 100){
+                    addressToBattle[msg.sender][i] = battleId;
+                    break;
+                }
+            }
+        }
         battleId++;
     }
 
+    function getaddressToBattle(address a) public view returns(uint256[] memory) {
+       return addressToBattle[a];
+    }
 
     function getBattleInfo(uint256 battle_id) public returns(Battle memory) {
         Battle storage bate = battleInfo[battle_id];
@@ -81,7 +103,7 @@ contract BinaryOption{
                 ret[i] = battleInfo[i];
             }
             return ret;
-        }
+    }
 
     // an opponent is signed to battle number: battle_id
     function acceptBattle(uint256 battle_id) public payable{
@@ -91,17 +113,39 @@ contract BinaryOption{
         require(bate.creator != msg.sender, "Impossible to fight against yourself.");
         require(bate.creator == bate.opponent, "This battle is closed, opponent already exist.");
         require(msg.value == bate.amountBet, "Betting value isn't as specified for this battle.");
+        // doesn't play more than 3 games simultaneously
+        require(!(addressToBattle[msg.sender].length > 0) || (addressToBattle[msg.sender].length > 0
+        && (addressToBattle[msg.sender][0]==100 || addressToBattle[msg.sender][1]==100 || addressToBattle[msg.sender][2]==100)), "Too many battles" );
         bate.opponent = msg.sender;
+        if (!(addressToBattle[msg.sender].length > 0)){
+            b = 0;
+            addressToBattle[msg.sender] = [battle_id, 100, 100];
+        } else {
+            b = 1;
+            for(uint i = 0; i < 3; i++){
+                if (addressToBattle[msg.sender][i] == 100){
+                    addressToBattle[msg.sender][i] = battle_id;
+                    break;
+                }
+            }
+        }
     }
+
 
     // a creator cancels his battle
     function cancelBattle(uint256 battle_id) public {
         Battle memory bate = battleInfo[battle_id];
         require(bate.amountBet > 0, "This battle isn't exist.");
-        require(bate.creator == msg.sender, "Only the creator may cancel his own battle.");
-
+        //require(bate.creator == msg.sender, "Only the creator may cancel his own battle.");
         require(bate.creator == bate.opponent, "There is already opponent, this battle can't be canceled.");
         payable(bate.creator).transfer(bate.amountBet); // return the amount which was invested
+        address creator = bate.creator;
+        for (uint i = 0; i < 3; i++){
+            if(addressToBattle[creator][i] == battle_id){
+                addressToBattle[creator][i] = 100;
+                break;
+            }
+        }
         delete battleInfo[battle_id]; // battle is canceled
     }
 
@@ -148,7 +192,21 @@ contract BinaryOption{
             payable(bate.opponent).transfer(bate.amountBet);
             payable(bate.creator).transfer(bate.amountBet);
         }
-        bate.whoWin = winner;
-    }
 
+        bate.whoWin = winner;
+        address creator = battleInfo[battle_id].creator;
+        address opponent = battleInfo[battle_id].opponent;
+        for (uint i = 0; i < 3; i ++){
+            if(addressToBattle[creator][i] == battle_id){
+                addressToBattle[creator][i] = 100;
+                break;
+            }
+        }
+        for (uint i = 0; i < 3; i ++){
+             if(addressToBattle[opponent][i] == battle_id){
+                addressToBattle[opponent][i] = 100;
+                break;
+             }
+        }
+    }
 }

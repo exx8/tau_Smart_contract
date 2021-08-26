@@ -46,10 +46,16 @@ const init = async function init(provide, from) {
 
 export const addBattle = async function (battle_type, expire_time, winner, bet_amount, provide, from ) {
     await init(provide, from);
+    try {
         await contract.methods.addBattle(battle_type, expire_time, winner).send({
             from: from,
             value: bet_amount
         });
+        //await getList(provide, from);
+
+        //await getB(provide,from);
+
+
         const parallelism = 5;
         const block_num = await web3.eth.getBlockNumber();
         // filtering by the address of the sender to allow parallelism of different senders
@@ -63,6 +69,16 @@ export const addBattle = async function (battle_type, expire_time, winner, bet_a
         debug("id is: "+id);
         //return id.toString();
         return id;
+        }
+        catch(e){
+        debug('caught addBattle');
+
+                if (!kovan) {
+                    const index = e.message.indexOf("0");
+                    debug("revert because of: "+e.message.substring(20, index - 1));
+                    return e.message.substring(20, index - 1);
+                }
+        }
 
 }
 
@@ -86,14 +102,20 @@ export const acceptBattle = async function (id, bet_amount, provide, from) {
     }
 }
 
+// returns false if there is no battle to withdraw from
 export const withdraw= async function (provide,from) {
-	let battleList = await getAll(provide,from);
+	let battleList = await getaddressToBattle(provide,from);
     let anyBattleMatch = false;
+    if (battleList == [100,100,100]){
+        debug("nothing to withdraw");
+        return false;
+    }
 	for(let i = 0; i < battleList.length; i++){
-	let currBattle=battleList[i];
-
+	let currBattleId=battleList[i];
+	if (currBattleId != 100){
+    let currBattle = await getBattleInfo(currBattleId, provide,from, false);
     // eslint-disable-next-line
-    if((currBattle.creator.toLowerCase() == from || currBattle.opponent.toLowerCase() == from) &&
+    if(
      (currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) && (currBattle.creator != currBattle.opponent)){
         anyBattleMatch = true;
 	    try{
@@ -115,7 +137,9 @@ export const withdraw= async function (provide,from) {
             }
     	}
     	debug("\n\n");
+    	}
 	}
+
 
 	return anyBattleMatch;
 }
@@ -142,9 +166,9 @@ export const cancelBattle = async function (id, provide, from) {
 
 }
 
-export const getBattleInfo = async function (id, provide, from) {
-    await init(provide, from);
+export const getBattleInfo = async function (id, provide, from, init_param = true) {
 
+    await init(provide, from);
     try {
 
         const battle = await contract.methods.getBattleInfo(id).call();
@@ -181,6 +205,65 @@ export const getAll = async function (provide, from) {
         return null;
     }
 }
+
+// returns relevant battle id's to withdraw
+export const getaddressToBattle = async function (provide, from) {
+
+    await init(provide, from);
+    try {
+
+        const battleIds = await contract.methods.getaddressToBattle(from).call();
+        debug('getaddressToBattle passed!');
+        debug(battleIds);
+        return battleIds;
+    } catch (e) {
+        debug('caught getaddressToBattle');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug("revert because of: "+e.message.substring(20, index - 1));
+        }
+
+        return null;
+    }
+}
+
+/*export const getB = async function (provide, from) {
+
+    try {
+
+        const b = await contract.methods.getB().call();
+        debug('b passed!');
+        debug(b);
+        return b;
+    } catch (e) {
+        debug('caught getB');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug("revert because of: "+e.message.substring(20, index - 1));
+        }
+
+        return null;
+    }
+}
+
+export const getList = async function (provide, from) {
+
+    try {
+
+        let b = await contract.methods.getList(from).call();
+        debug('getList passed!');
+        debug(b);
+
+    } catch (e) {
+        debug('caught getList');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug("revert because of: "+e.message.substring(20, index - 1));
+        }
+
+
+    }
+}*/
 
 /*export const getNotOver = async function () {
 
