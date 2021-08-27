@@ -9,8 +9,8 @@ let contract = PickTestNet.contract;
 let kovan = PickTestNet.kovan;
 const idKovan = PickTestNet.idKovan;
 const idRinkeby = PickTestNet.idRinkeby;
-export const maxNumOfBattles = 3;
-const battleFreeSpace = 100;
+export const maxNumOfBattles = 10;
+const battleFreeSpace = 1000;
 let debug = getDebug('sol:frontend');
 
 const init = async function init(provide, from) {
@@ -46,7 +46,7 @@ export const addBattle = async function (battle_type, expire_time, winner, bet_a
             from: from,
             value: bet_amount
         });
-        const parallelism = 5;
+        const parallelism = 10;
         const block_num = await web3.eth.getBlockNumber();
         // filtering by the address of the sender to allow parallelism of different senders
         past_events = await contract.getPastEvents('AddEvent', {

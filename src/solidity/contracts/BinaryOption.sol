@@ -9,9 +9,9 @@ contract BinaryOption{
     mapping(address => uint256[]) public addressToBattle; // map of relevant battles
     mapping(string => address) public feedAddress; // map of addresses for the price feeds
     PriceFeed public priceFeed;
-    uint256 maxNumOfBattles = 3;
-    uint256 historyWindow = 2;
-    uint256 battleFreeSpace = 100;
+    uint256 maxNumOfBattles = 10;
+    uint256 historyWindow = 10;
+    uint256 battleFreeSpace = 1000;
     //address owner;
 
     event AddEvent(
@@ -43,7 +43,7 @@ contract BinaryOption{
         bool isKovan = false; // true if kovan, otherwise rinkeby
         //owner = msg.sender;
         if (isKovan){
-        feedAddress["EthVsUsd"] = 0x9326BFA02ADD2366b30bacB125260Af641031331;
+            feedAddress["EthVsUsd"] = 0x9326BFA02ADD2366b30bacB125260Af641031331;
         }
         else {
         // those addresses (of rinkbey test network) can be found at: https://docs.chain.link/docs/ethereum-addresses/
@@ -71,26 +71,32 @@ contract BinaryOption{
         return false;
     }
 
+    function initArray(address target, uint256 battle_id) public {
+        if (!(addressToBattle[target].length > 0)){
+           addressToBattle[target] = [battle_id];
+           for (uint i = 1; i < maxNumOfBattles; i++){
+               addressToBattle[target].push(battleFreeSpace);
+           }
+        } else {
+               for(uint i = 0; i < maxNumOfBattles; i++){
+                  if (addressToBattle[target][i] == battleFreeSpace){
+                     addressToBattle[target][i] = battle_id;
+                     break;
+                  }
+               }
+        }
+    }
+
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
+        uint256 tempId = battleId;
         require(msg.value > 0, "you have to bet on positive value!");
         // doesn't play more than maxNumOfBattles games simultaneously
         require (hasFreeEntry(addressToBattle[msg.sender]), "too many battles" );
         battleInfo[battleId] = Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,
         priceFeed.getThePrice(feedAddress[betType]), Status.NotOver);
-        emit AddEvent(battleId, msg.sender);
-        if (!(addressToBattle[msg.sender].length > 0)){
-        //b = 1;
-        addressToBattle[msg.sender] = [battleId, battleFreeSpace, battleFreeSpace]; // battleFreeSpace signs empty entry. -1 doesn't work
-        } else {
-            //b = 0;
-            for(uint i = 0; i < maxNumOfBattles; i++){
-                if (addressToBattle[msg.sender][i] == battleFreeSpace){
-                    addressToBattle[msg.sender][i] = battleId;
-                    break;
-                }
-            }
-        }
+        emit AddEvent(tempId, msg.sender);
+        initArray(msg.sender, tempId);
         battleId++;
     }
 
@@ -131,16 +137,7 @@ contract BinaryOption{
         // doesn't play more than maxNumOfBattles games simultaneously
         require (hasFreeEntry(addressToBattle[msg.sender]), "too many battles" );
         bate.opponent = msg.sender;
-        if (!(addressToBattle[msg.sender].length > 0)){
-            addressToBattle[msg.sender] = [battle_id, battleFreeSpace, battleFreeSpace];
-        } else {
-            for (uint i = 0; i < maxNumOfBattles; i++){
-                if (addressToBattle[msg.sender][i] == battleFreeSpace){
-                    addressToBattle[msg.sender][i] = battle_id;
-                    break;
-                }
-            }
-        }
+        initArray(msg.sender, battle_id);
     }
 
 
