@@ -102,6 +102,13 @@ export const acceptBattle = async function (id, bet_amount, provide, from) {
         return "";
     }
 }
+/**
+ * check if concurrent limit has been reached
+ * if so alerts the user
+ * @param provide
+ * @param from
+ * @returns {Promise<boolean>}  whether the user has been alerted- if so limit has been reached
+ */
 export const alertReachMax= async function (provide, from) {
     let battles=await getaddressToBattle(provide,from);
     if(battles.length==maxNumOfBattles) {
