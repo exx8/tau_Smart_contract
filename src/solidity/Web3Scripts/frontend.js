@@ -10,7 +10,7 @@ let contract = PickTestNet.contract;
 let kovan = PickTestNet.kovan;
 const idKovan = PickTestNet.idKovan;
 const idRinkeby = PickTestNet.idRinkeby;
-export const maxNumOfBattles=3;
+export const maxNumOfBattles = 3;
 const battleFreeSpace = 100;
 
 
@@ -45,7 +45,7 @@ const init = async function init(provide, from) {
 
 }
 
-export const addBattle = async function (battle_type, expire_time, winner, bet_amount, provide, from ) {
+export const addBattle = async function (battle_type, expire_time, winner, bet_amount, provide, from) {
     await init(provide, from);
     try {
         await contract.methods.addBattle(battle_type, expire_time, winner).send({
@@ -67,19 +67,18 @@ export const addBattle = async function (battle_type, expire_time, winner, bet_a
         // we take the most relevant battle referred to address_field
         console.log(past_events);
         const id = past_events[past_events.length - 1].returnValues.id;
-        debug("id is: "+id);
+        debug("id is: " + id);
         //return id.toString();
         return id;
-        }
-        catch(e){
+    } catch (e) {
         debug('caught addBattle');
 
-                if (!kovan) {
-                    const index = e.message.indexOf("0");
-                    debug("revert because of: "+e.message.substring(20, index - 1));
-                    return e.message.substring(20, index - 1);
-                }
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug("revert because of: " + e.message.substring(20, index - 1));
+            return e.message.substring(20, index - 1);
         }
+    }
 
 }
 
@@ -96,7 +95,7 @@ export const acceptBattle = async function (id, bet_amount, provide, from) {
         debug('caught acceptBattle');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug("revert because of: "+e.message.substring(20, index - 1));
+            debug("revert because of: " + e.message.substring(20, index - 1));
             return e.message.substring(20, index - 1);
         }
         return "";
@@ -109,55 +108,53 @@ export const acceptBattle = async function (id, bet_amount, provide, from) {
  * @param from
  * @returns {Promise<boolean>}  whether the user has been alerted- if so limit has been reached
  */
-export const alertReachMax= async function (provide, from) {
-    let battles=await getaddressToBattle(provide,from);
-    if(battles.length==maxNumOfBattles) {
+export const alertReachMax = async function (provide, from) {
+    let battles = await getaddressToBattle(provide, from);
+    if (battles.length == maxNumOfBattles) {
         alert("You are currently participating in too much battles");
         return true;
     }
     return false;
 }
 // returns false if there is no battle to withdraw from
-export const withdraw= async function (provide, from) {
-	let battleList = await getaddressToBattle(provide,from);
+export const withdraw = async function (provide, from) {
+    let battleList = await getaddressToBattle(provide, from);
     let anyBattleMatch = false;
-    if (battleList == [battleFreeSpace,battleFreeSpace,battleFreeSpace]){
+    if (battleList == [battleFreeSpace, battleFreeSpace, battleFreeSpace]) {
         debug("nothing to withdraw");
         return false;
     }
-	for(let i = 0; i < battleList.length; i++){
-	let currBattleId=battleList[i];
-	if (currBattleId != battleFreeSpace){
-    let currBattle = await getBattleInfo(currBattleId, provide,from, false);
-    console.log("battle: " + currBattle + " id: "+ currBattleId);
-    // eslint-disable-next-line
-    if(
-     (currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) && (currBattle.creator != currBattle.opponent)){
-        anyBattleMatch = true;
-	    try{
-    	    await contract.methods.withdraw(currBattleId).send({
-    		from: from
-    	    });
-    	    debug("withdraw in battle: "+currBattleId);
+    for (let i = 0; i < battleList.length; i++) {
+        let currBattleId = battleList[i];
+        if (currBattleId != battleFreeSpace) {
+            let currBattle = await getBattleInfo(currBattleId, provide, from, false);
+            console.log("battle: " + currBattle + " id: " + currBattleId);
+            // eslint-disable-next-line
+            if (
+                (currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) && (currBattle.creator != currBattle.opponent)) {
+                anyBattleMatch = true;
+                try {
+                    await contract.methods.withdraw(currBattleId).send({
+                        from: from
+                    });
+                    debug("withdraw in battle: " + currBattleId);
+                } catch (e) {
+                    console.log('caught withdraw in battle: ' + currBattleId);
+                    if (!kovan) {
+                        const index = e.message.indexOf("0");
+                        debug("revert because of: " + e.message.substring(20, index - 1));
+
+                    }
+                    debug("full error: " + e);
+                    return false;
+                }
+            }
+            debug("\n\n");
         }
-
-        catch(e){
-            console.log('caught withdraw in battle: '+currBattleId);
-            if(!kovan){
-            const index=e.message.indexOf("0");
-            debug("revert because of: "+e.message.substring(20, index - 1));
-
-            }
-            debug("full error: "+e);
-            return false;
-            }
-    	}
-    	debug("\n\n");
-    	}
-	}
+    }
 
 
-	return anyBattleMatch;
+    return anyBattleMatch;
 }
 
 
@@ -174,7 +171,7 @@ export const cancelBattle = async function (id, provide, from) {
         debug('caught cancel');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug("revert because of: "+e.message.substring(20, index - 1));
+            debug("revert because of: " + e.message.substring(20, index - 1));
             return e.message.substring(20, index - 1);
         }
         return "";
@@ -195,7 +192,7 @@ export const getBattleInfo = async function (id, provide, from, init_param = tru
         debug('caught getBattleInfo');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug("revert because of: "+e.message.substring(20, index - 1));
+            debug("revert because of: " + e.message.substring(20, index - 1));
         }
 
         return null;
@@ -209,14 +206,14 @@ export const getAll = async function (provide, from) {
 
         let battle = await contract.methods.getAll().call();
 
-        debug("battleList: "+battle);
-        debug("battleList length: "+battle.length);
+        debug("battleList: " + battle);
+        debug("battleList length: " + battle.length);
         return battle;
     } catch (e) {
         console.log('caught getAll');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug("revert because of: "+e.message.substring(20, index - 1));
+            debug("revert because of: " + e.message.substring(20, index - 1));
         }
 
         return null;
@@ -237,7 +234,7 @@ export const getaddressToBattle = async function (provide, from) {
         debug('caught getaddressToBattle');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug("revert because of: "+e.message.substring(20, index - 1));
+            debug("revert because of: " + e.message.substring(20, index - 1));
         }
 
         return null;
@@ -257,7 +254,7 @@ export const cleanBattles = async function (provide, from) {
         debug('caught cleanBattles');
         if (!kovan) {
             const index = e.message.indexOf("0");
-            debug("revert because of: "+e.message.substring(20, index - 1));
+            debug("revert because of: " + e.message.substring(20, index - 1));
             return e.message.substring(20, index - 1);
         }
         return "";
