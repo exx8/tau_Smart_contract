@@ -114,19 +114,20 @@ export const withdraw= async function (provide,from) {
 	let currBattleId=battleList[i];
 	if (currBattleId != 100){
     let currBattle = await getBattleInfo(currBattleId, provide,from, false);
+    console.log("battle: " + currBattle + " id: "+ currBattleId);
     // eslint-disable-next-line
     if(
      (currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) && (currBattle.creator != currBattle.opponent)){
         anyBattleMatch = true;
 	    try{
-    	    await contract.methods.withdraw(i).send({
+    	    await contract.methods.withdraw(currBattleId).send({
     		from: from
     	    });
-    	    debug("withdraw in battle: "+i);
+    	    debug("withdraw in battle: "+currBattleId);
         }
 
         catch(e){
-            console.log('caught withdraw in battle: '+i);
+            console.log('caught withdraw in battle: '+currBattleId);
             if(!kovan){
             const index=e.message.indexOf("0");
             debug("revert because of: "+e.message.substring(20, index - 1));
@@ -192,6 +193,7 @@ export const getAll = async function (provide, from) {
     try {
 
         let battle = await contract.methods.getAll().call();
+
         debug("battleList: "+battle);
         debug("battleList length: "+battle.length);
         return battle;
@@ -227,7 +229,7 @@ export const getaddressToBattle = async function (provide, from) {
     }
 }
 
-/*export const getB = async function (provide, from) {
+/*export const getB = async function () {
 
     try {
 
