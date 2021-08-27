@@ -299,7 +299,7 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
                 let address = await window.ethereum.enable();
                 console.log(this.state.date);
                 let detailedAlertReachMax = await fillEtherDetailsInFunc(alertReachMax);
-                if (detailedAlertReachMax()) {
+                if (await detailedAlertReachMax()) {
                 } else {
 
                     let battleID: string = await addBattle(this.state.type, this.state.date, this.state.trend, this.state.amount,
