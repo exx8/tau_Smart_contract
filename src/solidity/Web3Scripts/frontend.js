@@ -229,6 +229,27 @@ export const getaddressToBattle = async function (provide, from) {
     }
 }
 
+export const cleanBattles = async function (provide, from) {
+    await init(provide, from);
+
+    try {
+        await contract.methods.cleanBattles().send({
+            from: from
+        });
+        debug('cleanBattles passed!');
+        return 'success';
+    } catch (e) {
+        debug('caught cleanBattles');
+        if (!kovan) {
+            const index = e.message.indexOf("0");
+            debug("revert because of: "+e.message.substring(20, index - 1));
+            return e.message.substring(20, index - 1);
+        }
+        return "";
+    }
+
+}
+
 /*export const getB = async function () {
 
     try {
@@ -264,24 +285,5 @@ export const getList = async function (provide, from) {
         }
 
 
-    }
-}*/
-
-/*export const getNotOver = async function () {
-
-    try {
-
-        let notOver = await contract.methods.getNotOver().call();
-        debug("not over returned: " + notOver);
-
-        return notOver;
-    } catch (e) {
-        console.log('caught getNotOver');
-        if (!kovan) {
-            const index = e.message.indexOf("0");
-            debug("revert because of: "+e.message.substring(20, index - 1));
-        }
-
-        return null;
     }
 }*/

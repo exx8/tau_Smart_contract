@@ -10,9 +10,11 @@ contract BinaryOption{
     mapping(string => address) public feedAddress; // map of addresses for the price feeds
     PriceFeed public priceFeed;
     int public b = 2;
+    address owner;
+
     event AddEvent(
     uint256 indexed id,
-    address address_field//
+    address address_field
     );
 
     enum Status {
@@ -37,7 +39,7 @@ contract BinaryOption{
     constructor()  {
         priceFeed = new PriceFeed();
         bool isKovan = false; // true if kovan, otherwise rinkeby
-
+        owner = msg.sender;
         if (isKovan){
         feedAddress["EthVsUsd"] = 0x9326BFA02ADD2366b30bacB125260Af641031331;
         }
@@ -219,4 +221,15 @@ contract BinaryOption{
              }
         }
     }
+
+    /*function cleanBattles() public{
+        require(msg.sender == owner, "only the owner may delete battles");
+        uint256 numOfBattles = battleId;
+        for (uint i = 0; i <numOfBattles; i++){
+            // delete battle only if is finished
+            if (battleInfo[i].currVal > 0 && battleInfo[i].whoWin != Status.NotOver){
+                delete battleInfo[i];
+            }
+        }
+    }*/
 }
