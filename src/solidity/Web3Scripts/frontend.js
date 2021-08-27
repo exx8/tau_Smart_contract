@@ -110,7 +110,7 @@ export const acceptBattle = async function (id, bet_amount, provide, from) {
  */
 export const alertReachMax = async function (provide, from) {
     let battles = await getaddressToBattle(provide, from);
-    if (battles.length == maxNumOfBattles) {
+    if (battles.length === maxNumOfBattles) {
         alert("You are currently participating in too much battles");
         return true;
     }
@@ -120,18 +120,18 @@ export const alertReachMax = async function (provide, from) {
 export const withdraw = async function (provide, from) {
     let battleList = await getaddressToBattle(provide, from);
     let anyBattleMatch = false;
-    if (battleList == [battleFreeSpace, battleFreeSpace, battleFreeSpace]) {
+    if (battleList === [battleFreeSpace, battleFreeSpace, battleFreeSpace]) {
         debug("nothing to withdraw");
         return false;
     }
     for (let i = 0; i < battleList.length; i++) {
         let currBattleId = battleList[i];
-        if (currBattleId != battleFreeSpace) {
+        if (currBattleId !== battleFreeSpace) {
             let currBattle = await getBattleInfo(currBattleId, provide, from, false);
             console.log("battle: " + currBattle + " id: " + currBattleId);
             // eslint-disable-next-line
             if (
-                (currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) && (currBattle.creator != currBattle.opponent)) {
+                (currBattle.betDate <= Date.now()) && (currBattle.whoWin === 3) && (currBattle.creator !== currBattle.opponent)) {
                 anyBattleMatch = true;
                 try {
                     await contract.methods.withdraw(currBattleId).send({
