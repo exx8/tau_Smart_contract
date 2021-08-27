@@ -5,13 +5,13 @@ import "./PriceFeed.sol";
 contract BinaryOption{
 
     uint256 public battleId; // unique id for each battle
-    mapping(uint256 => Battle) public battleInfo; // map of the existing battles
-    mapping(address => uint256[]) public addressToBattle; // map of relevant battles
+    mapping(uint256 => Battle) public battleInfo; // map of id to battle
+    mapping(address => uint256[]) public addressToBattle; // map of address to relevant battle id's
     mapping(string => address) public feedAddress; // map of addresses for the price feeds
     PriceFeed public priceFeed;
-    uint256 maxNumOfBattles = 10;
-    uint256 historyWindow = 10;
-    uint256 battleFreeSpace = 1000;
+    uint256 maxNumOfBattles = 10; // maximum of allowed parallel battles for a user
+    uint256 historyWindow = 10; // how many battles are used for the statistics
+    uint256 battleFreeSpace = 1000; // represent a free entry
     //address owner;
 
     event AddEvent(
@@ -78,7 +78,7 @@ contract BinaryOption{
                addressToBattle[target].push(battleFreeSpace);
            }
         } else {
-               for(uint i = 0; i < maxNumOfBattles; i++){
+               for (uint i = 0; i < maxNumOfBattles; i++){
                   if (addressToBattle[target][i] == battleFreeSpace){
                      addressToBattle[target][i] = battle_id;
                      break;
@@ -88,7 +88,7 @@ contract BinaryOption{
     }
 
     // a creator create a new battle
-    function addBattle(string memory betType,uint betDate,bool direction) public payable {
+    function addBattle(string memory betType, uint betDate,bool direction) public payable {
         uint256 tempId = battleId;
         require(msg.value > 0, "you have to bet on positive value!");
         // doesn't play more than maxNumOfBattles games simultaneously
@@ -100,16 +100,19 @@ contract BinaryOption{
         battleId++;
     }
 
+    // return relevant battle id's to withdraw
     function getaddressToBattle(address a) public view returns(uint256[] memory) {
         return addressToBattle[a];
     }
 
-    function getBattleInfo(uint256 battle_id) public returns(Battle memory) {
+    // return battle's info
+    function getBattleInfo(uint256 battle_id) public view returns(Battle memory) {
         Battle storage bate = battleInfo[battle_id];
         require(bate.amountBet > 0, "this battle isn't exist.\n");
         return battleInfo[battle_id];
     }
 
+    // get statistics to display
     function getAll() public view returns (Battle[] memory){
             uint256 lastIndex = battleId;
             uint256 firstIndex = 0;
@@ -149,7 +152,7 @@ contract BinaryOption{
         payable(bate.creator).transfer(bate.amountBet); // return the amount which was invested
         address creator = bate.creator;
         for (uint i = 0; i < maxNumOfBattles; i++){
-            if(addressToBattle[creator][i] == battle_id){
+            if (addressToBattle[creator][i] == battle_id){
                 addressToBattle[creator][i] = battleFreeSpace;
                 break;
             }
@@ -163,7 +166,7 @@ contract BinaryOption{
         int oldPrice;
         int newPrice;
         Battle storage bate=battleInfo[battle_id];
-        uint betDateSecond = bate.betDate / 1000; // divide by 1000 to convert milliseconds to seconds
+        uint betDateSecond = bate.betDate / 1000; // dividing by 1000 to convert milliseconds to seconds
         require(bate.creator != bate.opponent, "this battle didnt start."); // in case the creator try to withdraw before having opponent. He may cancel battle if he wants.
         require((bate.creator == msg.sender || bate.opponent == msg.sender), "you are not part of this battle.");
         require(block.timestamp >= betDateSecond, "too early to check who is the winner.");
@@ -171,13 +174,13 @@ contract BinaryOption{
         oldPrice = bate.currVal;
         newPrice = priceFeed.getThePrice(feedAddress[bate.betType]);
         // deliver the money to the winner
-        if(oldPrice < newPrice){
+        if (oldPrice < newPrice){
 
             if (bate.isUp){
                 winner = Status.Creator;
                 payable(bate.creator).transfer(2 * bate.amountBet); // multiply by 2 since we deliver the money of both the creator and his opponent
             }
-            else{
+            else {
                 winner = Status.Opponent;
                 payable(bate.opponent).transfer(2*bate.amountBet);
             }
@@ -205,13 +208,13 @@ contract BinaryOption{
         address creator = battleInfo[battle_id].creator;
         address opponent = battleInfo[battle_id].opponent;
         for (uint i = 0; i < maxNumOfBattles; i ++){
-            if(addressToBattle[creator][i] == battle_id){
+            if (addressToBattle[creator][i] == battle_id){
                 addressToBattle[creator][i] = battleFreeSpace;
                 break;
             }
         }
         for (uint i = 0; i < maxNumOfBattles; i ++){
-             if(addressToBattle[opponent][i] == battle_id){
+             if (addressToBattle[opponent][i] == battle_id){
                 addressToBattle[opponent][i] = battleFreeSpace;
                 break;
              }

@@ -102,6 +102,7 @@ function hasFreeEntry(battles){
         return true;
     }
     for (let i = 0; i < battles.length; i++){
+        // eslint-disable-next-line
         if (battles[i] == battleFreeSpace){
             return true;
         }
@@ -118,20 +119,20 @@ export const alertReachMax = async function (provide, from) {
 
     return false;
 }
-// returns false if there is no battle to withdraw from
+// return false if there is no battle to withdraw from
 export const withdraw = async function (provide, from) {
 
     let battleList = await getaddressToBattle(provide, from);
     let anyBattleMatch = false;
     for (let i = 0; i < battleList.length; i++) {
         let currBattleId = battleList[i];
+        // eslint-disable-next-line
         if (currBattleId != battleFreeSpace) {
             let currBattle = await getBattleInfo(currBattleId, provide, from, false);
             console.log("battle: " + currBattle + " id: " + currBattleId);
             // eslint-disable-next-line
-            if (
-                (currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) &&
-                (currBattle.creator != currBattle.opponent)) {
+            if ((currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) &&
+                (currBattle.creator !== currBattle.opponent)) {
                 anyBattleMatch = true;
                 try {
                     await contract.methods.withdraw(currBattleId).send({
@@ -220,7 +221,7 @@ export const getAll = async function (provide, from) {
     }
 }
 
-// returns relevant battle id's to withdraw
+// return relevant battle id's to withdraw
 export const getaddressToBattle = async function (provide, from) {
 
     await init(provide, from);
