@@ -9,8 +9,8 @@ let contract = PickTestNet.contract;
 let kovan = PickTestNet.kovan;
 const idKovan = PickTestNet.idKovan;
 const idRinkeby = PickTestNet.idRinkeby;
-export const maxNumOfBattles = 3;
-const battleFreeSpace = 100;
+export const maxNumOfBattles = 10;
+const battleFreeSpace = 1000;
 let debug = getDebug('sol:frontend');
 
 const init = async function init(provide, from) {
@@ -46,7 +46,7 @@ export const addBattle = async function (battle_type, expire_time, winner, bet_a
             from: from,
             value: bet_amount
         });
-        const parallelism = 5;
+        const parallelism = 10;
         const block_num = await web3.eth.getBlockNumber();
         // filtering by the address of the sender to allow parallelism of different senders
         past_events = await contract.getPastEvents('AddEvent', {
@@ -102,6 +102,7 @@ function hasFreeEntry(battles){
         return true;
     }
     for (let i = 0; i < battles.length; i++){
+        // eslint-disable-next-line
         if (battles[i] == battleFreeSpace){
             return true;
         }
@@ -118,20 +119,20 @@ export const alertReachMax = async function (provide, from) {
 
     return false;
 }
-// returns false if there is no battle to withdraw from
+// return false if there is no battle to withdraw from
 export const withdraw = async function (provide, from) {
 
     let battleList = await getaddressToBattle(provide, from);
     let anyBattleMatch = false;
     for (let i = 0; i < battleList.length; i++) {
         let currBattleId = battleList[i];
+        // eslint-disable-next-line
         if (currBattleId != battleFreeSpace) {
             let currBattle = await getBattleInfo(currBattleId, provide, from, false);
             console.log("battle: " + currBattle + " id: " + currBattleId);
             // eslint-disable-next-line
-            if (
-                (currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) &&
-                (currBattle.creator != currBattle.opponent)) {
+            if ((currBattle.betDate <= Date.now()) && (currBattle.whoWin == 3) &&
+                (currBattle.creator !== currBattle.opponent)) {
                 anyBattleMatch = true;
                 try {
                     await contract.methods.withdraw(currBattleId).send({
@@ -220,7 +221,7 @@ export const getAll = async function (provide, from) {
     }
 }
 
-// returns relevant battle id's to withdraw
+// return relevant battle id's to withdraw
 export const getaddressToBattle = async function (provide, from) {
 
     await init(provide, from);
