@@ -18,7 +18,7 @@ export class AcceptButton extends React.Component<{ value: string, id: number, c
     acceptBattle = async (): Promise<void> => {
         let detailedAcceptBattle = await fillEtherDetailsInFunc(acceptBattle);
         let detailedAlertReachMax = await fillEtherDetailsInFunc(alertReachMax);
-        if (detailedAlertReachMax()) {
+        if (await addetailedAlertReachMax()) {
         } else {
             detailedAcceptBattle(this.props.id, this.props.value);
         }
