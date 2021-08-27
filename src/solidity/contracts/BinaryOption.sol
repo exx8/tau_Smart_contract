@@ -9,8 +9,11 @@ contract BinaryOption{
     mapping(address => uint256[]) public addressToBattle; // map of relevant battles
     mapping(string => address) public feedAddress; // map of addresses for the price feeds
     PriceFeed public priceFeed;
-    int public b = 2;
-    address owner;
+    //int public b = 2;
+    uint256 maxNumOfBattles = 3;
+    uint256 historyWindow = 2;
+    uint256 battleFreeSpace = 100;
+    //address owner;
 
     event AddEvent(
     uint256 indexed id,
@@ -32,14 +35,14 @@ contract BinaryOption{
         uint betDate;
         bool isUp;
         int currVal;
-        Status whoWin; // 0 for opponent, 1 for creator, 2 for draw, 3 if not over
+        Status whoWin;
     }
 
 
     constructor()  {
         priceFeed = new PriceFeed();
         bool isKovan = false; // true if kovan, otherwise rinkeby
-        owner = msg.sender;
+        //owner = msg.sender;
         if (isKovan){
         feedAddress["EthVsUsd"] = 0x9326BFA02ADD2366b30bacB125260Af641031331;
         }
@@ -64,23 +67,33 @@ contract BinaryOption{
           return addressToBattle[a];
        }*/
 
+    function hasFreeEntry(uint256[] memory battles) public view returns (bool){
+        if (!(battles.length > 0)){
+            return true;
+        }
+        for (uint i = 0; i < maxNumOfBattles; i++){
+            if (battles[i] == battleFreeSpace){
+                return true;
+            }
+        }
+        return false;
+    }
 
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value > 0, "you have to bet on positive value!");
         // doesn't play more than 3 games simultaneously
-        require(!(addressToBattle[msg.sender].length > 0) || (addressToBattle[msg.sender].length > 0
-        && (addressToBattle[msg.sender][0]==100 || addressToBattle[msg.sender][1]==100 || addressToBattle[msg.sender][2]==100)), "too many battles" );
+        require (hasFreeEntry(addressToBattle[msg.sender]), "too many battles" );
         battleInfo[battleId] = Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,
         priceFeed.getThePrice(feedAddress[betType]), Status.NotOver);
         emit AddEvent(battleId, msg.sender);
         if (!(addressToBattle[msg.sender].length > 0)){
         //b = 1;
-        addressToBattle[msg.sender] = [battleId, 100, 100]; // 100 signs empty entry. -1 doesn't work
+        addressToBattle[msg.sender] = [battleId, battleFreeSpace, battleFreeSpace]; // battleFreeSpace signs empty entry. -1 doesn't work
         } else {
             //b = 0;
-            for(uint i = 0; i < 3; i++){
-                if (addressToBattle[msg.sender][i] == 100){
+            for(uint i = 0; i < maxNumOfBattles; i++){
+                if (addressToBattle[msg.sender][i] == battleFreeSpace){
                     addressToBattle[msg.sender][i] = battleId;
                     break;
                 }
@@ -102,8 +115,8 @@ contract BinaryOption{
     function getAll() public view returns (Battle[] memory){
             uint256 lastIndex = battleId;
             uint256 firstIndex = 0;
-            if (lastIndex >= 2){
-                firstIndex = lastIndex - 2;
+            if (lastIndex >= historyWindow){
+                firstIndex = lastIndex - historyWindow;
             }
             uint256 viewRange = lastIndex - firstIndex;
             //b = 1;
@@ -125,17 +138,14 @@ contract BinaryOption{
         require(bate.creator != msg.sender, "impossible to fight against yourself.");
         require(bate.creator == bate.opponent, "this battle is closed, opponent already exist.");
         require(msg.value == bate.amountBet, "betting value isn't as specified for this battle.");
-        // doesn't play more than 3 games simultaneously
-        require(!(addressToBattle[msg.sender].length > 0) || (addressToBattle[msg.sender].length > 0
-        && (addressToBattle[msg.sender][0]==100 || addressToBattle[msg.sender][1]==100 || addressToBattle[msg.sender][2]==100)), "too many battles" );
+        // doesn't play more than maxNumOfBattles games simultaneously
+        require (hasFreeEntry(addressToBattle[msg.sender]), "too many battles" );
         bate.opponent = msg.sender;
         if (!(addressToBattle[msg.sender].length > 0)){
-            b = 0;
-            addressToBattle[msg.sender] = [battle_id, 100, 100];
+            addressToBattle[msg.sender] = [battle_id, battleFreeSpace, battleFreeSpace];
         } else {
-            b = 1;
-            for(uint i = 0; i < 3; i++){
-                if (addressToBattle[msg.sender][i] == 100){
+            for(uint i = 0; i < maxNumOfBattles; i++){
+                if (addressToBattle[msg.sender][i] == battleFreeSpace){
                     addressToBattle[msg.sender][i] = battle_id;
                     break;
                 }
@@ -152,9 +162,9 @@ contract BinaryOption{
         require(bate.creator == bate.opponent, "there is already opponent, this battle cant be canceled.");
         payable(bate.creator).transfer(bate.amountBet); // return the amount which was invested
         address creator = bate.creator;
-        for (uint i = 0; i < 3; i++){
+        for (uint i = 0; i < maxNumOfBattles; i++){
             if(addressToBattle[creator][i] == battle_id){
-                addressToBattle[creator][i] = 100;
+                addressToBattle[creator][i] = battleFreeSpace;
                 break;
             }
         }
@@ -208,15 +218,15 @@ contract BinaryOption{
         bate.whoWin = winner;
         address creator = battleInfo[battle_id].creator;
         address opponent = battleInfo[battle_id].opponent;
-        for (uint i = 0; i < 3; i ++){
+        for (uint i = 0; i < maxNumOfBattles; i ++){
             if(addressToBattle[creator][i] == battle_id){
-                addressToBattle[creator][i] = 100;
+                addressToBattle[creator][i] = battleFreeSpace;
                 break;
             }
         }
-        for (uint i = 0; i < 3; i ++){
+        for (uint i = 0; i < maxNumOfBattles; i ++){
              if(addressToBattle[opponent][i] == battle_id){
-                addressToBattle[opponent][i] = 100;
+                addressToBattle[opponent][i] = battleFreeSpace;
                 break;
              }
         }
