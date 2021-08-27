@@ -19,8 +19,8 @@ import {futureDate, getDateString} from "./DateUtils";
 import {TrendToggle} from "./TrendToggle";
 import moment from "moment";
 import {sendInvitation} from "./Mail";
-import {genericEtherRequest, getAnchor, getDebug} from "./utils";
-import {getBattleInfo} from "./solidity/Web3Scripts/frontend"
+import {fillEtherDetailsInFunc, genericEtherRequest, getAnchor, getDebug} from "./utils";
+import {alertReachMax, getBattleInfo} from "./solidity/Web3Scripts/frontend"
 import {addBattle} from "./solidity/Web3Scripts/frontend"
 import {TrendingDown, TrendingUp} from "@material-ui/icons";
 import {AcceptButton} from "./BattleMenuComponents/AcceptButton";
@@ -298,11 +298,15 @@ export class BattleMenu extends React.Component<BattleMenuPros, Partial<BattleMe
             try {
                 let address = await window.ethereum.enable();
                 console.log(this.state.date);
-                let battleID: string = await addBattle(this.state.type, this.state.date, this.state.trend, this.state.amount,
-                    window.ethereum, address[0]);
-                const fixedEmail: string = this.state.email ?? "";
-                sendInvitation(fixedEmail, battleID)
+                let detailedAlertReachMax = await fillEtherDetailsInFunc(alertReachMax);
+                if (detailedAlertReachMax()) {
+                } else {
 
+                    let battleID: string = await addBattle(this.state.type, this.state.date, this.state.trend, this.state.amount,
+                        window.ethereum, address[0]);
+                    const fixedEmail: string = this.state.email ?? "";
+                    sendInvitation(fixedEmail, battleID)
+                }
             } catch (e) {
                 alert('Payment using Metamask was denied');
                 throw new Error('Payment using Metamask was denied');

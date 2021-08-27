@@ -10,7 +10,8 @@ let contract = PickTestNet.contract;
 let kovan = PickTestNet.kovan;
 const idKovan = PickTestNet.idKovan;
 const idRinkeby = PickTestNet.idRinkeby;
-
+export const maxNumOfBattles=3;
+const battleFreeSpace = 100;
 
 
 let debug = getDebug('sol:frontend');
@@ -101,18 +102,25 @@ export const acceptBattle = async function (id, bet_amount, provide, from) {
         return "";
     }
 }
-
+export const alertReachMax= async function (provide, from) {
+    let battles=await getaddressToBattle(provide,from);
+    if(battles.length==maxNumOfBattles) {
+        alert("You are currently participating in too much battles");
+        return true;
+    }
+    return false;
+}
 // returns false if there is no battle to withdraw from
-export const withdraw= async function (provide,from) {
+export const withdraw= async function (provide, from) {
 	let battleList = await getaddressToBattle(provide,from);
     let anyBattleMatch = false;
-    if (battleList == [100,100,100]){
+    if (battleList == [battleFreeSpace,battleFreeSpace,battleFreeSpace]){
         debug("nothing to withdraw");
         return false;
     }
 	for(let i = 0; i < battleList.length; i++){
 	let currBattleId=battleList[i];
-	if (currBattleId != 100){
+	if (currBattleId != battleFreeSpace){
     let currBattle = await getBattleInfo(currBattleId, provide,from, false);
     console.log("battle: " + currBattle + " id: "+ currBattleId);
     // eslint-disable-next-line
