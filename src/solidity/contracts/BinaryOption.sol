@@ -9,7 +9,6 @@ contract BinaryOption{
     mapping(address => uint256[]) public addressToBattle; // map of relevant battles
     mapping(string => address) public feedAddress; // map of addresses for the price feeds
     PriceFeed public priceFeed;
-    //int public b = 2;
     uint256 maxNumOfBattles = 3;
     uint256 historyWindow = 2;
     uint256 battleFreeSpace = 100;
@@ -59,13 +58,6 @@ contract BinaryOption{
         }
 
     }
-       /*function getB() public view returns (int){
-          return b;
-       }
-
-       function getList(address a) public view returns (uint256[] memory){
-          return addressToBattle[a];
-       }*/
 
     function hasFreeEntry(uint256[] memory battles) public view returns (bool){
         if (!(battles.length > 0)){
@@ -82,7 +74,7 @@ contract BinaryOption{
     // a creator create a new battle
     function addBattle(string memory betType,uint betDate,bool direction) public payable {
         require(msg.value > 0, "you have to bet on positive value!");
-        // doesn't play more than 3 games simultaneously
+        // doesn't play more than maxNumOfBattles games simultaneously
         require (hasFreeEntry(addressToBattle[msg.sender]), "too many battles" );
         battleInfo[battleId] = Battle(msg.sender,msg.sender,msg.value,betType,betDate,direction,
         priceFeed.getThePrice(feedAddress[betType]), Status.NotOver);
@@ -119,9 +111,7 @@ contract BinaryOption{
                 firstIndex = lastIndex - historyWindow;
             }
             uint256 viewRange = lastIndex - firstIndex;
-            //b = 1;
             Battle[] memory ret = new Battle[](viewRange);
-            //b = 0;
             uint j = 0;
             for (uint i = firstIndex; i < lastIndex; i++) {
                 ret[j] = battleInfo[i];
@@ -144,7 +134,7 @@ contract BinaryOption{
         if (!(addressToBattle[msg.sender].length > 0)){
             addressToBattle[msg.sender] = [battle_id, battleFreeSpace, battleFreeSpace];
         } else {
-            for(uint i = 0; i < maxNumOfBattles; i++){
+            for (uint i = 0; i < maxNumOfBattles; i++){
                 if (addressToBattle[msg.sender][i] == battleFreeSpace){
                     addressToBattle[msg.sender][i] = battle_id;
                     break;
@@ -158,7 +148,6 @@ contract BinaryOption{
     function cancelBattle(uint256 battle_id) public {
         Battle memory bate = battleInfo[battle_id];
         require(bate.amountBet > 0, "this battle isn't exist.");
-        //require(bate.creator == msg.sender, "only the creator may cancel his own battle.");
         require(bate.creator == bate.opponent, "there is already opponent, this battle cant be canceled.");
         payable(bate.creator).transfer(bate.amountBet); // return the amount which was invested
         address creator = bate.creator;
@@ -173,7 +162,7 @@ contract BinaryOption{
 
     // the winner may draw his money
     function withdraw(uint256 battle_id) public {
-        Status winner; // 0 = lose 1 = win 2 = draw
+        Status winner;
         int oldPrice;
         int newPrice;
         Battle storage bate=battleInfo[battle_id];
