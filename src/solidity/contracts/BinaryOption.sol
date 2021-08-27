@@ -147,7 +147,7 @@ contract BinaryOption{
     // a creator cancels his battle
     function cancelBattle(uint256 battle_id) public {
         Battle memory bate = battleInfo[battle_id];
-        require(bate.amountBet > 0, "this battle isn't exist.");
+        require(bate.amountBet > 0, "this battle isn't exist."); // avoid reentry vulnerability
         require(bate.creator == bate.opponent, "there is already opponent, this battle cant be canceled.");
         payable(bate.creator).transfer(bate.amountBet); // return the amount which was invested
         address creator = bate.creator;

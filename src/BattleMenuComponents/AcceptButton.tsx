@@ -20,7 +20,7 @@ export class AcceptButton extends React.Component<{ value: string, id: number, c
         let detailedAlertReachMax = await fillEtherDetailsInFunc(alertReachMax);
         if (await detailedAlertReachMax()) {
         } else {
-            detailedAcceptBattle(this.props.id, this.props.value);
+         await  detailedAcceptBattle(this.props.id, this.props.value);
         }
         switchAnchor("")
         this.props.close();
