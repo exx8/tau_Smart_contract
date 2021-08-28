@@ -135,7 +135,7 @@ contract BinaryOption{
         Battle storage bate = battleInfo[battle_id];
         require(bate.amountBet > 0, "battle number isn't exist.\n");
         require(bate.creator != msg.sender, "impossible to fight against yourself.");
-        require(bate.creator == bate.opponent, "this battle is closed, opponent already exist.");
+        require(bate.creator == bate.opponent, "this battle is closed, opponent already exist."); //this is how we simbolize that hasn't been accepted by any.
         require(msg.value == bate.amountBet, "betting value isn't as specified for this battle.");
         // doesn't play more than maxNumOfBattles games simultaneously
         require (hasFreeEntry(addressToBattle[msg.sender]), "too many battles" );
