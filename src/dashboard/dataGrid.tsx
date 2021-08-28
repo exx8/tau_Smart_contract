@@ -11,7 +11,7 @@ export class DataGrid extends React.Component<{}, { dataSource: any[] }> {
         {name: 'amountBet', header: 'wei', minWidth: 20, defaultFlex: 2},
         {name: 'betType', header: 'type', minWidth: 40, defaultFlex: 3},
         {name: 'isUp', header: 'trend', minWidth: 10, defaultFlex: 2.2},
-        {name: 'WhoWin', header: 'status', minWidth: 10, defaultFlex: 3},
+        {name: 'WhoWin', header: 'winner', minWidth: 10, defaultFlex: 3},
 
         {name: 'betDate', header: 'date', defaultFlex: 6},
     ];
