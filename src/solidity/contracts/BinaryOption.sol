@@ -29,6 +29,7 @@ contract BinaryOption{
     struct Battle {
         address creator;
         address opponent;
+        // if creator==opponent it means that the battle hasn't been accepted by anyone (as no one can battle himself).
         uint256 amountBet;
         string betType;
         uint betDate;
