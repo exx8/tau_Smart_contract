@@ -1,6 +1,6 @@
 // variables in comment are relevant only for backend.js
 
-let kovan=false;
+let kovan = true;
 //let infuraKovan="";
 //let infuraRinkeby="";
 const idKovan="42";

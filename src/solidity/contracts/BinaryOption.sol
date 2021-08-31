@@ -41,10 +41,17 @@ contract BinaryOption{
 
     constructor()  {
         priceFeed = new PriceFeed();
-        bool isKovan = false; // true if kovan, otherwise rinkeby
+        bool isKovan = true; // true if kovan, otherwise rinkeby
         //owner = msg.sender;
         if (isKovan){
-            feedAddress["EthVsUsd"] = 0x9326BFA02ADD2366b30bacB125260Af641031331;
+            feedAddress["eth_vs_usd"] = 0x9326BFA02ADD2366b30bacB125260Af641031331;
+            feedAddress["btc_vs_usd"] = 0x6135b13325bfC4B00278B4abC5e20bbce2D6580e;
+            feedAddress["eur_vs_usd"] = 0x0c15Ab9A0DB086e062194c273CC79f41597Bbf13;
+            feedAddress["usdc_vs_eth"] = 0x64EaC61A2DFda2c3Fa04eED49AA33D021AeC8838;
+            feedAddress["dai_vs_usd"] = 0x777A68032a88E5A84678A77Af2CD65A7b3c0775a;
+            feedAddress["dai_vs_eth"] = 0x22B58f1EbEDfCA50feF632bD73368b2FdA96D541;
+            feedAddress["sdefi_vs_usd"] = 0x70179FB2F3A0a5b7FfB36a235599De440B0922ea;
+            feedAddress["snx_vs_usd"] = 0x31f93DA9823d737b7E44bdee0DF389Fe62Fd1AcD;
         }
         else {
         // those addresses (of rinkbey test network) can be found at: https://docs.chain.link/docs/ethereum-addresses/
