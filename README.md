@@ -1,3 +1,7 @@
+Usage of the Dapp
+https://youtu.be/4pI5ULMabts
+https://youtu.be/lxwnVwztxn8
+
 1. truffle develop
 2. migrate --reset --network rinkeby
 
